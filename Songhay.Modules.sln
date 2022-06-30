@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Songhay.Modules", "Songhay.Modules\Songhay.Modules.fsproj", "{276371F3-A1F5-4FDC-B75C-5316A12265E3}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Songhay.Modules.Tests", "Songhay.Modules.Tests\Songhay.Modules.Tests.fsproj", "{3F881B94-311F-4ABE-9C8F-E40DC6722564}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{276371F3-A1F5-4FDC-B75C-5316A12265E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{276371F3-A1F5-4FDC-B75C-5316A12265E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{276371F3-A1F5-4FDC-B75C-5316A12265E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{276371F3-A1F5-4FDC-B75C-5316A12265E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F881B94-311F-4ABE-9C8F-E40DC6722564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F881B94-311F-4ABE-9C8F-E40DC6722564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F881B94-311F-4ABE-9C8F-E40DC6722564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F881B94-311F-4ABE-9C8F-E40DC6722564}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
