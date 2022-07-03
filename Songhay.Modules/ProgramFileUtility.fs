@@ -1,5 +1,8 @@
 namespace Songhay.Modules
 
+/// <summary>
+/// Utility functions for files and directories.
+/// </summary>
 module ProgramFileUtility =
 
     open System

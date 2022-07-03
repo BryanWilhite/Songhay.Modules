@@ -1,5 +1,8 @@
 namespace Songhay.Modules
 
+/// <summary>
+/// Utility functions for types.
+/// </summary>
 module ProgramTypeUtility =
 
     open System

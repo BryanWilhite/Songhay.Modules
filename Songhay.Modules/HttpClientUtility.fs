@@ -2,6 +2,9 @@ namespace Songhay.Modules
 
 open System.Net.Http
 
+/// <summary>
+/// Utility functions for <see cref="HttpClient" />.
+/// </summary>
 module HttpClientUtility =
 
     /// <summary>

@@ -1,11 +1,19 @@
 namespace Songhay.Modules
 
+/// <summary>
+/// Utility functions for <see cref="JsonDocument" />.
+/// </summary>
 module JsonDocumentUtility =
 
     open System.Linq
     open System.Text.Json
 
-    let internal resultError (elementName: string) =
+    /// <summary>
+    /// Wraps <see cref="JsonException" /> property
+    /// in <see cref="Error" />.
+    /// </summary>
+    /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
+    let resultError (elementName: string) =
         Error(JsonException $"the expected `{elementName}` element is not here.")
 
     /// <summary>
