@@ -142,6 +142,11 @@
  <param name="message">The <see cref="HttpRequestMessage" />.</param>
  <param name="client">The <see cref="HttpClient" />.</param>
 </member>
+<member name="T:Songhay.Modules.HttpClientUtility">
+ <summary>
+ Utility functions for <see cref="HttpClient" />.
+ </summary>
+</member>
 <member name="M:Songhay.Modules.HttpRequestMessageUtility.withXmlStringContent(System.String,System.Net.Http.HttpRequestMessage)">
  <summary>
  Returns a <see cref="HttpRequestMessage" />
@@ -301,6 +306,18 @@
  </summary>
  <param name="element">The <see cref="JsonElement" />.</param>
 </member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.resultError``1(System.String)">
+ <summary>
+ Wraps <see cref="JsonException" /> property
+ in <see cref="Error" />.
+ </summary>
+ <param name="elementName">The <see cref="JsonElement" /> name.</param>
+</member>
+<member name="T:Songhay.Modules.JsonDocumentUtility">
+ <summary>
+ Utility functions for <see cref="JsonDocument" />.
+ </summary>
+</member>
 <member name="M:Songhay.Modules.ProgramFileUtility.tryGetCombinedPath(System.String,System.String)">
  <summary>
  Tries to combine path and root based
@@ -438,6 +455,11 @@
  uses forward-slash (<c>/</c>) paths or <c>false</c>.
  </summary>
 </member>
+<member name="T:Songhay.Modules.ProgramFileUtility">
+ <summary>
+ Utility functions for files and directories.
+ </summary>
+</member>
 <member name="M:Songhay.Modules.ProgramTypeUtility.tryParseRfc822DateTime(System.String)">
  <summary>
  Tries to parse the specified value
@@ -468,6 +490,11 @@
 
  [ https://en.wikipedia.org/wiki/ISO_8601 ]
  </remarks>
+</member>
+<member name="T:Songhay.Modules.ProgramTypeUtility">
+ <summary>
+ Utility functions for types.
+ </summary>
 </member>
 <member name="M:Songhay.Modules.StringUtility.toSnakeCase(System.String)">
  <summary>
