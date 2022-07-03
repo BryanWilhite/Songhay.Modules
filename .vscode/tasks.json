@@ -29,7 +29,7 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/Songhay.Modules/Songhay.Modules.csproj"
+                "${workspaceFolder}/Songhay.Modules/Songhay.Modules.fsproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -39,7 +39,7 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/Songhay.Modules/Songhay.Modules.csproj",
+                "${workspaceFolder}/Songhay.Modules/Songhay.Modules.fsproj",
                 "--configuration",
                 "Release"
             ],
@@ -51,7 +51,7 @@
             "type": "shell",
             "args": [
                 "pack",
-                "${workspaceFolder}/Songhay.Modules/Songhay.Modules.csproj",
+                "${workspaceFolder}/Songhay.Modules/Songhay.Modules.fsproj",
                 "--configuration",
                 "Debug",
                 "-p:NuspecFile=${workspaceFolder}/Songhay.Modules/Songhay.Modules.nuspec",
@@ -69,7 +69,7 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.csproj"
+                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.fsproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -79,7 +79,7 @@
             "type": "shell",
             "args": [
                 "test",
-                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.csproj",
+                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.fsproj",
                 "--logger:trx",
                 "--results-directory:${workspaceFolder}/TestResults",
                 "--verbosity:normal",
@@ -93,7 +93,7 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.csproj",
+                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.fsproj",
                 "--configuration",
                 "Release"
             ],
@@ -105,7 +105,7 @@
             "type": "shell",
             "args": [
                 "test",
-                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.csproj",
+                "${workspaceFolder}/Songhay.Modules.Tests/Songhay.Modules.Tests.fsproj",
                 "--filter:${selectedText}",
                 "--logger:trx",
                 "--results-directory:${workspaceFolder}/TestResults",
@@ -119,7 +119,7 @@
             "type": "shell",
             "args": [
                 "build",
-                "${workspaceFolder}/Statiq.Docs.Shell/Statiq.Docs.Shell.csproj",
+                "${workspaceFolder}/Statiq.Docs.Shell/Statiq.Docs.Shell.fsproj",
                 "--configuration",
                 "Release"
             ],
