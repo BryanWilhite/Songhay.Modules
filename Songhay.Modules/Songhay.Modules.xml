@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Songhay.Modules</name></assembly>
+<members>
+<member name="P:Songhay.Modules.Selectable.isSelected">
+ <summary>
+ Gets or sets whether this is selected.
+ </summary>
+ <value>
+ <c>true</c> when this is selected.
+ </value>
+</member>
+<member name="P:Songhay.Modules.Selectable.isEnabled">
+ <summary>
+ Gets or sets whether this is enabled.
+ </summary>
+ <value>
+ This is enabled.
+ </value>
+</member>
+<member name="P:Songhay.Modules.Selectable.isDefaultSelection">
+ <summary>
+ Gets or sets whether this is default selection.
+ </summary>
+ <value>
+ This is default selection.
+ </value>
+</member>
+<member name="T:Songhay.Modules.Selectable">
+ <summary>
+ Defines a selectable visual.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.TextPlain">
+ <summary>
+ The text plain
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.TextJavascript">
+ <summary>
+ The text javascript
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.TextHtml">
+ <summary>
+ The text HTML
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.TextCss">
+ <summary>
+ The text CSS
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ImageXIcon">
+ <summary>
+ The image x icon
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ImageSvgXml">
+ <summary>
+ The image SVG XML
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ImagePng">
+ <summary>
+ The image PNG
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ImageJpeg">
+ <summary>
+ The image JPEG
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ImageGif">
+ <summary>
+ The image GIF
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationXml">
+ <summary>
+ The application XML
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationXFontWoff">
+ <summary>
+ The application x font woff
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationXFontTtf">
+ <summary>
+ The application x font TTF
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationXFontOtf">
+ <summary>
+ The application x font otf
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationVndMsFontObject">
+ <summary>
+ The application VND ms font object
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationRssXml">
+ <summary>
+ The application RSS XML
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationOctetStream">
+ <summary>
+ The application octet stream
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationJson">
+ <summary>
+ The application json
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationFormUrlEncoded">
+ <summary>
+ The application form URL encoded
+ </summary>
+</member>
+<member name="P:Songhay.Modules.MimeTypes.ApplicationAtomXml">
+ <summary>
+ The application atom XML
+ </summary>
+</member>
+<member name="T:Songhay.Modules.MimeTypes">
+ <summary>
+ Selected MIME types for this Studio
+ </summary>
+ <remarks>
+ Multipurpose Internet Mail Extensions: https://tools.ietf.org/html/rfc6838
+ See: https://www.iana.org/assignments/media-types/media-types.xhtml
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.HttpClientUtility.trySendAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpClient)">
+ <summary>
+ Calls <see cref="HttpClient.SendAsync(HttpRequestMessage)" />
+ </summary>
+ <param name="message">The <see cref="HttpRequestMessage" />.</param>
+ <param name="client">The <see cref="HttpClient" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.withXmlStringContent(System.String,System.Net.Http.HttpRequestMessage)">
+ <summary>
+ Returns a <see cref="HttpRequestMessage" />
+ with <see cref="StringContent" />
+ and media-type <see cref="ApplicationXml" />.
+ </summary>
+ <param name="body">The content used to initialize the <see cref="StringContent" />.</param>
+ <param name="message">The <see cref="HttpRequestMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.withJsonStringContent(System.String,System.Net.Http.HttpRequestMessage)">
+ <summary>
+ Returns a <see cref="HttpRequestMessage" />
+ with <see cref="StringContent" />
+ and media-type <see cref="ApplicationJson" />.
+ </summary>
+ <param name="body">The content used to initialize the <see cref="StringContent" />.</param>
+ <param name="message">The <see cref="HttpRequestMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.withHtmlFormContent(System.Collections.Hashtable,System.Net.Http.HttpRequestMessage)">
+ <summary>
+ Returns a <see cref="HttpRequestMessage" />
+ with <see cref="StringContent" />
+ and media-type <see cref="ApplicationFormUrlEncoded" />.
+ </summary>
+ <param name="formData">The <see cref="Hashtable" /> used to initialize the <see cref="StringContent" />.</param>
+ <param name="message">The <see cref="HttpRequestMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.withStringContent(System.String,System.Text.Encoding,System.String,System.Net.Http.HttpRequestMessage)">
+ <summary>
+ Returns a <see cref="HttpRequestMessage" />
+ with <see cref="StringContent" />.
+ </summary>
+ <param name="body">The content used to initialize the <see cref="StringContent" />.</param>
+ <param name="encoding">The encoding to use for the content.</param>
+ <param name="mediaType">The media type to use for the content.</param>
+ <param name="message">The <see cref="HttpRequestMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.patch(System.Uri)">
+ <summary>
+ Returns <see cref="HttpRequestMessage" />
+ for the specified <see cref="Uri" />
+ and <see cref="HttpMethod.Patch" />.
+ </summary>
+ <param name="uri">The <see cref="Uri" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.delete(System.Uri)">
+ <summary>
+ Returns <see cref="HttpRequestMessage" />
+ for the specified <see cref="Uri" />
+ and <see cref="HttpMethod.Delete" />.
+ </summary>
+ <param name="uri">The <see cref="Uri" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.put(System.Uri)">
+ <summary>
+ Returns <see cref="HttpRequestMessage" />
+ for the specified <see cref="Uri" />
+ and <see cref="HttpMethod.Put" />.
+ </summary>
+ <param name="uri">The <see cref="Uri" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.get(System.Uri)">
+ <summary>
+ Returns <see cref="HttpRequestMessage" />
+ for the specified <see cref="Uri" />
+ and <see cref="HttpMethod.Get" />.
+ </summary>
+ <param name="uri">The <see cref="Uri" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.post(System.Uri)">
+ <summary>
+ Returns <see cref="HttpRequestMessage" />
+ for the specified <see cref="Uri" />
+ and <see cref="HttpMethod.Post" />.
+ </summary>
+ <param name="uri">The <see cref="Uri" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpRequestMessageUtility.message(System.Uri,System.Net.Http.HttpMethod)">
+ <summary>
+ Returns <see cref="HttpRequestMessage" />
+ for the specified <see cref="Uri" />
+ and <see cref="HttpMethod" />.
+ </summary>
+ <param name="uri">The <see cref="Uri" />.</param>
+ <param name="method">The <see cref="HttpMethod" />.</param>
+</member>
+<member name="T:Songhay.Modules.HttpRequestMessageUtility">
+ <summary>
+ Utility functions for <see cref="HttpRequestMessage" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.HttpResponseMessageUtility.tryStreamToInstanceAsync``1(System.Text.Json.JsonSerializerOptions,System.Net.Http.HttpResponseMessage)">
+ <summary>
+ Tries to download an instance hydrated
+ from <see cref="JsonSerializer.DeserializeAsync{_}" />
+ with <see cref="HttpResponseMessage.Content.ReadAsStreamAsync" />.
+ </summary>
+ <param name="options">The <see cref="JsonSerializerOptions" />.</param>
+ <param name="response">The <see cref="HttpResponseMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpResponseMessageUtility.tryDownloadToStringAsync(System.Net.Http.HttpResponseMessage)">
+ <summary>
+ Tries to download a <see cref="System.String" />
+ with <see cref="HttpResponseMessage.Content.ReadAsStringAsync" />.
+ </summary>
+ <param name="response">The <see cref="HttpResponseMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpResponseMessageUtility.tryDownloadToFileAsync(System.String,System.Net.Http.HttpResponseMessage)">
+ <summary>
+ Tries to download a file
+ with <see cref="HttpResponseMessage.Content.ReadAsStreamAsync" />
+ to the specified path.
+ </summary>
+ <param name="path">The path.</param>
+ <param name="response">The <see cref="HttpResponseMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpResponseMessageUtility.tryDownloadToByteArrayAsync(System.Net.Http.HttpResponseMessage)">
+ <summary>
+ Tries to download a <see cref="byte[]" />
+ with <see cref="HttpResponseMessage.Content.ReadAsByteArrayAsync" />.
+ </summary>
+ <param name="response">The <see cref="HttpResponseMessage" />.</param>
+</member>
+<member name="M:Songhay.Modules.HttpResponseMessageUtility.isMovedOrRedirected(System.Net.Http.HttpResponseMessage)">
+ <summary>
+ Returns true when <see cref="HttpResponseMessage.StatusCode" />
+ is <see cref="HttpStatusCode.Moved" />
+ or <see cref="HttpStatusCode.MovedPermanently" />
+ or <see cref="HttpStatusCode.Redirect" />.
+ </summary>
+ <param name="response">The <see cref="HttpResponseMessage" />.</param>
+</member>
+<member name="T:Songhay.Modules.HttpResponseMessageUtility">
+ <summary>
+ Utility functions for <see cref="HttpResponseMessage" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.tryGetRootElement(System.String)">
+ <summary>
+ Tries to return the <see cref="JsonDocument.RootElement" />
+ after parsing the specified JSON document.
+ </summary>
+ <param name="rawDocument">The JSON document.</param>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.tryGetProperty(System.String,System.Text.Json.JsonElement)">
+ <summary>
+ Tries to return the <see cref="JsonElement" /> property
+ of the specified <see cref="JsonElement" /> object.
+ </summary>
+ <param name="elementName">The <see cref="JsonElement" /> name.</param>
+ <param name="element">The <see cref="JsonElement" />.</param>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toPropertyName(System.Text.Json.JsonElement)">
+ <summary>
+ Converts the <see cref="JsonElement" />
+ to its property name or returns <see cref="None" />.
+ </summary>
+ <param name="element">The <see cref="JsonElement" />.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.tryGetCombinedPath(System.String,System.String)">
+ <summary>
+ Tries to combine path and root based
+ on the ambient value of <see cref="Path.DirectorySeparatorChar"/>
+ of the current OS.</summary>
+ <param name="root">The root.</param>
+ <param name="path">The path.</param>
+ <remarks>
+ For detail, see:
+ 📚 https://github.com/BryanWilhite/SonghayCore/issues/14
+ 📚 https://github.com/BryanWilhite/SonghayCore/issues/32
+ 📚 https://github.com/BryanWilhite/SonghayCore/issues/97
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.tryGetRelativePath(System.String)">
+ <summary>
+ Tries to get the relative path from the specified file segment
+ without leading dots (<c>.</c>) or <see cref="Path.DirectorySeparatorChar" /> chars.
+ </summary>
+ <param name="fileSegment">The file segment.</param>
+ <remarks>
+ This function is the equivalent of calling:
+  * <see cref="trimLeadingDirectorySeparatorChars(string)"/>
+  * <see cref="normalizePath(string)"/>
+  * <see cref="removeBackslashPrefixes(string)"/>
+  * <see cref="removeForwardSlashPrefixes(string)"/>
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.tryRelativePath(System.String)">
+ <summary>
+ Tries to ensure that the specified file segment is a relative path.
+ </summary>
+ <param name="fileSegment">The file segment.</param>
+ <remarks>
+ This function will call <see cref="trimLeadingDirectorySeparatorChars(string)"/>.
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.trimLeadingDirectorySeparatorChars(System.String)">
+ <summary>
+ Trims the leading directory separator chars.
+ </summary>
+ <param name="path">The path.</param>
+ <remarks>
+ Trims leading <see cref="Path.AltDirectorySeparatorChar"/> and/or <see cref="Path.DirectorySeparatorChar"/>,
+ formatting relative paths for <see cref="Path.Combine(string, string)"/>.
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.removeConventionalPrefixes(System.String)">
+ <summary>
+ Removes conventional Directory prefixes
+ for relative paths based on the ambient value\
+ of <see cref="Path.DirectorySeparatorChar"/>.
+ </summary>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.removeForwardSlashPrefixes(System.String)">
+ <summary>
+ Removes conventional Directory prefixes
+ for relative paths, e.g. <c>../</c> or <c>./</c>.
+ </summary>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.removeBackslashPrefixes(System.String)">
+ <summary>
+ Removes conventional Directory prefixes
+ for relative paths, e.g. <c>..\</c> or <c>.\</c>
+ </summary>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.raiseProgramFileError``1(Songhay.Modules.ProgramFileUtility.ProgramFileError)">
+ <summary>
+ Raise <see cref="ProgramFileError"/>.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.raiseExceptionForExpectedFile(System.String)">
+ <summary>
+ Raise <see cref="FileNotFoundException"/>
+ for the specified path or pass through the path.
+ </summary>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.raiseExceptionForExpectedDirectory(System.String)">
+ <summary>
+ Raise <see cref="DirectoryNotFoundException"/>
+ for the specified path or pass through the path.
+ </summary>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.normalizePath(System.String)">
+ <summary>
+ Normalizes the specified path with respect
+ to the ambient value of <see cref="Path.DirectorySeparatorChar"/>.
+ </summary>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.tryGetParentDirectory(System.Int32,System.String)">
+ <summary>
+ Tries to get the parent directory.
+ </summary>
+ <param name="levels">The levels.</param>
+ <param name="path">The path.</param>
+ <remarks>
+ A recursive wrapper for <see cref="Directory.GetParent(string)" />.
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.tryGetParentDirectoryInfo(System.Int32,System.String)">
+ <summary>
+ Tries to get the parent <see cref="DirectoryInfo"/>.
+ </summary>
+ <param name="levels">The levels.</param>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.tryFindParentDirectoryInfo(System.String,System.Int32,System.String)">
+ <summary>
+ Tries to find the parent <see cref="DirectoryInfo"/>.
+ </summary>
+ <param name="parentName">Name of the parent.</param>
+ <param name="levels">The levels.</param>
+ <param name="path">The path.</param>
+</member>
+<member name="M:Songhay.Modules.ProgramFileUtility.countParentDirectoryChars(System.String)">
+ <summary>
+ Counts the parent directory chars.
+ </summary>
+ <param name="path">The path.</param>
+ <returns></returns>
+ <remarks>
+ WARNING: call <see cref="NormalizePath(string)"/> to prevent incorrectly returning <c>0</c>
+ in cross-platform scenarios.
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.ProgramFileUtility.isForwardSlashSystem">
+ <summary>
+ Returns <c>true</c> when the current OS
+ uses forward-slash (<c>/</c>) paths or <c>false</c>.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.ProgramTypeUtility.tryParseRfc822DateTime(System.String)">
+ <summary>
+ Tries to parse the specified value
+ into <see cref="TimeSpan" />
+ based on the assertion that the value
+ is in RFC822 format.
+ </summary>
+ <param name="value">The value.</param>
+ <remarks>
+ For example, "Fri, 22 Mar 2019 18:56:07 -0700".
+ see https://datatracker.ietf.org/doc/html/rfc2822
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.ProgramTypeUtility.tryParseIso8601Duration(System.String)">
+ <summary>
+ Tries to parse the specified value
+ into <see cref="TimeSpan" />
+ based on the assertion that the value
+ is in ISO8601 format.
+ </summary>
+ <param name="value">The value.</param>
+ <remarks>
+ For example, "P0DT1H0M0S".
+
+ “Durations define the amount of intervening time
+ in a time interval and are represented
+ by the format P[n]Y[n]M[n]DT[n]H[n]M[n]S or P[n]W…”
+
+ [ https://en.wikipedia.org/wiki/ISO_8601 ]
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.StringUtility.toSnakeCase(System.String)">
+ <summary>
+ Demarcates the <see cref="string"/>
+ by the demarcation <see cref="char"/>, <c>'_'</c>,
+ or returns <see cref="None" />.
+ </summary>
+ <param name="input">The input.</param>
+</member>
+<member name="M:Songhay.Modules.StringUtility.toKabobCase(System.String)">
+ <summary>
+ Demarcates the <see cref="string"/>
+ by the demarcation <see cref="char"/>, <c>'-'</c>,
+ or returns <see cref="None" />.
+ </summary>
+ <param name="input">The input.</param>
+</member>
+<member name="M:Songhay.Modules.StringUtility.toNumericString(System.String)">
+ <summary>
+ Converts the <see cref="string"/> into a numeric format for parsing
+ or returns <see cref="None" />.
+ </summary>
+ <param name="input">The input.</param>
+</member>
+<member name="M:Songhay.Modules.StringUtility.demarcateByCase(System.Char,System.String)">
+ <summary>
+ Demarcates the <see cref="string"/>
+ by the specified demarcation <see cref="char"/>
+ or returns <see cref="None" />.
+ </summary>
+ <param name="demarcation">The demarcation <see cref="char"/>.</param>
+ <param name="input">The input.</param>
+ <remarks>
+ See <see cref="toKabobCase" /> and <see cref="toSnakeCase" />
+ for specific applications of this generalized function.
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.StringUtility.toBlogSlug(System.String)">
+ <summary>
+ Converts the <see cref="String"/> into a blog slug
+ or returns <see cref="None" />.
+ </summary>
+ <param name="input">The input.</param>
+</member>
+<member name="M:Songhay.Modules.StringUtility.toLowerInvariant(System.String)">
+ <summary>
+ Calls <see cref="String.ToLowerInvariant"/>
+ for valid input or returns <see cref="None" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.StringUtility.tryRegexReplace(System.String,System.String,System.Text.RegularExpressions.RegexOptions,System.String)">
+ <summary>
+ Tries to call <see cref="Regex.Replace"/>
+ for a successful find-change operation.
+ </summary>
+ <param name="pattern">The regular expression pattern to match.</param>
+ <param name="replacement">The replacement string.</param>
+ <param name="options">A bitwise combination of the enumeration values that provide options for matching.</param>
+ <param name="input">The string to search for a match.</param>
+</member>
+<member name="T:Songhay.Modules.StringUtility">
+ <summary>
+ Utility functions for <see cref="System.String" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Text.Json.JsonElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ModificationDate">
+ <summary>
+ Defines the Temporal modification date of an item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ItemName.Value">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="string" /> value.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ItemName">
+ <summary>
+ Defines the name of an item.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Text.Json.JsonElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.InceptDate">
+ <summary>
+ Defines the Temporal incept date of an item.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Text.Json.JsonElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.EndDate">
+ <summary>
+ Defines the Temporal end date of an item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.DisplayText.Value">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="string" /> value.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.DisplayText">
+ <summary>
+ Defines the display text of an item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ClientId.toIdentifier">
+ <summary>
+ Converts this instance
+ to <see cref="Identifier" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ClientId.fromString(System.String)">
+ <summary>
+ Generates an instance of this type
+ from a <see cref="string" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Text.Json.JsonElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ClientId.fromIdentifier(Songhay.Modules.Models.Identifier)">
+ <summary>
+ Generates an instance of this type
+ from a <see cref="string" />.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ClientId">
+ <summary>
+ Defines the conventional identifier exposed to a Studio Client.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Identifier.StringValue">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="string" /> value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Identifier.Int32Value">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="int" /> value.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.Identifier.fromString(System.String)">
+ <summary>
+ Generates an instance of <see cref="Identifier.Alphanumeric" />
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.Identifier.fromInt32(System.Int32)">
+ <summary>
+ Generates an instance of <see cref="Identifier.Numeric" />
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.Identifier">
+ <summary>
+ Defines the conventional identifier or sort ordinal.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Colorable.foregroundHex">
+ <summary>
+ Gets or sets the foreground hexadecimal value.
+ </summary>
+ <value>The foreground hexadecimal value.</value>
+</member>
+<member name="P:Songhay.Modules.Models.Colorable.backgroundHex">
+ <summary>
+ Gets or sets the background hexadecimal value.
+ </summary>
+ <value>The background hexadecimal value.</value>
+</member>
+<member name="T:Songhay.Modules.Models.Colorable">
+ <summary>
+ Defines a colorable visual.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ForegroundColorHexValue.Value">
+ <summary>
+ Unwraps the underlying <see cref="HexValue" /> value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ForegroundColorHexValue.Unwrapped">
+ <summary>
+ Unwraps the underlying <see cref="System.String" /> value.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ForegroundColorHexValue.fromString(System.String)">
+ <summary>
+ Returns <see cref="ForegroundColorHexValue" />
+ from <see cref="System.String" /> input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ForegroundColorHexValue">
+ <summary>
+ Represents a Foreground Color Hexadecimal value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.BackgroundColorHexValue.Value">
+ <summary>
+ Unwraps the underlying <see cref="HexValue" /> value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.BackgroundColorHexValue.Unwrapped">
+ <summary>
+ Unwraps the underlying <see cref="System.String" /> value.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.BackgroundColorHexValue.fromString(System.String)">
+ <summary>
+ Returns <see cref="BackgroundColorHexValue" />
+ from <see cref="System.String" /> input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.BackgroundColorHexValue">
+ <summary>
+ Represents a Background Color Hexadecimal value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.HexValue.Value">
+ <summary>
+ Unwraps the underlying <see cref="System.String" /> value.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.HexValue">
+ <summary>
+ Represents a Hexadecimal value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.DisplayItemModel.resourceIndicator">
+ <summary>
+ Gets or sets the resource indicator.
+ </summary>
+ <value>
+ The resource indicator.
+ </value>
+</member>
+<member name="P:Songhay.Modules.Models.DisplayItemModel.displayText">
+ <summary>
+ Gets or sets the display text.
+ </summary>
+ <value>The display text.</value>
+</member>
+<member name="P:Songhay.Modules.Models.DisplayItemModel.itemName">
+ <summary>
+ Gets or sets the item name.
+ </summary>
+ <value>The item name.</value>
+</member>
+<member name="P:Songhay.Modules.Models.DisplayItemModel.id">
+ <summary>
+ Gets or sets the id.
+ </summary>
+ <value>The id.</value>
+</member>
+<member name="T:Songhay.Modules.Models.DisplayItemModel">
+ <summary>
+ Conventional Model for a UI display item
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Groupable.isCollapsed">
+ <summary>
+ Returns `true` when group is visually collapsed
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Groupable.groupId">
+ <summary>
+ Identifier of the Group
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Groupable.groupDisplayText">
+ <summary>
+ Display text of the Group
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.Groupable">
+ <summary>
+ Defines a group-able visual
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyInfo">
+ <summary>
+ Returns the <see cref="System.String" /> representation
+ of this <see cref="ProgramAssemblyInfo" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getPathFromAssembly(System.String,System.Reflection.Assembly)">
+ <summary>
+ Tries to get a combined path
+ from the specified path
+ and the <see cref="Assembly" /> path.
+ </summary>
+ <param name="path">The path.</param>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+ <returns></returns>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyVersionDetail(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="AssemblyName.Version.Major" />
+ and <see cref="AssemblyName.Version.Minor" />.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyVersion(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="AssemblyName.Version" />.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyTitle(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="Assembly.Title" />
+ or the <see cref="Assembly" /> file name.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyProduct(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="Assembly.Product" />
+ or <see cref="System.String.Empty" />.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyPath(System.Reflection.Assembly)">
+ <summary>
+ Gets the <see cref="Assembly" /> path.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyFileName(System.Reflection.Assembly)">
+ <summary>
+ Gets the <see cref="Assembly" /> file name.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyDescription(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="Assembly.Description" />
+ or <see cref="System.String.Empty" />.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyCopyright(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="Assembly.Copyright" />
+ or <see cref="System.String.Empty" />.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.getAssemblyCompany(System.Reflection.Assembly)">
+ <summary>
+ Returns the <see cref="System.String" />
+ of <see cref="Assembly.Company" />
+ or <see cref="System.String.Empty" />.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="M:Songhay.Modules.Models.ProgramAssemblyInfo.fromInput(System.Reflection.Assembly)">
+ <summary>
+ Returns <see cref="ProgramAssemblyInfo" />
+ from <see cref="Assembly" /> input.
+ </summary>
+ <param name="assembly">The <see cref="Assembly" />.</param>
+</member>
+<member name="T:Songhay.Modules.Models.ProgramAssemblyInfo">
+ <summary>
+ Defines Assembly information.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Sortable.sortOrdinal">
+ <summary>
+ Gets or sets the sort ordinal.
+ </summary>
+ <value>The sort ordinal.</value>
+</member>
+<member name="T:Songhay.Modules.Models.Sortable">
+ <summary>
+ Defines a sortable visual.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.modificationDate">
+ <summary>
+ The Feed modification <see cref="System.DateTime" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.feedTitle">
+ <summary>
+ The Feed Title.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.feedItems">
+ <summary>
+ The list
+ of <see cref="SyndicationFeedItem" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.feedImage">
+ <summary>
+ The optional Feed Image link,
+ a <see cref="System.String" /> representation
+ of a valid <see cref="System.Uri" />.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.SyndicationFeed">
+ <summary>
+ Represents a simplified variation
+ of Microsoft’s <c>SyndicationFeed</c> class
+ </summary>
+ <remarks>
+ See https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.syndication.syndicationfeed?view=dotnet-plat-ext-6.0
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.publicationDate">
+ <summary>
+ The optional Feed Item Publication <see cref="System.DateTime" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.extract">
+ <summary>
+ The optional brief passage or excerpt
+ of the Feed Item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.link">
+ <summary>
+ The Item link,
+ a <see cref="System.String" /> representation
+ of a valid <see cref="System.Uri" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.title">
+ <summary>
+ The Item title.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.SyndicationFeedItem">
+ <summary>
+ Defines an item of <see cref="SyndicationFeed.feedItems" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Temporal.modificationDate">
+ <summary>
+ Modification/editorial <see cref="DateTime"/> of the item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Temporal.inceptDate">
+ <summary>
+ Origin <see cref="DateTime"/> of the item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Temporal.endDate">
+ <summary>
+ End/expiration <see cref="DateTime"/> of the item.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.Temporal">
+ <summary>
+ Adds temporal properties to an item
+ </summary>
+</member>
+</members>
+</doc>
