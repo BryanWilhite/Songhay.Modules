@@ -7,7 +7,7 @@ type HexValue =
     | HexValue of string
 
     /// <summary>
-    /// Unwraps the underlying <see cref="System.String"> value.
+    /// Unwraps the underlying <see cref="System.String" /> value.
     /// </summary>
     member this.Value = let (HexValue v) = this in v
 
@@ -18,18 +18,18 @@ type BackgroundColorHexValue =
     | BackgroundColorHexValue of HexValue
 
     /// <summary>
-    /// Returns <see cref="BackgroundColorHexValue">
-    /// from <see cref="System.String"> input.
+    /// Returns <see cref="BackgroundColorHexValue" />
+    /// from <see cref="System.String" /> input.
     /// </summary>
     static member fromString s = BackgroundColorHexValue (HexValue s)
 
     /// <summary>
-    /// Unwraps the underlying <see cref="HexValue"> value.
+    /// Unwraps the underlying <see cref="HexValue" /> value.
     /// </summary>
     member this.Value = let (BackgroundColorHexValue v) = this in v
 
     /// <summary>
-    /// Unwraps the underlying <see cref="System.String"> value.
+    /// Unwraps the underlying <see cref="System.String" /> value.
     /// </summary>
     member this.Unwrapped = this.Value.Value
 
@@ -40,18 +40,18 @@ type ForegroundColorHexValue =
     | ForegroundColorHexValue of HexValue
 
     /// <summary>
-    /// Returns <see cref="ForegroundColorHexValue">
-    /// from <see cref="System.String"> input.
+    /// Returns <see cref="ForegroundColorHexValue" />
+    /// from <see cref="System.String" /> input.
     /// </summary>
     static member fromString s = ForegroundColorHexValue (HexValue s)
 
     /// <summary>
-    /// Unwraps the underlying <see cref="HexValue"> value.
+    /// Unwraps the underlying <see cref="HexValue" /> value.
     /// </summary>
     member this.Value = let (ForegroundColorHexValue v) = this in v
 
     /// <summary>
-    /// Unwraps the underlying <see cref="System.String"> value.
+    /// Unwraps the underlying <see cref="System.String" /> value.
     /// </summary>
     member this.Unwrapped = this.Value.Value
 

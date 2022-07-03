@@ -24,9 +24,10 @@ type ProgramAssemblyInfo =
     }
 
     /// <summary>
-    /// Returns <see cref="ProgramAssemblyInfo">
-    /// from <see cref="Assembly"> input.
+    /// Returns <see cref="ProgramAssemblyInfo" />
+    /// from <see cref="Assembly" /> input.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member fromInput(assembly: Assembly): ProgramAssemblyInfo =
         {
             AssemblyCompany = assembly |> ProgramAssemblyInfo.getAssemblyCompany
@@ -41,10 +42,11 @@ type ProgramAssemblyInfo =
         }
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="Assembly.Company">
-    /// or <see cref="System.String.Empty">.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="Assembly.Company" />
+    /// or <see cref="System.String.Empty" />.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyCompany(assembly: Assembly) =
         let attributes = assembly.GetCustomAttributes(typeof<AssemblyCompanyAttribute>, false)
         if attributes.Length > 0 then
@@ -53,10 +55,11 @@ type ProgramAssemblyInfo =
         else String.Empty
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="Assembly.Copyright">
-    /// or <see cref="System.String.Empty">.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="Assembly.Copyright" />
+    /// or <see cref="System.String.Empty" />.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyCopyright(assembly: Assembly) =
         let attributes = assembly.GetCustomAttributes(typeof<AssemblyCopyrightAttribute>, false)
         if attributes.Length > 0 then
@@ -65,10 +68,11 @@ type ProgramAssemblyInfo =
         else String.Empty
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="Assembly.Description">
-    /// or <see cref="System.String.Empty">.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="Assembly.Description" />
+    /// or <see cref="System.String.Empty" />.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyDescription(assembly: Assembly) =
         let attributes = assembly.GetCustomAttributes(typeof<AssemblyDescriptionAttribute>, false)
         if attributes.Length > 0 then
@@ -77,10 +81,11 @@ type ProgramAssemblyInfo =
         else String.Empty
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="Assembly.Product">
-    /// or <see cref="System.String.Empty">.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="Assembly.Product" />
+    /// or <see cref="System.String.Empty" />.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyProduct(assembly: Assembly) =
         let attributes = assembly.GetCustomAttributes(typeof<AssemblyProductAttribute>, false)
         if attributes.Length > 0 then
@@ -89,10 +94,11 @@ type ProgramAssemblyInfo =
         else String.Empty
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="Assembly.Title">
-    /// or the <see cref="Assembly"> file name.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="Assembly.Title" />
+    /// or the <see cref="Assembly" /> file name.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyTitle(assembly: Assembly) =
         let attributes = assembly.GetCustomAttributes(typeof<AssemblyTitleAttribute>, false)
 
@@ -104,40 +110,45 @@ type ProgramAssemblyInfo =
         else Path.GetFileNameWithoutExtension(assembly.Location)
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="AssemblyName.Version">.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="AssemblyName.Version" />.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyVersion(assembly: Assembly) =
         let name = assembly.GetName()
         name.Version.ToString()
 
     /// <summary>
-    /// Returns the <see cref="System.String">
-    /// of <see cref="AssemblyName.Version.Major">
-    /// and <see cref="AssemblyName.Version.Minor">.
+    /// Returns the <see cref="System.String" />
+    /// of <see cref="AssemblyName.Version.Major" />
+    /// and <see cref="AssemblyName.Version.Minor" />.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyVersionDetail(assembly: Assembly) =
         let name = assembly.GetName()
         $"{name.Version.Major:D}.{name.Version.Minor:D2}"
 
     /// <summary>
-    /// Gets the <see cref="Assembly"> file name.
+    /// Gets the <see cref="Assembly" /> file name.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyFileName(assembly: Assembly) =
         Path.GetFileName(assembly.Location)
 
     /// <summary>
-    /// Gets the <see cref="Assembly"> path.
+    /// Gets the <see cref="Assembly" /> path.
     /// </summary>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     static member getAssemblyPath(assembly: Assembly) =
         Path.GetDirectoryName(assembly.Location)
 
     /// <summary>
     /// Tries to get a combined path
     /// from the specified path
-    /// and the <see cref="Assembly"> path.
+    /// and the <see cref="Assembly" /> path.
     /// </summary>
-    /// <param name="assembly">The assembly.</param>
+    /// <param name="path">The path.</param>
+    /// <param name="assembly">The <see cref="Assembly" />.</param>
     /// <returns></returns>
     static member getPathFromAssembly path (assembly: Assembly) =
         match path |> ProgramFileUtility.tryRelativePath with
@@ -155,8 +166,8 @@ type ProgramAssemblyInfo =
                 Ok root
 
     /// <summary>
-    /// Returns the <see cref="System.String"> representation
-    /// of this <see cref="ProgramAssemblyInfo">.
+    /// Returns the <see cref="System.String" /> representation
+    /// of this <see cref="ProgramAssemblyInfo" />.
     /// </summary>
     member this.getAssemblyInfo =
         StringBuilder()

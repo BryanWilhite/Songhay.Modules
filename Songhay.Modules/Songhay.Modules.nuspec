@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Songhay.Modules</id>
+    <version>6.0.0</version>
+    <description>core reusable, opinionated concerns for all of my F# projects</description>
+    <authors>Bryan D. Wilhite</authors>
+    <title>Songhay Modules</title>
+    <owners>Bryan D. Wilhite</owners>
+    <projectUrl>https://github.com/BryanWilhite/Songhay.Modules/projects</projectUrl>
+    <icon>images\songhay_icon.png</icon>
+    <license type="file">LICENSE.md</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>core reusable, opinionated concerns for all of my F# projects</summary>
+    <releaseNotes>see http://songhayblog.azurewebsites.net/entry/2022-06-26-studio-status-report-2022-06/</releaseNotes>
+    <copyright>(c) 2022 Bryan D. Wilhite</copyright>
+    <tags>FSharp;Core;Songhay;Modules</tags>
+    <repository type="git" url="https://github.com/BryanWilhite/Songhay.Modules"></repository>
+  </metadata>
+  <files>
+    <file src="bin\Debug\net6.0\Songhay*.dll" target="lib\net6.0" />
+    <file src="bin\Debug\net6.0\Songhay*.json" target="lib\net6.0" />
+    <file src="**\*.cs" exclude="**\obj\**" target="src" />
+    <file src="..\LICENSE.md" target="" />
+    <file src="..\songhay_icon.png" target="images\" />
+  </files>
+</package>

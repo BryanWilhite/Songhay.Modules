@@ -10,6 +10,18 @@ module ProgramTypeUtilityTests =
     open Songhay.Modules.ProgramTypeUtility
 
     [<Theory>]
+    [<InlineData("P0DT1H0M0S", true)>]
+    [<InlineData("PxDT1HxMxS", false)>]
+    let ``tryParseIso8601Duration test`` (input: string) (expectedResult: bool) =
+        match tryParseIso8601Duration input with
+        | Ok timeSpan ->
+            expectedResult |> should be True
+            timeSpan |> should be (greaterThan TimeSpan.MinValue)
+        | Error ex ->
+            expectedResult |> should be False
+            ex |> should be ofExactType<FormatException>
+
+    [<Theory>]
     [<InlineData("Fri, 22 Mar 2019 18:56:07 -0700", true)>]
     [<InlineData("Sat, 05 Dec 2020 13:30:25 -0800", true)>]
     [<InlineData("2021-06-06T06:21:07Z", false)>]

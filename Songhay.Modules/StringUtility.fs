@@ -20,6 +20,7 @@ module StringUtility =
     /// <param name="pattern">The regular expression pattern to match.</param>
     /// <param name="replacement">The replacement string.</param>
     /// <param name="options">A bitwise combination of the enumeration values that provide options for matching.</param>
+    /// <param name="input">The string to search for a match.</param>
     let tryRegexReplace (pattern: string) (replacement: string) (options: RegexOptions) (input: string) =
         try
             Ok (input |> regexReplace pattern replacement options)
