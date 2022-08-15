@@ -42,7 +42,17 @@ module StringUtility =
     /// matches property names with “ordinal, case-sensitive” comparisons.
     /// [ https://docs.microsoft.com/en-us/dotnet/api/system.text.json.jsonelement.getproperty?view=net-6.0 ]
     /// </remarks>
-    let toCamelCase (input: string) = $"{input[0].ToString().ToLowerInvariant()}{input[1..]}"
+    let toCamelCase (input: string) =
+        if String.IsNullOrWhiteSpace input then None
+        else $"{input[0].ToString().ToLowerInvariant()}{input[1..]}" |> Some
+
+    /// <summary>
+    /// Calls <see cref="toCamelCase"/>
+    /// when <c>useCamelCase</c> is <c>true</c>
+    /// or passes through the specified <see cref="string" />.
+    /// </summary>
+    let toCamelCaseOrDefault (useCamelCase: bool) (input: string) =
+        if useCamelCase then input |> toCamelCase else input |> Some
 
     /// <summary>
     /// Calls <see cref="String.ToLowerInvariant"/>

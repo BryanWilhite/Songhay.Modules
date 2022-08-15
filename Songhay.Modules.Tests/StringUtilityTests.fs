@@ -28,6 +28,16 @@ module StringUtilityTests =
             nameof None |> should equal expectedResult
 
     [<Theory>]
+    [<InlineData("OneTwoThree", "oneTwoThree")>]
+    [<InlineData("", "None")>]
+    let ``toCamelCase test`` (input: string) (expectedResult: string) =
+        match input |> toCamelCase with
+        | Some actual ->
+            actual |> should equal expectedResult
+        | None ->
+            nameof None |> should equal expectedResult
+
+    [<Theory>]
     [<InlineData("OneTwoThree", "one-two-three")>]
     [<InlineData("one-two-three", "one-two-three")>]
     [<InlineData("", "None")>]

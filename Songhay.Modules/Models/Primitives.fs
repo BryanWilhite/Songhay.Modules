@@ -4,6 +4,7 @@ open System
 open System.Text.Json
 
 open Songhay.Modules.JsonDocumentUtility
+open Songhay.Modules.StringUtility
 
 /// <summary>
 /// Defines the conventional identifier or sort ordinal.
@@ -55,10 +56,14 @@ type ClientId =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (element: JsonElement) =
-        element
-        |> tryGetProperty (nameof ClientId)
-        |> Result.map (fun el -> ClientId.fromString(el.GetString()))
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
+        let elementName = ((useCamelCase, (nameof ClientId)) ||> toCamelCaseOrDefault)
+        match elementName with
+        | None -> Error(JsonException("The expected element-name input is not here."))
+        | Some name ->
+            element
+            |> tryGetProperty name 
+            |> Result.map (fun el -> ClientId.fromString(el.GetString()))
 
     /// <summary>
     /// Generates an instance of this type
@@ -100,11 +105,14 @@ type EndDate =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (element: JsonElement) =
-        element
-        |> tryGetProperty (nameof EndDate)
-        |> Result.map ( fun el -> EndDate (el.GetDateTime()))
-
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
+        let elementName = ((useCamelCase, (nameof EndDate))||> toCamelCaseOrDefault)
+        match elementName with
+        | None -> Error(JsonException("The expected element-name input is not here."))
+        | Some name ->
+            element
+            |> tryGetProperty name 
+            |> Result.map ( fun el -> EndDate (el.GetDateTime()))
 
 /// <summary>
 /// Defines the Temporal incept date of an item.
@@ -116,10 +124,14 @@ type InceptDate =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (element: JsonElement) =
-        element
-        |> tryGetProperty (nameof InceptDate)
-        |> Result.map ( fun el -> InceptDate (el.GetDateTime()))
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
+        let elementName = ((useCamelCase, (nameof InceptDate)) ||> toCamelCaseOrDefault)
+        match elementName with
+        | None -> Error(JsonException("The expected element-name input is not here."))
+        | Some name ->
+            element
+            |> tryGetProperty name 
+            |> Result.map ( fun el -> InceptDate (el.GetDateTime()))
 
 /// <summary>
 /// Defines the name of an item.
@@ -143,7 +155,11 @@ type ModificationDate =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (element: JsonElement) =
-        element
-        |> tryGetProperty (nameof ModificationDate)
-        |> Result.map (fun el -> ModificationDate (el.GetDateTime()))
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
+        let elementName = ((useCamelCase, (nameof ModificationDate)) ||> toCamelCaseOrDefault)
+        match elementName with
+        | None -> Error(JsonException("The expected element-name input is not here."))
+        | Some name ->
+            element
+            |> tryGetProperty name 
+            |> Result.map (fun el -> ModificationDate (el.GetDateTime()))

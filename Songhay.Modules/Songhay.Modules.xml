@@ -542,11 +542,23 @@
  for valid input or returns <see cref="None" />.
  </summary>
 </member>
+<member name="M:Songhay.Modules.StringUtility.toCamelCaseOrDefault(System.Boolean,System.String)">
+ <summary>
+ Calls <see cref="toCamelCase"/>
+ when <c>useCamelCase</c> is <c>true</c>
+ or passes through the specified <see cref="string" />.
+ </summary>
+</member>
 <member name="M:Songhay.Modules.StringUtility.toCamelCase(System.String)">
  <summary>
  Calls <see cref="String.ToLowerInvariant"/>
  on the first character of the specified <see cref="string" />.
  </summary>
+ <remarks>
+ The member is here because Microsoft’s <c>JsonElement.GetProperty</c> method
+ matches property names with “ordinal, case-sensitive” comparisons.
+ [ https://docs.microsoft.com/en-us/dotnet/api/system.text.json.jsonelement.getproperty?view=net-6.0 ]
+ </remarks>
 </member>
 <member name="M:Songhay.Modules.StringUtility.demarcateByCase(System.Char,System.String)">
  <summary>
@@ -566,7 +578,7 @@
  Utility functions for <see cref="System.String" />.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Text.Json.JsonElement)">
+<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -588,7 +600,7 @@
  Defines the name of an item.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Text.Json.JsonElement)">
+<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -599,7 +611,7 @@
  Defines the Temporal incept date of an item.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Text.Json.JsonElement)">
+<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -633,7 +645,7 @@
  from a <see cref="string" />.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Text.Json.JsonElement)">
+<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
