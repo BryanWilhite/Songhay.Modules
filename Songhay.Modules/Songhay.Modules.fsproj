@@ -40,6 +40,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Include="Models/Colorable.fs" />
+        <Compile Include="Models\JsonDocumentOrElement.fs" />
+        <Compile Include="Models\Selectable.fs" />
+        <Compile Include="Models\SyndicationFeed.fs" />
         <Compile Include="Assembly.fs" />
         <Compile Include="MimeTypes.fs" />
         <Compile Include="HttpClientUtility.fs" />
@@ -50,14 +54,11 @@
         <Compile Include="ProgramTypeUtility.fs" />
         <Compile Include="StringUtility.fs" />
         <Compile Include="Models/Primitives.fs" />
-        <Compile Include="Models/Colorable.fs" />
         <Compile Include="Models/DisplayItemModel.fs" />
-        <Compile Include="Models/Groupable.fs" />
-        <Compile Include="Models/ProgramAssemblyInfo.fs" />
-        <Compile Include="Models/Selectable.fs" />
+        <Compile Include="Models\Groupable.fs" />
+        <Compile Include="Models\ProgramAssemblyInfo.fs" />
         <Compile Include="Models/Sortable.fs" />
-        <Compile Include="Models/SyndicationFeed.fs" />
-        <Compile Include="Models/Temporal.fs" />
+        <Compile Include="Models\Temporal.fs" />
     </ItemGroup>
 
 </Project>

@@ -8,6 +8,8 @@ module JsonDocumentUtility =
     open System.Linq
     open System.Text.Json
 
+    open Songhay.Modules.Models
+
     /// <summary>
     /// Wraps <see cref="JsonException" /> property
     /// in <see cref="Error" />.
@@ -17,27 +19,47 @@ module JsonDocumentUtility =
         Error(JsonException $"the expected `{elementName}` element is not here.")
 
     /// <summary>
-    /// Converts the <see cref="JsonElement" />
-    /// to its property name or returns <see cref="None" />.
+    /// Converts the <see cref="JsonDocumentOrElement" />
+    /// to its underlying <see cref="JsonElement"/>.
     /// </summary>
-    /// <param name="element">The <see cref="JsonElement" />.</param>
-    let toPropertyName (element: JsonElement) =
-        if element.ValueKind <> JsonValueKind.Object then None
+    /// <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
+    let toJsonElement (documentOrElement: JsonDocumentOrElement) =
+            match documentOrElement with
+            | JDocument doc -> doc.RootElement
+            | JElement el -> el
+
+    /// <summary>
+    /// Converts the <see cref="JsonDocument.RootElement" />
+    /// to its property name when it is <see cref="JsonValueKind.Object"/>
+    /// or returns <see cref="None" />.
+    /// </summary>
+    /// <param name="document">The <see cref="JsonDocument" />.</param>
+    let toPropertyName (document: JsonDocument) =
+        if document.RootElement.ValueKind <> JsonValueKind.Object then None
         else
             try
-                Some (element.EnumerateObject().First().Name)
+                Some (document.RootElement.EnumerateObject().First().Name)
             with | _ -> None
 
     /// <summary>
     /// Tries to return the <see cref="JsonElement" /> property
-    /// of the specified <see cref="JsonElement" /> object.
+    /// of the specified <see cref="JsonDocumentOrElement" /> object.
     /// </summary>
     /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
-    /// <param name="element">The <see cref="JsonElement" />.</param>
-    let tryGetProperty (elementName: string) (element: JsonElement) =
-        match element.TryGetProperty elementName with
-        | false, _ -> resultError elementName
-        | true, el -> Ok el
+    /// <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
+    let rec tryGetProperty (elementName: string) (documentOrElement: JsonDocumentOrElement) =
+        match documentOrElement with
+        | JElement element ->
+            match element.TryGetProperty elementName with
+            | false, _ -> resultError elementName
+            | true, el -> Ok (JElement el)
+        | JDocument document ->
+            match document |> toPropertyName with
+            | None _ -> resultError elementName
+            | Some rootName ->
+                match document.RootElement.TryGetProperty rootName with
+                | false, _ -> resultError elementName
+                | true, el -> JElement el |> tryGetProperty elementName
 
     /// <summary>
     /// Tries to return the <see cref="JsonDocument.RootElement" />

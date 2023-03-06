@@ -291,20 +291,28 @@
  </summary>
  <param name="rawDocument">The JSON document.</param>
 </member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.tryGetProperty(System.String,System.Text.Json.JsonElement)">
+<member name="M:Songhay.Modules.JsonDocumentUtility.tryGetProperty(System.String,Songhay.Modules.Models.JsonDocumentOrElement)">
  <summary>
  Tries to return the <see cref="JsonElement" /> property
- of the specified <see cref="JsonElement" /> object.
+ of the specified <see cref="JsonDocumentOrElement" /> object.
  </summary>
  <param name="elementName">The <see cref="JsonElement" /> name.</param>
- <param name="element">The <see cref="JsonElement" />.</param>
+ <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
 </member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.toPropertyName(System.Text.Json.JsonElement)">
+<member name="M:Songhay.Modules.JsonDocumentUtility.toPropertyName(System.Text.Json.JsonDocument)">
  <summary>
- Converts the <see cref="JsonElement" />
- to its property name or returns <see cref="None" />.
+ Converts the <see cref="JsonDocument.RootElement" />
+ to its property name when it is <see cref="JsonValueKind.Object"/>
+ or returns <see cref="None" />.
  </summary>
- <param name="element">The <see cref="JsonElement" />.</param>
+ <param name="document">The <see cref="JsonDocument" />.</param>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonElement(Songhay.Modules.Models.JsonDocumentOrElement)">
+ <summary>
+ Converts the <see cref="JsonDocumentOrElement" />
+ to its underlying <see cref="JsonElement"/>.
+ </summary>
+ <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
 </member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.resultError``1(System.String)">
  <summary>
@@ -578,119 +586,6 @@
  Utility functions for <see cref="System.String" />.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
- <summary>
- Generates an instance of this type
- from conventional JSON input.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.ModificationDate">
- <summary>
- Defines the Temporal modification date of an item.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.ItemName.Value">
- <summary>
- Reduces this instance
- to <c>Some</c> <see cref="string" /> value.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.ItemName">
- <summary>
- Defines the name of an item.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
- <summary>
- Generates an instance of this type
- from conventional JSON input.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.InceptDate">
- <summary>
- Defines the Temporal incept date of an item.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
- <summary>
- Generates an instance of this type
- from conventional JSON input.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.EndDate">
- <summary>
- Defines the Temporal end date of an item.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.DisplayText.Value">
- <summary>
- Reduces this instance
- to <c>Some</c> <see cref="string" /> value.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.DisplayText">
- <summary>
- Defines the display text of an item.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.ClientId.toIdentifier">
- <summary>
- Converts this instance
- to <see cref="Identifier" />.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.ClientId.fromString(System.String)">
- <summary>
- Generates an instance of this type
- from a <see cref="string" />.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Boolean,System.Text.Json.JsonElement)">
- <summary>
- Generates an instance of this type
- from conventional JSON input.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.ClientId.fromIdentifier(Songhay.Modules.Models.Identifier)">
- <summary>
- Generates an instance of this type
- from a <see cref="string" />.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.ClientId">
- <summary>
- Defines the conventional identifier exposed to a Studio Client.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.Identifier.StringValue">
- <summary>
- Reduces this instance
- to <c>Some</c> <see cref="string" /> value.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.Identifier.Int32Value">
- <summary>
- Reduces this instance
- to <c>Some</c> <see cref="int" /> value.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.Identifier.fromString(System.String)">
- <summary>
- Generates an instance of <see cref="Identifier.Alphanumeric" />
- from conventional JSON input.
- </summary>
-</member>
-<member name="M:Songhay.Modules.Models.Identifier.fromInt32(System.Int32)">
- <summary>
- Generates an instance of <see cref="Identifier.Numeric" />
- from conventional JSON input.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.Identifier">
- <summary>
- Defines the conventional identifier or sort ordinal.
- </summary>
-</member>
 <member name="P:Songhay.Modules.Models.Colorable.foregroundHex">
  <summary>
  Gets or sets the foreground hexadecimal value.
@@ -758,6 +653,189 @@
 <member name="T:Songhay.Modules.Models.HexValue">
  <summary>
  Represents a Hexadecimal value.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.JsonDocumentOrElement">
+ <summary>
+ Defines a <see cref="JsonDocument"/>
+ or a <see cref="JsonElement"/>
+ </summary>
+ <remarks>
+ For way too much detail, see my notes
+ [ https://github.com/BryanWilhite/jupyter-central/blob/master/funkykb/fsharp/json/system.text.json.ipynb ]
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.modificationDate">
+ <summary>
+ The Feed modification <see cref="System.DateTime" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.feedTitle">
+ <summary>
+ The Feed Title.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.feedItems">
+ <summary>
+ The list
+ of <see cref="SyndicationFeedItem" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeed.feedImage">
+ <summary>
+ The optional Feed Image link,
+ a <see cref="System.String" /> representation
+ of a valid <see cref="System.Uri" />.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.SyndicationFeed">
+ <summary>
+ Represents a simplified variation
+ of Microsoft’s <c>SyndicationFeed</c> class
+ </summary>
+ <remarks>
+ See https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.syndication.syndicationfeed?view=dotnet-plat-ext-6.0
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.publicationDate">
+ <summary>
+ The optional Feed Item Publication <see cref="System.DateTime" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.extract">
+ <summary>
+ The optional brief passage or excerpt
+ of the Feed Item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.link">
+ <summary>
+ The Item link,
+ a <see cref="System.String" /> representation
+ of a valid <see cref="System.Uri" />.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.SyndicationFeedItem.title">
+ <summary>
+ The Item title.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.SyndicationFeedItem">
+ <summary>
+ Defines an item of <see cref="SyndicationFeed.feedItems" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ModificationDate">
+ <summary>
+ Defines the Temporal modification date of an item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ItemName.Value">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="string" /> value.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ItemName">
+ <summary>
+ Defines the name of an item.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.InceptDate">
+ <summary>
+ Defines the Temporal incept date of an item.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.EndDate">
+ <summary>
+ Defines the Temporal end date of an item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.DisplayText.Value">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="string" /> value.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.DisplayText">
+ <summary>
+ Defines the display text of an item.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ClientId.toIdentifier">
+ <summary>
+ Converts this instance
+ to <see cref="Identifier" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ClientId.fromString(System.String)">
+ <summary>
+ Generates an instance of this type
+ from a <see cref="string" />.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+ <summary>
+ Generates an instance of this type
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.ClientId.fromIdentifier(Songhay.Modules.Models.Identifier)">
+ <summary>
+ Generates an instance of this type
+ from a <see cref="string" />.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.ClientId">
+ <summary>
+ Defines the conventional identifier exposed to a Studio Client.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Identifier.StringValue">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="string" /> value.
+ </summary>
+</member>
+<member name="P:Songhay.Modules.Models.Identifier.Int32Value">
+ <summary>
+ Reduces this instance
+ to <c>Some</c> <see cref="int" /> value.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.Identifier.fromString(System.String)">
+ <summary>
+ Generates an instance of <see cref="Identifier.Alphanumeric" />
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.Identifier.fromInt32(System.Int32)">
+ <summary>
+ Generates an instance of <see cref="Identifier.Numeric" />
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.Identifier">
+ <summary>
+ Defines the conventional identifier or sort ordinal.
  </summary>
 </member>
 <member name="P:Songhay.Modules.Models.DisplayItemModel.resourceIndicator">
@@ -915,66 +993,6 @@
 <member name="T:Songhay.Modules.Models.Sortable">
  <summary>
  Defines a sortable visual.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeed.modificationDate">
- <summary>
- The Feed modification <see cref="System.DateTime" />.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeed.feedTitle">
- <summary>
- The Feed Title.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeed.feedItems">
- <summary>
- The list
- of <see cref="SyndicationFeedItem" />.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeed.feedImage">
- <summary>
- The optional Feed Image link,
- a <see cref="System.String" /> representation
- of a valid <see cref="System.Uri" />.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.SyndicationFeed">
- <summary>
- Represents a simplified variation
- of Microsoft’s <c>SyndicationFeed</c> class
- </summary>
- <remarks>
- See https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.syndication.syndicationfeed?view=dotnet-plat-ext-6.0
- </remarks>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeedItem.publicationDate">
- <summary>
- The optional Feed Item Publication <see cref="System.DateTime" />.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeedItem.extract">
- <summary>
- The optional brief passage or excerpt
- of the Feed Item.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeedItem.link">
- <summary>
- The Item link,
- a <see cref="System.String" /> representation
- of a valid <see cref="System.Uri" />.
- </summary>
-</member>
-<member name="P:Songhay.Modules.Models.SyndicationFeedItem.title">
- <summary>
- The Item title.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.SyndicationFeedItem">
- <summary>
- Defines an item of <see cref="SyndicationFeed.feedItems" />.
  </summary>
 </member>
 <member name="P:Songhay.Modules.Models.Temporal.modificationDate">
