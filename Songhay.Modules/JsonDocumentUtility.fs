@@ -50,16 +50,20 @@ module JsonDocumentUtility =
     let rec tryGetProperty (elementName: string) (documentOrElement: JsonDocumentOrElement) =
         match documentOrElement with
         | JElement element ->
-            match element.TryGetProperty elementName with
-            | false, _ -> resultError elementName
-            | true, el -> Ok (JElement el)
+            if element.ValueKind = JsonValueKind.Object then
+                match element.TryGetProperty elementName with
+                | false, _ -> resultError elementName
+                | true, el -> Ok (JElement el)
+            else resultError elementName
         | JDocument document ->
             match document |> toPropertyName with
             | None _ -> resultError elementName
             | Some rootName ->
-                match document.RootElement.TryGetProperty rootName with
-                | false, _ -> resultError elementName
-                | true, el -> JElement el |> tryGetProperty elementName
+                if document.RootElement.ValueKind = JsonValueKind.Object then
+                    match document.RootElement.TryGetProperty rootName with
+                    | false, _ -> resultError elementName
+                    | true, el -> JElement el |> tryGetProperty elementName
+                else resultError elementName
 
     /// <summary>
     /// Tries to return the <see cref="JsonDocument.RootElement" />
