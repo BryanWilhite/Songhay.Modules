@@ -299,6 +299,17 @@
  <param name="elementName">The <see cref="JsonElement" /> name.</param>
  <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
 </member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromStringElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the conventional result
+ to its underlying <see cref="JsonElement"/> of <see cref="JsonValueKind.String"/>,
+ passing it to the specified <see cref="Result.Ok"/> function.
+ </summary>
+ <remarks>
+ This function will return a <see cref="JsonException"/>
+ when the <see cref="JsonElement"/> <see cref="string"/> value is null.
+ </remarks>
+</member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.toPropertyName(System.Text.Json.JsonDocument)">
  <summary>
  Converts the <see cref="JsonDocument.RootElement" />
@@ -324,13 +335,6 @@
  to its underlying <see cref="JsonElement"/>.
  </summary>
  <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
-</member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.toDateTimeResult``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
- <summary>
- Converts the conventional result
- to its underlying <see cref="JsonElement"/>,
- passing it to the specified <see cref="Result.Ok"/> function.
- </summary>
 </member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.resultError``1(System.String)">
  <summary>

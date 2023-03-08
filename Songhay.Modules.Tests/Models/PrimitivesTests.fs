@@ -11,6 +11,7 @@ module PrimitivesTests =
     open FsUnit.CustomMatchers
 
     open Songhay.Modules.Models
+    open Songhay.Modules.JsonDocumentUtility
 
     let IdentifierTestData : seq<obj[]> =
         seq {
@@ -22,7 +23,7 @@ module PrimitivesTests =
 
     [<Theory>]
     [<MemberData(nameof IdentifierTestData)>]
-    let ``Identifier.fromInputElementName test`` (input: string) (elementName: string) (isErrorExpected: bool) (expectedOutput: Identifier) =
+    let ``Identifier.fromInputElementName doc test`` (input: string) (elementName: string) (isErrorExpected: bool) (expectedOutput: Identifier) =
         let documentOrElement = JDocument (JsonDocument.Parse(input))
         let result = documentOrElement |> Identifier.fromInputElementName elementName
         if isErrorExpected then
@@ -43,7 +44,7 @@ module PrimitivesTests =
 
     [<Theory>]
     [<MemberData(nameof ClientIdTestData)>]
-    let ``ClientId.fromInput test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: ClientId) =
+    let ``ClientId.fromInput doc test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: ClientId) =
         let documentOrElement = JDocument (JsonDocument.Parse(input))
         let result = documentOrElement |> ClientId.fromInput useCamelCase
         if isErrorExpected then
@@ -64,7 +65,7 @@ module PrimitivesTests =
 
     [<Theory>]
     [<MemberData(nameof EndDateTestData)>]
-    let ``EndDate.fomInput test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
+    let ``EndDate.fomInput doc test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
         let documentOrElement = JDocument (JsonDocument.Parse(input))
         let result = documentOrElement |> EndDate.fromInput useCamelCase
         if isErrorExpected then
@@ -85,7 +86,7 @@ module PrimitivesTests =
 
     [<Theory>]
     [<MemberData(nameof InceptDateTestData)>]
-    let ``InceptDate.fomInput test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
+    let ``InceptDate.fomInput doc test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
         let documentOrElement = JDocument (JsonDocument.Parse(input))
         let result = documentOrElement |> InceptDate.fromInput useCamelCase
         if isErrorExpected then
@@ -95,7 +96,7 @@ module PrimitivesTests =
             let actual = result |> Result.valueOr raise
             actual |> should equal (InceptDate (DateTime.Parse(expectedOutput)))
 
-    let ModificationDateTestData : seq<obj[]> =
+    let ModificationDateTestDataForDoc : seq<obj[]> =
         seq {
             yield [| @"{""Presentation"": {""ModificationDate"": ""2005-12-10T22:19:14""}}"; false; false; "2005-12-10T22:19:14" |]
             yield [| @"{""Presentation"": {""modificationDate"": ""2005-12-10T22:19:14""}}"; true; false; "2005-12-10T22:19:14" |]
@@ -105,10 +106,34 @@ module PrimitivesTests =
         }
 
     [<Theory>]
-    [<MemberData(nameof ModificationDateTestData)>]
-    let ``ModificationDate.fomInput test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
+    [<MemberData(nameof ModificationDateTestDataForDoc)>]
+    let ``ModificationDate.fromInput doc test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
         let documentOrElement = JDocument (JsonDocument.Parse(input))
         let result = documentOrElement |> ModificationDate.fromInput useCamelCase
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Ok @>)
+            let actual = result |> Result.valueOr raise
+            actual |> should equal (ModificationDate (DateTime.Parse(expectedOutput)))
+
+    let ModificationDateTestData : seq<obj[]> =
+        seq {
+            yield [| @"{""root"": {""Presentation"": {""ModificationDate"": ""2005-12-10T22:19:14""}}}"; false; false; "2005-12-10T22:19:14" |]
+            yield [| @"{""root"": {""Presentation"": {""modificationDate"": ""2005-12-10T22:19:14""}}}"; true; false; "2005-12-10T22:19:14" |]
+            yield [| @"{""root"": {""Presentation"": {""ModificationDate"": null}}}"; false; true; null |]
+            yield [| @"{""root"": {""Presentation"": null}}"; false; true; null |]
+        }
+
+    [<Theory>]
+    [<MemberData(nameof ModificationDateTestData)>]
+    let ``ModificationDate.fromInput test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string) =
+        let element =
+            (JDocument (JsonDocument.Parse(input)))
+            |> tryGetProperty "Presentation"
+            |> Result.valueOr raise
+            |> toJsonElement
+        let result = element |> JElement |> ModificationDate.fromInput useCamelCase
         if isErrorExpected then
             result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Error @>)
         else
