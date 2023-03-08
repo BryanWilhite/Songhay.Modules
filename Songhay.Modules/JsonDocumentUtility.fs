@@ -53,6 +53,22 @@ module JsonDocumentUtility =
             with | _ -> None
 
     /// <summary>
+    /// Converts the conventional result
+    /// to its underlying <see cref="JsonElement"/> of <see cref="JsonValueKind.String"/>,
+    /// passing it to the specified <see cref="Result.Ok"/> function.
+    /// </summary>
+    /// <remarks>
+    /// This function will return a <see cref="JsonException"/>
+    /// when the <see cref="JsonElement"/> <see cref="string"/> value is null.
+    /// </remarks>
+    let toResultFromStringElement doOk (result: Result<JsonElement,JsonException>) =
+        match result with
+        | Error ex -> Error ex
+        | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
+        | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
+        | Ok el -> Ok (el |> doOk)
+
+    /// <summary>
     /// Tries to return the <see cref="JsonElement" /> property
     /// of the specified <see cref="JsonDocumentOrElement" /> object.
     /// </summary>

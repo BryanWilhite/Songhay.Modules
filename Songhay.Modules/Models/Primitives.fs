@@ -81,7 +81,7 @@ type ClientId =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> Result.map (fun el -> ClientId.fromString(el.GetString()))
+            |> toResultFromStringElement (fun el -> ClientId.fromString(el.GetString()))
 
     /// <summary>
     /// Generates an instance of this type
@@ -131,12 +131,7 @@ type EndDate =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> (fun result ->
-                match result with
-                | Error ex -> Error ex
-                | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
-                | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
-                | Ok el -> Ok (EndDate (el.GetDateTime())))
+            |> toResultFromStringElement(fun el -> (EndDate (el.GetDateTime())))
 
 /// <summary>
 /// Defines the Temporal incept date of an item.
@@ -156,12 +151,7 @@ type InceptDate =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> (fun result ->
-                match result with
-                | Error ex -> Error ex
-                | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
-                | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
-                | Ok el -> Ok (InceptDate (el.GetDateTime())))
+            |> toResultFromStringElement(fun el -> (InceptDate (el.GetDateTime())))
 
 /// <summary>
 /// Defines the name of an item.
@@ -193,9 +183,4 @@ type ModificationDate =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> (fun result ->
-                match result with
-                | Error ex -> Error ex
-                | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
-                | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
-                | Ok el -> Ok (ModificationDate (el.GetDateTime())))
+            |> toResultFromStringElement(fun el -> ModificationDate (el.GetDateTime()))

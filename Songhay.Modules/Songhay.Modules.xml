@@ -325,6 +325,13 @@
  </summary>
  <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
 </member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toDateTimeResult``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the conventional result
+ to its underlying <see cref="JsonElement"/>,
+ passing it to the specified <see cref="Result.Ok"/> function.
+ </summary>
+</member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.resultError``1(System.String)">
  <summary>
  Wraps <see cref="JsonException" /> property
