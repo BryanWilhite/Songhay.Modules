@@ -306,6 +306,17 @@
  or returns <see cref="None" />.
  </summary>
  <param name="document">The <see cref="JsonDocument" />.</param>
+ <remarks>
+ The current <see cref="JsonElement.EnumerateObject()"/> method
+ behaves differently for <see cref="JsonDocument.RootElement"/>
+ as it returns a <see cref="JsonProperty"/> representing itself
+ when <see cref="JsonDocument.RootElement.ValueKind"/> is
+ <see cref="JsonValueKind.Object"/>.
+ 
+ As of this writing, descendant <see cref="JsonElement"/> cannot do this.
+ This implies that a descendant <see cref="JsonElement"/> cannot know what its name is
+ because it cannot return a <see cref="JsonProperty"/> representing itself.
+ </remarks>
 </member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.toJsonElement(Songhay.Modules.Models.JsonDocumentOrElement)">
  <summary>
@@ -837,6 +848,12 @@
 <member name="M:Songhay.Modules.Models.Identifier.fromInt32(System.Int32)">
  <summary>
  Generates an instance of <see cref="Identifier.Numeric" />
+ from conventional JSON input.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.Identifier.fromInputElementName(System.String,Songhay.Modules.Models.JsonDocumentOrElement)">
+ <summary>
+ Generates an instance of <see cref="Identifier" />
  from conventional JSON input.
  </summary>
 </member>

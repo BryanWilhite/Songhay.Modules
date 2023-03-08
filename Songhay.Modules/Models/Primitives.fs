@@ -14,18 +14,6 @@ type Identifier =
     | Numeric of int
 
     /// <summary>
-    /// Generates an instance of <see cref="Identifier.Numeric" />
-    /// from conventional JSON input.
-    /// </summary>
-    static member fromInt32 i = Numeric i
-
-    /// <summary>
-    /// Generates an instance of <see cref="Identifier.Alphanumeric" />
-    /// from conventional JSON input.
-    /// </summary>
-    static member fromString s = Alphanumeric s
-
-    /// <summary>
     /// Generates an instance of <see cref="Identifier" />
     /// from conventional JSON input.
     /// </summary>
@@ -41,6 +29,18 @@ type Identifier =
                     | JsonValueKind.Number -> el.GetInt32() |> fun id -> Identifier.fromInt32(id) |> Ok
                     | _ -> JsonException("Only alphanumeric or integer identifiers are supported.") |> Error
             )
+
+    /// <summary>
+    /// Generates an instance of <see cref="Identifier.Numeric" />
+    /// from conventional JSON input.
+    /// </summary>
+    static member fromInt32 i = Numeric i
+
+    /// <summary>
+    /// Generates an instance of <see cref="Identifier.Alphanumeric" />
+    /// from conventional JSON input.
+    /// </summary>
+    static member fromString s = Alphanumeric s
 
     /// <summary>
     /// Reduces this instance
@@ -131,7 +131,12 @@ type EndDate =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> Result.map ( fun el -> EndDate (el.GetDateTime()))
+            |> (fun result ->
+                match result with
+                | Error ex -> Error ex
+                | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
+                | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
+                | Ok el -> Ok (EndDate (el.GetDateTime())))
 
 /// <summary>
 /// Defines the Temporal incept date of an item.
@@ -151,7 +156,12 @@ type InceptDate =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> Result.map ( fun el -> InceptDate (el.GetDateTime()))
+            |> (fun result ->
+                match result with
+                | Error ex -> Error ex
+                | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
+                | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
+                | Ok el -> Ok (InceptDate (el.GetDateTime())))
 
 /// <summary>
 /// Defines the name of an item.
@@ -183,4 +193,9 @@ type ModificationDate =
             documentOrElement
             |> tryGetProperty name
             |> Result.map toJsonElement
-            |> Result.map (fun el -> ModificationDate (el.GetDateTime()))
+            |> (fun result ->
+                match result with
+                | Error ex -> Error ex
+                | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected date-time value is not here."))
+                | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected date-time serialized type is not here."))
+                | Ok el -> Ok (ModificationDate (el.GetDateTime())))
