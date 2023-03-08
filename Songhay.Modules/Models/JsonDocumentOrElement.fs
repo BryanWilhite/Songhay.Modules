@@ -13,3 +13,13 @@ open System.Text.Json
 type JsonDocumentOrElement =
     | JDocument of JsonDocument
     | JElement of JsonElement
+
+    /// <summary>
+    /// Returns <c>true</c> when <see cref="JsonDocumentOrElement"/>
+    /// is wrapping a <see cref="JsonDocument.RootElement"/>
+    /// or a <see cref="JsonElement"/> of <see cref="sonValueKind.Object"/>.
+    /// </summary>
+    member this.isJsonValueKindObject =
+        match this with
+        | JDocument doc -> doc.RootElement.ValueKind = JsonValueKind.Object
+        | JElement el -> el.ValueKind = JsonValueKind.Object

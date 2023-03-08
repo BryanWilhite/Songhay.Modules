@@ -26,6 +26,23 @@ type Identifier =
     static member fromString s = Alphanumeric s
 
     /// <summary>
+    /// Generates an instance of <see cref="Identifier" />
+    /// from conventional JSON input.
+    /// </summary>
+    static member fromInputElementName elementName (elementOrDocument: JsonDocumentOrElement) =
+        elementOrDocument
+        |> tryGetProperty elementName
+        |> Result.map toJsonElement
+        |> Result.bind
+            (
+                fun el ->
+                    match el.ValueKind with
+                    | JsonValueKind.String -> el.GetString() |> fun idString -> Identifier.fromString(idString) |> Ok
+                    | JsonValueKind.Number -> el.GetInt32() |> fun id -> Identifier.fromInt32(id) |> Ok
+                    | _ -> JsonException("Only alphanumeric or integer identifiers are supported.") |> Error
+            )
+
+    /// <summary>
     /// Reduces this instance
     /// to <c>Some</c> <see cref="int" /> value.
     /// </summary>

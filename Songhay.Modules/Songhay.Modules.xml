@@ -655,6 +655,13 @@
  Represents a Hexadecimal value.
  </summary>
 </member>
+<member name="P:Songhay.Modules.Models.JsonDocumentOrElement.isJsonValueKindObject">
+ <summary>
+ Returns <c>true</c> when <see cref="JsonDocumentOrElement"/>
+ is wrapping a <see cref="JsonDocument.RootElement"/>
+ or a <see cref="JsonElement"/> of <see cref="sonValueKind.Object"/>.
+ </summary>
+</member>
 <member name="T:Songhay.Modules.Models.JsonDocumentOrElement">
  <summary>
  Defines a <see cref="JsonDocument"/>

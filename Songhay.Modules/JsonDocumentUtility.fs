@@ -34,6 +34,17 @@ module JsonDocumentUtility =
     /// or returns <see cref="None" />.
     /// </summary>
     /// <param name="document">The <see cref="JsonDocument" />.</param>
+    /// <remarks>
+    /// The current <see cref="JsonElement.EnumerateObject()"/> method
+    /// behaves differently for <see cref="JsonDocument.RootElement"/>
+    /// as it returns a <see cref="JsonProperty"/> representing itself
+    /// when <see cref="JsonDocument.RootElement.ValueKind"/> is
+    /// <see cref="JsonValueKind.Object"/>.
+    /// 
+    /// As of this writing, descendant <see cref="JsonElement"/> cannot do this.
+    /// This implies that a descendant <see cref="JsonElement"/> cannot know what its name is
+    /// because it cannot return a <see cref="JsonProperty"/> representing itself.
+    /// </remarks>
     let toPropertyName (document: JsonDocument) =
         if document.RootElement.ValueKind <> JsonValueKind.Object then None
         else
@@ -48,22 +59,21 @@ module JsonDocumentUtility =
     /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
     /// <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
     let rec tryGetProperty (elementName: string) (documentOrElement: JsonDocumentOrElement) =
-        match documentOrElement with
-        | JElement element ->
-            if element.ValueKind = JsonValueKind.Object then
+        if not documentOrElement.isJsonValueKindObject then
+            resultError elementName
+        else
+            match documentOrElement with
+            | JElement element ->
                 match element.TryGetProperty elementName with
                 | false, _ -> resultError elementName
                 | true, el -> Ok (JElement el)
-            else resultError elementName
-        | JDocument document ->
-            match document |> toPropertyName with
-            | None _ -> resultError elementName
-            | Some rootName ->
-                if document.RootElement.ValueKind = JsonValueKind.Object then
+            | JDocument document ->
+                match document |> toPropertyName with
+                | None _ -> resultError elementName
+                | Some rootName ->
                     match document.RootElement.TryGetProperty rootName with
                     | false, _ -> resultError elementName
                     | true, el -> JElement el |> tryGetProperty elementName
-                else resultError elementName
 
     /// <summary>
     /// Tries to return the <see cref="JsonDocument.RootElement" />

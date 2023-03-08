@@ -1,4 +1,4 @@
-namespace Songhay.Modules.Models.Tests
+namespace Songhay.Modules.Tests.Models
 
 module ProgramAssemblyInfoTests =
 
