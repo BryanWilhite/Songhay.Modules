@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>6.1.0</AssemblyVersion>
+        <AssemblyVersion>6.2.0</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
@@ -17,7 +17,7 @@
         <PackageIcon>..\songhay_icon.png</PackageIcon>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/BryanWilhite/Songhay.Modules/projects</PackageProjectUrl>
-        <PackageReleaseNotes>see https://github.com/users/BryanWilhite/projects/3</PackageReleaseNotes>
+        <PackageReleaseNotes>see https://github.com/users/BryanWilhite/projects/10/views/1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageTags>FSharp;Core;Songhay;Modules</PackageTags>
         <PackageVersion>$(AssemblyVersion)</PackageVersion>
@@ -41,9 +41,9 @@
 
     <ItemGroup>
         <Compile Include="Models/Colorable.fs" />
-        <Compile Include="Models\JsonDocumentOrElement.fs" />
-        <Compile Include="Models\Selectable.fs" />
-        <Compile Include="Models\SyndicationFeed.fs" />
+        <Compile Include="Models/JsonDocumentOrElement.fs" />
+        <Compile Include="Models/Selectable.fs" />
+        <Compile Include="Models/SyndicationFeed.fs" />
         <Compile Include="Assembly.fs" />
         <Compile Include="MimeTypes.fs" />
         <Compile Include="HttpClientUtility.fs" />
@@ -55,10 +55,10 @@
         <Compile Include="StringUtility.fs" />
         <Compile Include="Models/Primitives.fs" />
         <Compile Include="Models/DisplayItemModel.fs" />
-        <Compile Include="Models\Groupable.fs" />
-        <Compile Include="Models\ProgramAssemblyInfo.fs" />
+        <Compile Include="Models/Groupable.fs" />
+        <Compile Include="Models/ProgramAssemblyInfo.fs" />
         <Compile Include="Models/Sortable.fs" />
-        <Compile Include="Models\Temporal.fs" />
+        <Compile Include="Models/Temporal.fs" />
     </ItemGroup>
 
 </Project>
