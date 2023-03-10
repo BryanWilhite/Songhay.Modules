@@ -55,9 +55,12 @@ module JsonDocumentUtility =
     /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
     /// <param name="element">The <see cref="JsonElement" />.</param>
     let tryGetProperty (elementName: string) (element: JsonElement) =
-        match element.TryGetProperty elementName with
-        | false, _ -> resultError elementName
-        | true, el -> Ok el
+        if element.ValueKind <> JsonValueKind.Object then
+            resultError elementName
+        else
+            match element.TryGetProperty elementName with
+            | false, _ -> resultError elementName
+            | true, el -> Ok el
 
     /// <summary>
     /// Tries to return the <see cref="JsonDocument.RootElement" />

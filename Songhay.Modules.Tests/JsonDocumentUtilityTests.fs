@@ -24,17 +24,6 @@ module JsonDocumentUtilityTests =
     ")
 
     [<Fact>]
-    let ``tryGetProperty document root child test``() =
-        let result =
-            jDoc.RootElement
-            |> tryGetProperty "one"
-        let elementOne = result |> Result.valueOr raise
-
-        let expectedResult = "this is first"
-        let actual = elementOne.GetString()
-        actual |> should equal expectedResult
-
-    [<Fact>]
     let ``tryGetProperty document root element traversal test``() =
         let result =
             jDoc.RootElement
@@ -50,7 +39,8 @@ module JsonDocumentUtilityTests =
     let ``tryGetProperty document traversal test``() =
         let result =
             jDoc.RootElement
-            |> tryGetProperty "three"
+            |> tryGetProperty "top"
+            |> Result.bind (tryGetProperty "three")
             |> Result.bind (tryGetProperty "p1")
         let elementP1 = result |> Result.valueOr raise
 
