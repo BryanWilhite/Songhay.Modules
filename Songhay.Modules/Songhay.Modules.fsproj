@@ -41,7 +41,6 @@
 
     <ItemGroup>
         <Compile Include="Models/Colorable.fs" />
-        <Compile Include="Models/JsonDocumentOrElement.fs" />
         <Compile Include="Models/Selectable.fs" />
         <Compile Include="Models/SyndicationFeed.fs" />
         <Compile Include="Assembly.fs" />

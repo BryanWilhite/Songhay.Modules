@@ -8,7 +8,6 @@ module JsonDocumentUtilityTests =
     open FsToolkit.ErrorHandling
     open FsUnit.Xunit
 
-    open Songhay.Modules.Models
     open Songhay.Modules.JsonDocumentUtility
 
     let jDoc = JsonDocument.Parse(@"
@@ -27,9 +26,8 @@ module JsonDocumentUtilityTests =
     [<Fact>]
     let ``tryGetProperty document root child test``() =
         let result =
-            JDocument jDoc
+            jDoc.RootElement
             |> tryGetProperty "one"
-            |> Result.map toJsonElement
         let elementOne = result |> Result.valueOr raise
 
         let expectedResult = "this is first"
@@ -39,10 +37,9 @@ module JsonDocumentUtilityTests =
     [<Fact>]
     let ``tryGetProperty document root element traversal test``() =
         let result =
-            JElement jDoc.RootElement
+            jDoc.RootElement
             |> tryGetProperty "top"
             |> Result.bind (tryGetProperty "one")
-            |> Result.map toJsonElement
         let elementOne = result |> Result.valueOr raise
 
         let expectedResult = "this is first"
@@ -52,10 +49,9 @@ module JsonDocumentUtilityTests =
     [<Fact>]
     let ``tryGetProperty document traversal test``() =
         let result =
-            JDocument jDoc
+            jDoc.RootElement
             |> tryGetProperty "three"
             |> Result.bind (tryGetProperty "p1")
-            |> Result.map toJsonElement
         let elementP1 = result |> Result.valueOr raise
 
         let expectedResult = "this is three-point-one"
@@ -66,18 +62,16 @@ module JsonDocumentUtilityTests =
     let ``tryGetProperty document array test``() =
         let jDocArray = JsonDocument.Parse("[{},{}]")
         let result =
-            JDocument jDocArray
+            jDocArray.RootElement
             |> tryGetProperty "foo"
-            |> Result.map toJsonElement
         result |> Result.isError |> should be True
 
     [<Fact>]
     let ``tryGetProperty document array item test``() =
         let jDocArray = JsonDocument.Parse(@"[{""zero"": null},{""zero"": ""naught""}]")
         let result =
-            JElement (jDocArray.RootElement.Item(1))
+            jDocArray.RootElement.Item(1)
             |> tryGetProperty "zero"
-            |> Result.map toJsonElement
         let elementZero = result |> Result.valueOr raise
 
         let expectedResult = "naught"

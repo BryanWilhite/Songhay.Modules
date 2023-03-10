@@ -291,13 +291,13 @@
  </summary>
  <param name="rawDocument">The JSON document.</param>
 </member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.tryGetProperty(System.String,Songhay.Modules.Models.JsonDocumentOrElement)">
+<member name="M:Songhay.Modules.JsonDocumentUtility.tryGetProperty(System.String,System.Text.Json.JsonElement)">
  <summary>
  Tries to return the <see cref="JsonElement" /> property
- of the specified <see cref="JsonDocumentOrElement" /> object.
+ of the specified <see cref="JsonElement" /> object.
  </summary>
  <param name="elementName">The <see cref="JsonElement" /> name.</param>
- <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
+ <param name="element">The <see cref="JsonElement" />.</param>
 </member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromStringElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
  <summary>
@@ -308,33 +308,18 @@
  <remarks>
  This function will return a <see cref="JsonException"/>
  when the <see cref="JsonElement"/> <see cref="string"/> value is null.
+
+ Also recall that <see cref="System.DateTime"/> values appear as strings in JSON.
  </remarks>
 </member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.toPropertyName(System.Text.Json.JsonDocument)">
+<member name="M:Songhay.Modules.JsonDocumentUtility.toFirstPropertyName(System.Text.Json.JsonDocument)">
  <summary>
- Converts the <see cref="JsonDocument.RootElement" />
+ Converts the first child <see cref="JsonProperty"/>
+ of <see cref="JsonDocument.RootElement" />
  to its property name when it is <see cref="JsonValueKind.Object"/>
  or returns <see cref="None" />.
  </summary>
  <param name="document">The <see cref="JsonDocument" />.</param>
- <remarks>
- The current <see cref="JsonElement.EnumerateObject()"/> method
- behaves differently for <see cref="JsonDocument.RootElement"/>
- as it returns a <see cref="JsonProperty"/> representing itself
- when <see cref="JsonDocument.RootElement.ValueKind"/> is
- <see cref="JsonValueKind.Object"/>.
- 
- As of this writing, descendant <see cref="JsonElement"/> cannot do this.
- This implies that a descendant <see cref="JsonElement"/> cannot know what its name is
- because it cannot return a <see cref="JsonProperty"/> representing itself.
- </remarks>
-</member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonElement(Songhay.Modules.Models.JsonDocumentOrElement)">
- <summary>
- Converts the <see cref="JsonDocumentOrElement" />
- to its underlying <see cref="JsonElement"/>.
- </summary>
- <param name="documentOrElement">The <see cref="JsonDocumentOrElement" />.</param>
 </member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.resultError``1(System.String)">
  <summary>
@@ -677,23 +662,6 @@
  Represents a Hexadecimal value.
  </summary>
 </member>
-<member name="P:Songhay.Modules.Models.JsonDocumentOrElement.isJsonValueKindObject">
- <summary>
- Returns <c>true</c> when <see cref="JsonDocumentOrElement"/>
- is wrapping a <see cref="JsonDocument.RootElement"/>
- or a <see cref="JsonElement"/> of <see cref="sonValueKind.Object"/>.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.JsonDocumentOrElement">
- <summary>
- Defines a <see cref="JsonDocument"/>
- or a <see cref="JsonElement"/>
- </summary>
- <remarks>
- For way too much detail, see my notes
- [ https://github.com/BryanWilhite/jupyter-central/blob/master/funkykb/fsharp/json/system.text.json.ipynb ]
- </remarks>
-</member>
 <member name="P:Songhay.Modules.Models.SyndicationFeed.modificationDate">
  <summary>
  The Feed modification <see cref="System.DateTime" />.
@@ -754,7 +722,7 @@
  Defines an item of <see cref="SyndicationFeed.feedItems" />.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+<member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -776,7 +744,7 @@
  Defines the name of an item.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+<member name="M:Songhay.Modules.Models.InceptDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -787,7 +755,7 @@
  Defines the Temporal incept date of an item.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+<member name="M:Songhay.Modules.Models.EndDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -821,7 +789,7 @@
  from a <see cref="string" />.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Boolean,Songhay.Modules.Models.JsonDocumentOrElement)">
+<member name="M:Songhay.Modules.Models.ClientId.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
  from conventional JSON input.
@@ -862,7 +830,7 @@
  from conventional JSON input.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.Identifier.fromInputElementName(System.String,Songhay.Modules.Models.JsonDocumentOrElement)">
+<member name="M:Songhay.Modules.Models.Identifier.fromInputElementName(System.String,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of <see cref="Identifier" />
  from conventional JSON input.

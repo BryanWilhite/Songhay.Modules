@@ -17,10 +17,9 @@ type Identifier =
     /// Generates an instance of <see cref="Identifier" />
     /// from conventional JSON input.
     /// </summary>
-    static member fromInputElementName elementName (elementOrDocument: JsonDocumentOrElement) =
-        elementOrDocument
+    static member fromInputElementName elementName (element: JsonElement) =
+        element
         |> tryGetProperty elementName
-        |> Result.map toJsonElement
         |> Result.bind
             (
                 fun el ->
@@ -73,14 +72,13 @@ type ClientId =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (useCamelCase: bool) (documentOrElement: JsonDocumentOrElement) =
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
         let elementName = ((useCamelCase, (nameof ClientId)) ||> toCamelCaseOrDefault)
         match elementName with
         | None -> Error(JsonException("The expected element-name input is not here."))
         | Some name ->
-            documentOrElement
+            element
             |> tryGetProperty name
-            |> Result.map toJsonElement
             |> toResultFromStringElement (fun el -> ClientId.fromString(el.GetString()))
 
     /// <summary>
@@ -123,14 +121,13 @@ type EndDate =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (useCamelCase: bool) (documentOrElement: JsonDocumentOrElement) =
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
         let elementName = ((useCamelCase, (nameof EndDate))||> toCamelCaseOrDefault)
         match elementName with
         | None -> Error(JsonException("The expected element-name input is not here."))
         | Some name ->
-            documentOrElement
+            element
             |> tryGetProperty name
-            |> Result.map toJsonElement
             |> toResultFromStringElement(fun el -> (EndDate (el.GetDateTime())))
 
 /// <summary>
@@ -143,14 +140,13 @@ type InceptDate =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (useCamelCase: bool) (documentOrElement: JsonDocumentOrElement) =
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
         let elementName = ((useCamelCase, (nameof InceptDate)) ||> toCamelCaseOrDefault)
         match elementName with
         | None -> Error(JsonException("The expected element-name input is not here."))
         | Some name ->
-            documentOrElement
+            element
             |> tryGetProperty name
-            |> Result.map toJsonElement
             |> toResultFromStringElement(fun el -> (InceptDate (el.GetDateTime())))
 
 /// <summary>
@@ -175,12 +171,11 @@ type ModificationDate =
     /// Generates an instance of this type
     /// from conventional JSON input.
     /// </summary>
-    static member fromInput (useCamelCase: bool) (documentOrElement: JsonDocumentOrElement) =
+    static member fromInput (useCamelCase: bool) (element: JsonElement) =
         let elementName = ((useCamelCase, (nameof ModificationDate)) ||> toCamelCaseOrDefault)
         match elementName with
         | None -> Error(JsonException("The expected element-name input is not here."))
         | Some name ->
-            documentOrElement
+            element
             |> tryGetProperty name
-            |> Result.map toJsonElement
             |> toResultFromStringElement(fun el -> ModificationDate (el.GetDateTime()))
