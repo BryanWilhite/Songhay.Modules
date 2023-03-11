@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>6.2.0</AssemblyVersion>
+        <AssemblyVersion>6.3.1</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
         <Description>core reusable, opinionated concerns for all of my F# projects</Description>
         <Authors>Bryan D. Wilhite</Authors>
-        <Copyright>(c) 2022 Bryan D. Wilhite</Copyright>
+        <Copyright>(c) 2023 Bryan D. Wilhite</Copyright>
         <Company>Songhay System</Company>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/BryanWilhite/Songhay.Modules</RepositoryUrl>
@@ -17,7 +17,7 @@
         <PackageIcon>..\songhay_icon.png</PackageIcon>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/BryanWilhite/Songhay.Modules/projects</PackageProjectUrl>
-        <PackageReleaseNotes>see https://github.com/users/BryanWilhite/projects/10/views/1</PackageReleaseNotes>
+        <PackageReleaseNotes>see https://github.com/users/BryanWilhite/projects/11/views/1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageTags>FSharp;Core;Songhay;Modules</PackageTags>
         <PackageVersion>$(AssemblyVersion)</PackageVersion>
