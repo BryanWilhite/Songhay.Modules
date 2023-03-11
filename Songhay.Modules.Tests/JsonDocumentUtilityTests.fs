@@ -1,14 +1,50 @@
 namespace Songhay.Modules.Tests
 
+open System
+
 module JsonDocumentUtilityTests =
 
     open System.Text.Json
 
     open Xunit
     open FsToolkit.ErrorHandling
+    open FsUnit.CustomMatchers
     open FsUnit.Xunit
 
     open Songhay.Modules.JsonDocumentUtility
+
+    [<Theory>]
+    [<InlineData(@"{""actual"": ""2005-12-10T22:19:14""}", false)>]
+    [<InlineData(@"{""actual"": null}", true)>]
+    let ``toResultFromStringElement DateTime test`` (input: string) (isErrorExpected: bool) =
+        let result =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "actual")
+            |> toResultFromStringElement (fun el -> el.GetDateTime())
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<DateTime, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<DateTime, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{""actual"": true}", true)>]
+    [<InlineData(@"{""actual"": ""true""}", false)>]
+    [<InlineData(@"{""actual"": null}", true)>]
+    let ``toResultFromStringElement string test`` (input: string) (isErrorExpected: bool) =
+        let result =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "actual")
+            |> toResultFromStringElement (fun el -> el.GetString())
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<string, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<string, JsonException>.Ok @>)
 
     let jDoc = JsonDocument.Parse(@"
         {

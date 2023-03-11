@@ -23,7 +23,12 @@ module PrimitivesTests =
     [<Theory>]
     [<MemberData(nameof IdentifierTestData)>]
     let ``Identifier.fromInputElementName root test`` (input: string) (elementName: string) (isErrorExpected: bool) (expectedOutput: Identifier option) =
-        let element = JsonDocument.Parse(input).RootElement |> tryGetProperty "root" |> Result.valueOr raise
+        let element =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "root")
+            |> Result.valueOr raise
         let result = element |> Identifier.fromInputElementName elementName
         if isErrorExpected then
             result |> should be (ofCase <@ Result<Identifier, JsonException>.Error @>)
@@ -42,7 +47,12 @@ module PrimitivesTests =
     [<Theory>]
     [<MemberData(nameof ClientIdTestData)>]
     let ``ClientId.fromInput root test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: ClientId option) =
-        let element = JsonDocument.Parse(input).RootElement |> tryGetProperty "Presentation" |> Result.valueOr raise
+        let element =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "Presentation")
+            |> Result.valueOr raise
         let result = element |> ClientId.fromInput useCamelCase
         if isErrorExpected then
             result |> should be (ofCase <@ Result<ClientId, JsonException>.Error @>)
@@ -62,7 +72,12 @@ module PrimitivesTests =
     [<Theory>]
     [<MemberData(nameof EndDateTestData)>]
     let ``EndDate.fomInput root test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string option) =
-        let element = JsonDocument.Parse(input).RootElement |> tryGetProperty "Presentation" |> Result.valueOr raise
+        let element =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "Presentation")
+            |> Result.valueOr raise
         let result = element |> EndDate.fromInput useCamelCase
         if isErrorExpected then
             result |> should be (ofCase <@ Result<EndDate, JsonException>.Error @>)
@@ -82,7 +97,12 @@ module PrimitivesTests =
     [<Theory>]
     [<MemberData(nameof InceptDateTestData)>]
     let ``InceptDate.fomInput root test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string option) =
-        let element = JsonDocument.Parse(input).RootElement |> tryGetProperty "Presentation" |> Result.valueOr raise
+        let element =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "Presentation")
+            |> Result.valueOr raise
         let result = element |> InceptDate.fromInput useCamelCase
         if isErrorExpected then
             result |> should be (ofCase <@ Result<InceptDate, JsonException>.Error @>)
@@ -102,7 +122,12 @@ module PrimitivesTests =
     [<Theory>]
     [<MemberData(nameof ModificationDateTestDataForDoc)>]
     let ``ModificationDate.fromInput root test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string option) =
-        let element = JsonDocument.Parse(input).RootElement |> tryGetProperty "Presentation" |> Result.valueOr raise
+        let element =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "Presentation")
+            |> Result.valueOr raise
         let result = element |> ModificationDate.fromInput useCamelCase
         if isErrorExpected then
             result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Error @>)
@@ -123,8 +148,10 @@ module PrimitivesTests =
     [<MemberData(nameof ModificationDateTestData)>]
     let ``ModificationDate.fromInput test``(input: string) (useCamelCase: bool) (isErrorExpected: bool) (expectedOutput: string option) =
         let element =
-            JsonDocument.Parse(input).RootElement
-            |> tryGetProperty "root"
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "root")
             |> Result.bind(tryGetProperty "Presentation")
             |> Result.valueOr raise
         let result = element |> ModificationDate.fromInput useCamelCase
