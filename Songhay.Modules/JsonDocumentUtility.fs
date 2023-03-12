@@ -99,4 +99,4 @@ module JsonDocumentUtility =
         try
             let document = rawDocument |> JsonDocument.Parse
             Ok document.RootElement
-        with | exn -> Error exn
+        with | exn -> Error <| JsonException(exn.Message, exn)

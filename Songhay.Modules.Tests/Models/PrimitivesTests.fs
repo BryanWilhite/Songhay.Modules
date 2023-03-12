@@ -26,7 +26,6 @@ module PrimitivesTests =
         let element =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "root")
             |> Result.valueOr raise
         let result = element |> Identifier.fromInputElementName elementName
@@ -50,7 +49,6 @@ module PrimitivesTests =
         let element =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "Presentation")
             |> Result.valueOr raise
         let result = element |> ClientId.fromInput useCamelCase
@@ -75,7 +73,6 @@ module PrimitivesTests =
         let element =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "Presentation")
             |> Result.valueOr raise
         let result = element |> EndDate.fromInput useCamelCase
@@ -100,7 +97,6 @@ module PrimitivesTests =
         let element =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "Presentation")
             |> Result.valueOr raise
         let result = element |> InceptDate.fromInput useCamelCase
@@ -125,7 +121,6 @@ module PrimitivesTests =
         let element =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "Presentation")
             |> Result.valueOr raise
         let result = element |> ModificationDate.fromInput useCamelCase
@@ -150,7 +145,6 @@ module PrimitivesTests =
         let element =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "root")
             |> Result.bind(tryGetProperty "Presentation")
             |> Result.valueOr raise

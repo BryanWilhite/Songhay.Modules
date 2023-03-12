@@ -19,7 +19,6 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "actual")
             |> toResultFromStringElement (fun el -> el.GetDateTime())
 
@@ -36,7 +35,6 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "actual")
             |> toResultFromStringElement (fun el -> el.GetString())
 
@@ -53,7 +51,6 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "actual")
             |> toResultFromBooleanElement (fun el -> el.GetBoolean())
 
@@ -70,7 +67,6 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "actual")
             |> toResultFromNumericElement (fun el -> el.GetDouble())
 
@@ -87,7 +83,6 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.mapError (fun exn -> JsonException(exn.Message))
             |> Result.bind (tryGetProperty "actual")
             |> toResultFromNumericElement (fun el -> el.GetInt32())
 
