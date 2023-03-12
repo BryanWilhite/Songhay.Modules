@@ -52,11 +52,20 @@ module JsonDocumentUtility =
     /// <summary>
     /// Converts the conventional result
     /// to its underlying <see cref="JsonElement"/>
-    /// of the specified <see cref="JsonValueKind.String"/>,
+    /// of the specified <see cref="JsonValueKind.True"/> or <see cref="JsonValueKind.False"/>,
     /// passing it to the specified <see cref="Result.Ok"/> function.
     /// </summary>
     let toResultFromBooleanElement doOk (result: Result<JsonElement,JsonException>) =
         toResultFromJsonElement (fun kind -> kind = JsonValueKind.True || kind = JsonValueKind.False) doOk result
+
+    /// <summary>
+    /// Converts the conventional result
+    /// to its underlying <see cref="JsonElement"/>
+    /// of the specified <see cref="JsonValueKind.Number"/>,
+    /// passing it to the specified <see cref="Result.Ok"/> function.
+    /// </summary>
+    let toResultFromNumericElement doOk (result: Result<JsonElement,JsonException>) =
+        toResultFromJsonElement (fun kind -> kind = JsonValueKind.Number) doOk result
 
     /// <summary>
     /// Converts the conventional result

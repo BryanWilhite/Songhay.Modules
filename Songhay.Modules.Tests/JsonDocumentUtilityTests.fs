@@ -1,9 +1,8 @@
 namespace Songhay.Modules.Tests
 
-open System
-
 module JsonDocumentUtilityTests =
 
+    open System
     open System.Text.Json
 
     open Xunit
@@ -62,6 +61,40 @@ module JsonDocumentUtilityTests =
             result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
         else
             result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{""actual"": 1.56}", false)>]
+    [<InlineData(@"{""actual"": ""1.56""}", true)>]
+    [<InlineData(@"{""actual"": null}", true)>]
+    let ``toResultFromNumericElement GetDouble test`` (input: string) (isErrorExpected: bool) =
+        let result =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "actual")
+            |> toResultFromNumericElement (fun el -> el.GetDouble())
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<float, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<float, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{""actual"": 156}", false)>]
+    [<InlineData(@"{""actual"": ""156""}", true)>]
+    [<InlineData(@"{""actual"": null}", true)>]
+    let ``toResultFromNumericElement GetInt32 test`` (input: string) (isErrorExpected: bool) =
+        let result =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "actual")
+            |> toResultFromNumericElement (fun el -> el.GetInt32())
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<int, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
 
     let jDoc = JsonDocument.Parse(@"
         {
