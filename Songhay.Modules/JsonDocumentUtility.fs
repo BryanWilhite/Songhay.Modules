@@ -43,12 +43,20 @@ module JsonDocumentUtility =
     ///
     /// Also, recall that <see cref="System.DateTime"/> values appear as strings in JSON.
     /// </remarks>
-    let toResultFromJsonElement kind doOk (result: Result<JsonElement,JsonException>) =
+    let toResultFromJsonElement (isKind: JsonValueKind -> bool) doOk (result: Result<JsonElement,JsonException>) =
         match result with
         | Error ex -> Error ex
-        | Ok el when el.ValueKind <> kind ->
-            Error <| JsonException($"The expected {nameof(JsonValueKind)} is not here: {el.ValueKind}")
-        | Ok el -> el |> doOk |> Ok
+        | Ok el when el.ValueKind |> isKind -> el |> doOk |> Ok
+        | Ok el -> Error <| JsonException($"The expected {nameof(JsonValueKind)} is not here: {el.ValueKind}")
+
+    /// <summary>
+    /// Converts the conventional result
+    /// to its underlying <see cref="JsonElement"/>
+    /// of the specified <see cref="JsonValueKind.String"/>,
+    /// passing it to the specified <see cref="Result.Ok"/> function.
+    /// </summary>
+    let toResultFromBooleanElement doOk (result: Result<JsonElement,JsonException>) =
+        toResultFromJsonElement (fun kind -> kind = JsonValueKind.True || kind = JsonValueKind.False) doOk result
 
     /// <summary>
     /// Converts the conventional result
@@ -57,7 +65,7 @@ module JsonDocumentUtility =
     /// passing it to the specified <see cref="Result.Ok"/> function.
     /// </summary>
     let toResultFromStringElement doOk (result: Result<JsonElement,JsonException>) =
-        toResultFromJsonElement JsonValueKind.String doOk result
+        toResultFromJsonElement (fun kind -> kind = JsonValueKind.String) doOk result
 
     /// <summary>
     /// Tries to return the <see cref="JsonElement" /> property

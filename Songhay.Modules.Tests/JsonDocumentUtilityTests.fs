@@ -33,7 +33,7 @@ module JsonDocumentUtilityTests =
     [<InlineData(@"{""actual"": true}", true)>]
     [<InlineData(@"{""actual"": ""true""}", false)>]
     [<InlineData(@"{""actual"": null}", true)>]
-    let ``toResultFromStringElement string test`` (input: string) (isErrorExpected: bool) =
+    let ``toResultFromStringElement test`` (input: string) (isErrorExpected: bool) =
         let result =
             input
             |> tryGetRootElement
@@ -45,6 +45,23 @@ module JsonDocumentUtilityTests =
             result |> should be (ofCase <@ Result<string, JsonException>.Error @>)
         else
             result |> should be (ofCase <@ Result<string, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{""actual"": true}", false)>]
+    [<InlineData(@"{""actual"": ""true""}", true)>]
+    [<InlineData(@"{""actual"": null}", true)>]
+    let ``toResultFromBooleanElement test`` (input: string) (isErrorExpected: bool) =
+        let result =
+            input
+            |> tryGetRootElement
+            |> Result.mapError (fun exn -> JsonException(exn.Message))
+            |> Result.bind (tryGetProperty "actual")
+            |> toResultFromBooleanElement (fun el -> el.GetBoolean())
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
 
     let jDoc = JsonDocument.Parse(@"
         {

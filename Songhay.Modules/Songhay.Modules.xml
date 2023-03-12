@@ -307,7 +307,15 @@
  passing it to the specified <see cref="Result.Ok"/> function.
  </summary>
 </member>
-<member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromJsonElement``1(System.Text.Json.JsonValueKind,Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+<member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromBooleanElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the conventional result
+ to its underlying <see cref="JsonElement"/>
+ of the specified <see cref="JsonValueKind.String"/>,
+ passing it to the specified <see cref="Result.Ok"/> function.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromJsonElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonValueKind,System.Boolean},Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
  <summary>
  Converts the conventional result
  to its underlying <see cref="JsonElement"/>
