@@ -14,7 +14,7 @@ module JsonDocumentUtility =
     /// </summary>
     /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
     let resultError (elementName: string) =
-        Error(JsonException $"the expected `{elementName}` element is not here.")
+        Error <| JsonException $"the expected `{elementName}` element is not here."
 
     /// <summary>
     /// Converts the first child <see cref="JsonProperty"/>
@@ -24,29 +24,40 @@ module JsonDocumentUtility =
     /// </summary>
     /// <param name="document">The <see cref="JsonDocument" />.</param>
     let toFirstPropertyName (document: JsonDocument) =
-        if document.RootElement.ValueKind <> JsonValueKind.Object then None
-        else
+        match document.RootElement.ValueKind with
+        | JsonValueKind.Object ->
             try
-                Some (document.RootElement.EnumerateObject().First().Name)
+                Some <| document.RootElement.EnumerateObject().First().Name
             with | _ -> None
+        | _ -> None
 
     /// <summary>
     /// Converts the conventional result
-    /// to its underlying <see cref="JsonElement"/> of <see cref="JsonValueKind.String"/>,
+    /// to its underlying <see cref="JsonElement"/>
+    /// of the specified <see cref="JsonValueKind"/>,
     /// passing it to the specified <see cref="Result.Ok"/> function.
     /// </summary>
     /// <remarks>
     /// This function will return a <see cref="JsonException"/>
     /// when the <see cref="JsonElement"/> <see cref="string"/> value is null.
     ///
-    /// Also recall that <see cref="System.DateTime"/> values appear as strings in JSON.
+    /// Also, recall that <see cref="System.DateTime"/> values appear as strings in JSON.
     /// </remarks>
-    let toResultFromStringElement doOk (result: Result<JsonElement,JsonException>) =
+    let toResultFromJsonElement kind doOk (result: Result<JsonElement,JsonException>) =
         match result with
         | Error ex -> Error ex
-        | Ok el when el.ValueKind = JsonValueKind.Null -> Error(JsonException("The expected non-null value is not here."))
-        | Ok el when el.ValueKind <> JsonValueKind.String -> Error(JsonException("The expected string value is not here."))
-        | Ok el -> Ok (el |> doOk)
+        | Ok el when el.ValueKind <> kind ->
+            Error <| JsonException($"The expected {nameof(JsonValueKind)} is not here: {el.ValueKind}")
+        | Ok el -> el |> doOk |> Ok
+
+    /// <summary>
+    /// Converts the conventional result
+    /// to its underlying <see cref="JsonElement"/>
+    /// of the specified <see cref="JsonValueKind.String"/>,
+    /// passing it to the specified <see cref="Result.Ok"/> function.
+    /// </summary>
+    let toResultFromStringElement doOk (result: Result<JsonElement,JsonException>) =
+        toResultFromJsonElement JsonValueKind.String doOk result
 
     /// <summary>
     /// Tries to return the <see cref="JsonElement" /> property

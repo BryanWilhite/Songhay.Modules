@@ -302,14 +302,23 @@
 <member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromStringElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
  <summary>
  Converts the conventional result
- to its underlying <see cref="JsonElement"/> of <see cref="JsonValueKind.String"/>,
+ to its underlying <see cref="JsonElement"/>
+ of the specified <see cref="JsonValueKind.String"/>,
+ passing it to the specified <see cref="Result.Ok"/> function.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromJsonElement``1(System.Text.Json.JsonValueKind,Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the conventional result
+ to its underlying <see cref="JsonElement"/>
+ of the specified <see cref="JsonValueKind"/>,
  passing it to the specified <see cref="Result.Ok"/> function.
  </summary>
  <remarks>
  This function will return a <see cref="JsonException"/>
  when the <see cref="JsonElement"/> <see cref="string"/> value is null.
 
- Also recall that <see cref="System.DateTime"/> values appear as strings in JSON.
+ Also, recall that <see cref="System.DateTime"/> values appear as strings in JSON.
  </remarks>
 </member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.toFirstPropertyName(System.Text.Json.JsonDocument)">

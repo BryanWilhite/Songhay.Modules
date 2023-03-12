@@ -60,7 +60,7 @@ module StringUtility =
     /// </summary>
     let toLowerInvariant (input: string) =
         if String.IsNullOrWhiteSpace input then None
-        else Some (input.ToLowerInvariant())
+        else Some <| input.ToLowerInvariant()
 
     /// <summary>
     /// Converts the <see cref="String"/> into a blog slug
@@ -119,7 +119,7 @@ module StringUtility =
             let chars =
                 input.Trim().ToCharArray()
                 |> Array.filter (fun c -> Char.IsDigit(c) || c.Equals('.') || c.Equals('-'))
-            Some (chars |> String)
+            chars |> String |> Some
 
     /// <summary>
     /// Demarcates the <see cref="string"/>
@@ -139,6 +139,6 @@ module StringUtility =
     /// <param name="input">The string to search for a match.</param>
     let tryRegexReplace (pattern: string) (replacement: string) (options: RegexOptions) (input: string) =
         try
-            Ok (input |> regexReplace pattern replacement options)
+            input |> regexReplace pattern replacement options |> Ok
         with
         | ex -> Error ex

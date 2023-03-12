@@ -128,7 +128,7 @@ module ProgramFileUtility =
     let raiseExceptionForExpectedDirectory path =
         if String.IsNullOrWhiteSpace(path) then raise (DirectoryNotFoundException $"The expected directory is not here.")
         elif File.Exists(path) then path
-        else raise (DirectoryNotFoundException $"The expected directory, `{path}`, is not here.")
+        else raise <| DirectoryNotFoundException $"The expected directory, `{path}`, is not here."
 
     /// <summary>
     /// Raise <see cref="FileNotFoundException"/>
@@ -138,7 +138,7 @@ module ProgramFileUtility =
     let raiseExceptionForExpectedFile path =
         if String.IsNullOrWhiteSpace(path) then raise (FileNotFoundException $"The expected file is not here.")
         elif File.Exists(path) then path
-        else raise (FileNotFoundException $"The expected file, `{path}`, is not here.")
+        else raise <| FileNotFoundException $"The expected file, `{path}`, is not here."
 
     /// <summary>
     /// Raise <see cref="ProgramFileError"/>.
@@ -209,7 +209,7 @@ module ProgramFileUtility =
                 |> trimLeadingDirectorySeparatorChars
                 |> fun p ->
                     if Path.IsPathRooted(p) then
-                        Error (ProgramFileError (FormatException "The expected relative path is not here."))
+                        Error <| ProgramFileError (FormatException "The expected relative path is not here.")
                     else Ok p
 
     /// <summary>
@@ -258,4 +258,4 @@ module ProgramFileUtility =
             | Error err -> Error err
             | Ok relativePath ->
                 if Path.IsPathRooted(relativePath) then Ok relativePath
-                else Ok (Path.Combine(normalizePath(root), relativePath))
+                else Ok <| Path.Combine(normalizePath(root), relativePath)
