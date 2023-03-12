@@ -307,11 +307,19 @@
  passing it to the specified <see cref="Result.Ok"/> function.
  </summary>
 </member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromNumericElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the conventional result
+ to its underlying <see cref="JsonElement"/>
+ of the specified <see cref="JsonValueKind.Number"/>,
+ passing it to the specified <see cref="Result.Ok"/> function.
+ </summary>
+</member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromBooleanElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
  <summary>
  Converts the conventional result
  to its underlying <see cref="JsonElement"/>
- of the specified <see cref="JsonValueKind.String"/>,
+ of the specified <see cref="JsonValueKind.True"/> or <see cref="JsonValueKind.False"/>,
  passing it to the specified <see cref="Result.Ok"/> function.
  </summary>
 </member>
