@@ -15,7 +15,7 @@ module JsonDocumentUtility =
     /// in <see cref="Error" />.
     /// </summary>
     /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
-    let private resultError (elementName: string) =
+    let resultError (elementName: string) =
         Error <| JsonException $"the expected `{elementName}` element is not here."
 
     /// <summary>
