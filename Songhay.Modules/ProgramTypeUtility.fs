@@ -1,13 +1,13 @@
 namespace Songhay.Modules
 
+open System
+open System.Globalization
+open System.Xml
+
 /// <summary>
 /// Utility functions for types.
 /// </summary>
 module ProgramTypeUtility =
-
-    open System
-    open System.Globalization
-    open System.Xml
 
     /// <summary>
     /// Tries to parse the specified value

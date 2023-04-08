@@ -1,14 +1,13 @@
 namespace Songhay.Modules
 
 open System
+open System.Linq
+open System.Text.Json
 
 /// <summary>
 /// Utility functions for <see cref="JsonDocument" />.
 /// </summary>
 module JsonDocumentUtility =
-
-    open System.Linq
-    open System.Text.Json
 
     /// <summary>
     /// Wraps <see cref="JsonException" /> property

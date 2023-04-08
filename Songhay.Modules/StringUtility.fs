@@ -1,12 +1,12 @@
 namespace Songhay.Modules
 
+open System
+open System.Text.RegularExpressions
+
 /// <summary>
 /// Utility functions for <see cref="System.String" />.
 /// </summary>
 module StringUtility =
-
-    open System
-    open System.Text.RegularExpressions
 
     let internal defaultRegexOptions = RegexOptions.IgnoreCase
 

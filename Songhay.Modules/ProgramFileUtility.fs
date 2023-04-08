@@ -1,13 +1,13 @@
 namespace Songhay.Modules
 
+open System
+open System.IO
+open System.Text.RegularExpressions
+
 /// <summary>
 /// Utility functions for files and directories.
 /// </summary>
 module ProgramFileUtility =
-
-    open System
-    open System.IO
-    open System.Text.RegularExpressions
 
     type ProgramFileError = ProgramFileError of exn
 
