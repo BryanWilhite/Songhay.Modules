@@ -350,6 +350,63 @@
  <param name="elementName">The <see cref="JsonElement" /> name.</param>
  <param name="element">The <see cref="JsonElement" />.</param>
 </member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonUriValue(System.UriKind,Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{Uri,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonFloatValueFromStringElement(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{Double,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ where the expected <see cref="Double"/> is in the JSON as a <see cref="string"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonFloatValue(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{Double,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonIntValueFromStringElement(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{int,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ where the expected <see cref="int"/> is in the JSON as a <see cref="string"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonIntValue(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{int,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonDateTimeValue(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{DateTime,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonBooleanValueFromStringElement(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{bool,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ where the expected <see cref="bool"/> is in the JSON as a <see cref="string"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonBooleanValue(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{bool,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.JsonDocumentUtility.toJsonStringValue(Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
+ <summary>
+ Converts the <see cref="Result{string,JsonException}"/>
+ from the specified <see cref="Result{JsonElement,JsonException}"/>
+ </summary>
+</member>
 <member name="M:Songhay.Modules.JsonDocumentUtility.toResultFromStringElement``1(Microsoft.FSharp.Core.FSharpFunc{System.Text.Json.JsonElement,``0},Microsoft.FSharp.Core.FSharpResult{System.Text.Json.JsonElement,System.Text.Json.JsonException})">
  <summary>
  Converts the conventional result

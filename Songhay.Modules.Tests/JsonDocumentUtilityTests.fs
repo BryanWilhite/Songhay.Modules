@@ -113,7 +113,7 @@ module JsonDocumentUtilityTests =
             return!
                 jDoc.RootElement
                 |> tryGetProperty "top"
-                >>= (tryGetProperty "one")
+                >>= tryGetProperty "one"
         }
 
         let elementOne = result |> Result.valueOr raise
@@ -129,8 +129,8 @@ module JsonDocumentUtilityTests =
             return!
                 jDoc.RootElement
                 |> tryGetProperty "top"
-                >>= (tryGetProperty "three")
-                >>= (tryGetProperty "p1")
+                >>= tryGetProperty "three"
+                >>= tryGetProperty "p1"
         }
 
         let elementP1 = result |> Result.valueOr raise
@@ -157,3 +157,137 @@ module JsonDocumentUtilityTests =
         let expectedResult = "naught"
         let actual = elementZero.GetString()
         actual |> should equal expectedResult
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": ""false"" }", true)>]
+    [<InlineData(@"{ ""v"": false }", false)>]
+    [<InlineData(@"{ ""v"": ""0"" }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonBooleanValue test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonBooleanValue
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": ""false"" }", false)>]
+    [<InlineData(@"{ ""v"": false }", true)>]
+    [<InlineData(@"{ ""v"": ""0"" }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonBooleanValueFromStringElement test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonBooleanValueFromStringElement
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": ""2005-12-10T22:19:14"" }", false)>]
+    [<InlineData(@"{ ""v"": ""number"" }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonDateTimeValue test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonDateTimeValue
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<DateTime, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<DateTime, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": 12 }", false)>]
+    [<InlineData(@"{ ""v"": ""12"" }", true)>]
+    [<InlineData(@"{ ""v"": ""1.2"" }", true)>]
+    [<InlineData(@"{ ""v"": ""number"" }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonIntValue test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonIntValue
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<int, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": ""12"" }", false)>]
+    [<InlineData(@"{ ""v"": ""1.2"" }", true)>]
+    [<InlineData(@"{ ""v"": ""number"" }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonIntValueFromStringElement test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonIntValueFromStringElement
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<int, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": 1.2 }", false)>]
+    [<InlineData(@"{ ""v"": ""1.2"" }", true)>]
+    [<InlineData(@"{ ""v"": true }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonFloatValue test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonFloatValue
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<double, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<double, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""v"": ""1.2"" }", false)>]
+    [<InlineData(@"{ ""v"": ""number"" }", true)>]
+    [<InlineData(@"{ ""v"": null }", true)>]
+    let ``toJsonFloatValueFromStringElement test``(json: string) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "v"
+            |> toJsonFloatValueFromStringElement
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<double, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<double, JsonException>.Ok @>)
+
+    [<Theory>]
+    [<InlineData(@"{ ""uri"": ""urn:nope"" }", UriKind.RelativeOrAbsolute, false)>]
+    [<InlineData(@"{ ""uri"": ""./nope"" }", UriKind.Absolute, true)>]
+    [<InlineData(@"{ ""uri"": null }", UriKind.Absolute, true)>]
+    let ``toJsonUriValue test``(json: string) (uriKind: UriKind) (isErrorExpected: bool) =
+        let result =
+            json
+            |> tryGetRootElement
+            >>= tryGetProperty "uri"
+            |> toJsonUriValue uriKind
+
+        if isErrorExpected then
+            result |> should be (ofCase <@ Result<Uri, JsonException>.Error @>)
+        else
+            result |> should be (ofCase <@ Result<Uri, JsonException>.Ok @>)

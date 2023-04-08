@@ -1,5 +1,7 @@
 namespace Songhay.Modules
 
+open System
+
 /// <summary>
 /// Utility functions for <see cref="JsonDocument" />.
 /// </summary>
@@ -75,6 +77,86 @@ module JsonDocumentUtility =
     /// </summary>
     let toResultFromStringElement doOk (result: Result<JsonElement,JsonException>) =
         toResultFromJsonElement (fun kind -> kind = JsonValueKind.String) doOk result
+
+    /// <summary>
+    /// Converts the <see cref="Result{string,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// </summary>
+    let toJsonStringValue result =
+        result
+        |> toResultFromStringElement (fun el -> el.GetString())
+
+    /// <summary>
+    /// Converts the <see cref="Result{bool,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// </summary>
+    let toJsonBooleanValue result =
+        result
+        |> toResultFromBooleanElement (fun el -> el.GetBoolean())
+
+    /// <summary>
+    /// Converts the <see cref="Result{bool,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// where the expected <see cref="bool"/> is in the JSON as a <see cref="string"/>
+    /// </summary>
+    let toJsonBooleanValueFromStringElement result =
+        result
+        |> toJsonStringValue
+        |> Result.bind (fun s -> s |> Result.parseBoolean |> Result.mapToJsonException)
+
+    /// <summary>
+    /// Converts the <see cref="Result{DateTime,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// </summary>
+    let toJsonDateTimeValue result =
+        result
+        |> toJsonStringValue
+        |> Result.bind (fun s -> s |> Result.parseDateTime |> Result.mapToJsonException)
+
+    /// <summary>
+    /// Converts the <see cref="Result{int,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// </summary>
+    let toJsonIntValue result =
+        result
+        |> toResultFromNumericElement (fun el -> el.GetInt32())
+
+    /// <summary>
+    /// Converts the <see cref="Result{int,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// where the expected <see cref="int"/> is in the JSON as a <see cref="string"/>
+    /// </summary>
+    let toJsonIntValueFromStringElement result =
+        result
+        |> toJsonStringValue
+        |> Result.bind (fun s -> s |> Result.parseInt32 |> Result.mapToJsonException)
+
+    /// <summary>
+    /// Converts the <see cref="Result{Double,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// </summary>
+    let toJsonFloatValue result =
+        result
+        |> toResultFromNumericElement (fun el -> el.GetDouble())
+
+    /// <summary>
+    /// Converts the <see cref="Result{Double,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// where the expected <see cref="Double"/> is in the JSON as a <see cref="string"/>
+    /// </summary>
+    let toJsonFloatValueFromStringElement result =
+        result
+        |> toJsonStringValue
+        |> Result.bind (fun s -> s |> Result.parseDouble |> Result.mapToJsonException)
+
+    /// <summary>
+    /// Converts the <see cref="Result{Uri,JsonException}"/>
+    /// from the specified <see cref="Result{JsonElement,JsonException}"/>
+    /// </summary>
+    let toJsonUriValue (uriKind: UriKind) result =
+        result
+        |> toJsonStringValue
+        |> Result.bind (fun s -> s |> Result.parseUri uriKind |> Result.mapToJsonException)
 
     /// <summary>
     /// Tries to return the <see cref="JsonElement" /> property
