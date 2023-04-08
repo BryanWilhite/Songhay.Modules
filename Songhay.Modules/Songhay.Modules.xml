@@ -135,6 +135,57 @@
  See: https://www.iana.org/assignments/media-types/media-types.xhtml
  </remarks>
 </member>
+<member name="M:Songhay.Modules.Result.parseUri(System.UriKind,System.String)">
+ <summary>
+ Parses the specified <see cref="string"/>
+ into <see cref="Result{Uri,FormatException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Result.parseInt32(System.String)">
+ <summary>
+ Parses the specified <see cref="string"/>
+ into <see cref="Result{Int32,FormatException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Result.parseJsonDocument(System.String)">
+ <summary>
+ Parses the specified <see cref="string"/>
+ into <see cref="Result{JsonDocument,FormatException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Result.parseDouble(System.String)">
+ <summary>
+ Parses the specified <see cref="string"/>
+ into <see cref="Result{Double,FormatException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Result.parseDateTime(System.String)">
+ <summary>
+ Parses the specified <see cref="string"/>
+ into <see cref="Result{DateTime,FormatException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Result.parseBoolean(System.String)">
+ <summary>
+ Parses the specified <see cref="string"/>
+ into <see cref="Result{bool,FormatException}"/>
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Result.mapToJsonException``2(Microsoft.FSharp.Core.FSharpResult{``0,``1})">
+ <summary>
+ Maps <see cref="Result{_,_}"/>
+ to <see cref="JsonException"/>.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Result">
+ <summary>
+ Additional functions for <see cref="Result{_,_}"/>
+ </summary>
+ <remarks>
+ The functions here are primarily intended
+ for supporting <see cref="JsonDocumentUtility"/>.
+ </remarks>
+</member>
 <member name="M:Songhay.Modules.HttpClientUtility.trySendAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpClient)">
  <summary>
  Calls <see cref="HttpClient.SendAsync(HttpRequestMessage)" />

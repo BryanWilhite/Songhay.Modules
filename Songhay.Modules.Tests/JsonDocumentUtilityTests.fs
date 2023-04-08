@@ -7,9 +7,11 @@ module JsonDocumentUtilityTests =
 
     open Xunit
     open FsToolkit.ErrorHandling
+    open FsToolkit.ErrorHandling.Operator.Result
     open FsUnit.CustomMatchers
     open FsUnit.Xunit
 
+    open Songhay.Modules
     open Songhay.Modules.JsonDocumentUtility
 
     [<Theory>]
@@ -19,7 +21,7 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.bind (tryGetProperty "actual")
+            >>= (tryGetProperty "actual")
             |> toResultFromStringElement (fun el -> el.GetDateTime())
 
         if isErrorExpected then
@@ -35,7 +37,7 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.bind (tryGetProperty "actual")
+            >>= (tryGetProperty "actual")
             |> toResultFromStringElement (fun el -> el.GetString())
 
         if isErrorExpected then
@@ -51,7 +53,7 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.bind (tryGetProperty "actual")
+            >>= (tryGetProperty "actual")
             |> toResultFromBooleanElement (fun el -> el.GetBoolean())
 
         if isErrorExpected then
@@ -67,7 +69,7 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.bind (tryGetProperty "actual")
+            >>= (tryGetProperty "actual")
             |> toResultFromNumericElement (fun el -> el.GetDouble())
 
         if isErrorExpected then
@@ -83,7 +85,7 @@ module JsonDocumentUtilityTests =
         let result =
             input
             |> tryGetRootElement
-            |> Result.bind (tryGetProperty "actual")
+            >>= (tryGetProperty "actual")
             |> toResultFromNumericElement (fun el -> el.GetInt32())
 
         if isErrorExpected then
@@ -91,7 +93,7 @@ module JsonDocumentUtilityTests =
         else
             result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
 
-    let jDoc = JsonDocument.Parse(@"
+    let jDocResult = Result.parseJsonDocument(@"
         {
             ""top"": {
                 ""one"": ""this is first"",
@@ -106,25 +108,32 @@ module JsonDocumentUtilityTests =
 
     [<Fact>]
     let ``tryGetProperty document root element traversal test``() =
-        let result =
-            jDoc.RootElement
-            |> tryGetProperty "top"
-            |> Result.bind (tryGetProperty "one")
-        let elementOne = result |> Result.valueOr raise
+        let result = result {
+            let! jDoc = jDocResult
+            return!
+                jDoc.RootElement
+                |> tryGetProperty "top"
+                >>= (tryGetProperty "one")
+        }
 
+        let elementOne = result |> Result.valueOr raise
         let expectedResult = "this is first"
         let actual = elementOne.GetString()
+
         actual |> should equal expectedResult
 
     [<Fact>]
     let ``tryGetProperty document traversal test``() =
-        let result =
-            jDoc.RootElement
-            |> tryGetProperty "top"
-            |> Result.bind (tryGetProperty "three")
-            |> Result.bind (tryGetProperty "p1")
-        let elementP1 = result |> Result.valueOr raise
+        let result = result {
+            let! jDoc = jDocResult
+            return!
+                jDoc.RootElement
+                |> tryGetProperty "top"
+                >>= (tryGetProperty "three")
+                >>= (tryGetProperty "p1")
+        }
 
+        let elementP1 = result |> Result.valueOr raise
         let expectedResult = "this is three-point-one"
         let actual = elementP1.GetString()
         actual |> should equal expectedResult

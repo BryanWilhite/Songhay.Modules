@@ -13,7 +13,7 @@ module JsonDocumentUtility =
     /// in <see cref="Error" />.
     /// </summary>
     /// <param name="elementName">The <see cref="JsonElement" /> name.</param>
-    let resultError (elementName: string) =
+    let private resultError (elementName: string) =
         Error <| JsonException $"the expected `{elementName}` element is not here."
 
     /// <summary>
@@ -96,7 +96,6 @@ module JsonDocumentUtility =
     /// </summary>
     /// <param name="rawDocument">The JSON document.</param>
     let tryGetRootElement (rawDocument: string) =
-        try
-            let document = rawDocument |> JsonDocument.Parse
-            Ok document.RootElement
-        with | exn -> Error <| JsonException(exn.Message, exn)
+        rawDocument
+        |> Result.parseJsonDocument
+        |> Result.map (fun el -> el.RootElement)
