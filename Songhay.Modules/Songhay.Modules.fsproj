@@ -53,12 +53,14 @@
         <Compile Include="ProgramFileUtility.fs" />
         <Compile Include="ProgramTypeUtility.fs" />
         <Compile Include="StringUtility.fs" />
+        <Compile Include="Models\CssPrimitives.fs" />
         <Compile Include="Models/Primitives.fs" />
         <Compile Include="Models/DisplayItemModel.fs" />
         <Compile Include="Models/Groupable.fs" />
         <Compile Include="Models/ProgramAssemblyInfo.fs" />
         <Compile Include="Models/Sortable.fs" />
         <Compile Include="Models/Temporal.fs" />
+        <Compile Include="CssDeclarationUtility.fs" />
     </ItemGroup>
 
 </Project>

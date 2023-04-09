@@ -855,6 +855,642 @@
  Defines an item of <see cref="SyndicationFeed.feedItems" />.
  </summary>
 </member>
+<member name="P:Songhay.Modules.Models.CssVariableAndValue.toCssDeclaration">
+ <summary>
+ Returns a CSS declaration for a CSS ruleset.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics#anatomy_of_a_css_ruleset
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.Models.CssVariableAndValue.Pair">
+ <summary>
+ Unwraps the underlying tuple of this instance.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssVariableAndValue">
+ <summary>
+ Centralizes <see cref="CssVariable"/> and <see cref="CssValue"/> as a tuple.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.CssVariables.fromInput(Microsoft.FSharp.Collections.FSharpList{System.String})">
+ <summary>
+ Generates a collection of <see cref="CssVariable"/>
+ from the specified collection of <see cref="string"/>.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssVariables">
+ <summary>
+ Represents a collection of <see cref="CssVariable"/>.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.CssVariable.toCssPropertyValueWithFallback(System.String)">
+ <summary>
+ Converts this instance to a <c>var()</c> function CSS property
+ with a fallback value.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/var#using_a_custom_property_as_a_fallback
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.Models.CssVariable.toCssPropertyValue">
+ <summary>
+ Converts this instance to a <c>var()</c> function CSS property.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/var
+ </remarks>
+</member>
+<member name="P:Songhay.Modules.Models.CssVariable.Value">
+<summary>Returns the <see cref="string" /> representation of the CSS value.</summary>
+</member>
+<member name="M:Songhay.Modules.Models.CssVariable.fromInput(System.String)">
+ <summary>
+ Returns an instance of <see cref="CssVariable"/>
+ based  on the specified input.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.CssVariable.ToString">
+<summary>Returns <see cref="CssVariable.Value" />.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssVariable">
+ <summary>
+ Represents a CSS custom property (variable)
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssValue.CssValue">
+<summary> the CSS value </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssValue.Value">
+<summary>Returns the <see cref="string" /> representation of the CSS value.</summary>
+</member>
+<member name="M:Songhay.Modules.Models.CssValue.ToString">
+<summary>Returns <see cref="CssValue.Value" />.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssValue">
+ <summary>
+ Represents the value assigned to <see cref="CssVariable"/>.
+ </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation.Italic">
+<summary> a typical text transform </summary>
+ <remarks> italicization is not considered a CSS decoration nor a CSS variant </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation.UpperCase">
+<summary> a CSS text transform </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation.TitleCase">
+<summary> a typical text transform, referred to as <c>captialize</c> in CSS</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation.Lowercase">
+<summary> a CSS text transform </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation.FullWidth">
+<summary> a CSS text transform </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation.InheritTransformation">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssTextTransformation.Value">
+<summary>Returns the <see cref="string" /> representation of the transform name.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssTextTransformation">
+<summary>
+ Enumerates a subset of the CSS text transforms
+ and names text transforms typically in CSS frameworks.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform#syntax
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight.Bold">
+<summary> a CSS font weight </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight.Semibold">
+<summary> a typical font weight in place of numeric CSS weights </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight.Medium">
+<summary> a typical font weight in place of numeric CSS weights </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight.Normal">
+<summary> a CSS font weight </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight.Light">
+<summary> a typical font weight in place of numeric CSS weights </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight.InheritFontWeight">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontWeight.Value">
+<summary>Returns the <see cref="string" /> representation of the font weight.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontWeight">
+<summary>
+ Enumerates a subset of the CSS font weights
+ and names font weights typically in CSS frameworks.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#syntax
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.NumericFontVariant">
+<summary> a value of the <c>font-variant</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.Caps">
+<summary> a value of the <c>font-variant</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.FontAlternate">
+<summary> a value of the <c>font-variant</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.Ligatures">
+<summary> a value of the <c>font-variant</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.SmallCaps">
+<summary> a value of the <c>font-variant</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.VariantNone">
+<summary> a value of the <c>font-variant</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant.InheritFontVariant">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontVariant.Value">
+<summary>Returns the <see cref="string" /> representation of the font variant.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariant">
+<summary>
+ Specifies a subset of the values of the <c>font-variant</c> shorthand property
+ and the values of all of its constituent properties.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant#constituent_properties
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantStackedFractions">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantDiagonalFractions">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantTabular">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantProportional">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantOldStyle">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantNumericLining">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantNumericSlashedZero">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantNumericOrdinal">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.FontVariantNumericNormal">
+<summary> a value of the <c>font-variant-numeric</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric.InheritFontVariantNumeric">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontVariantNumeric.Value">
+<summary>Returns the <see cref="string" /> representation of the <c>font-variant-numeric</c> property.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantNumeric">
+<summary>
+ Specifies the values of the <c>font-variant-numeric</c> property.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesNoContextual">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesContextual">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesNoHistorical">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesHistorical">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesNoDiscretionary">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesDiscretionary">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesNoCommon">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesCommon">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesNone">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.FontVariantLigaturesNormal">
+<summary> a value of the <c>font-variant-ligatures</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures.InheritFontVariantLigatures">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontVariantLigatures.Value">
+<summary>Returns the <see cref="string" /> representation of the <c>font-variant-ligatures</c> property.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantLigatures">
+<summary>
+ Specifies the values of the <c>font-variant-ligatures</c> property.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-ligatures
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsTitling">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsUnicase">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsAllPetite">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsPetite">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsAllSmall">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsSmall">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.FontVariantCapsNormal">
+<summary> a value of the <c>font-variant-caps</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps.InheritFontVariantCaps">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontVariantCaps.Value">
+<summary>Returns the <see cref="string" /> representation of the <c>font-variant-caps</c> property.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantCaps">
+<summary>
+ Specifies the values of the <c>font-variant-caps</c> property.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-caps
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantAlternates.FontVariantAlternatesHistoricalForms">
+<summary> a value of the <c>font-variant-alternates</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantAlternates.FontVariantAlternatesNormal">
+<summary> a value of the <c>font-variant-alternates</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantAlternates.InheritFontVariantAlternates">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontVariantAlternates.Value">
+<summary>Returns the <see cref="string" /> representation of the <c>font-variant-alternates</c> property.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontVariantAlternates">
+<summary>
+ Specifies the values of the <c>font-variant-alternates</c> property.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-alternates
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.Math">
+<summary> a CSS font family </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.Emoji">
+<summary> a CSS font family </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.Secondary">
+<summary> a typical font classification </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.Primary">
+<summary> a typical font classification </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.Monospace">
+<summary> a CSS font family </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.SansSerif">
+<summary> a CSS font family </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily.InheritFontFamily">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFontFamily.Value">
+<summary>Returns the <see cref="string" /> representation of the font family/classification.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFontFamily">
+<summary>
+ Enumerates a subset of the CSS font families
+ and names font classifications typically in CSS frameworks.
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-family#syntax
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexWrap.WrapReverse">
+<summary> a CSS <c>flex-wrap</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexWrap.Wrap">
+<summary> a CSS <c>flex-wrap</c> property </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexWrap.NoWrap">
+<summary> a CSS <c>flex-wrap</c> property </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFlexWrap.Value">
+<summary>Returns the <see cref="string" /> representation of the <c>flex-wrap</c> property.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexWrap">
+<summary>
+ The <c>flex-wrap</c> CSS property sets whether flex items are forced onto one line or can wrap onto multiple lines.
+</summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexDirection.ColumnReverse">
+<summary> a CSS <c>flex-direction</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexDirection.Column">
+<summary> a CSS <c>flex-direction</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexDirection.RowReverse">
+<summary> a CSS <c>flex-direction</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexDirection.Row">
+<summary> a CSS <c>flex-direction</c> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssFlexDirection.Value">
+<summary>Returns the <see cref="string" /> representation of the <c>flex-direction</c> property.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssFlexDirection">
+<summary>
+ The <c>flex-direction</c> CSS property sets how flex items are placed in the flex container
+ defining the main axis and the direction (normal or reversed).
+</summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Sixteen">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Nine">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Five">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Four">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Three">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Two">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.One">
+<summary> typical aspect-ratio number </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssCommonImageAspectRatioNumber.Value">
+<summary>Returns the <see cref="string" /> representation of the aspect-ratio number.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssCommonImageAspectRatioNumber">
+<summary>
+ Names the typical aspect-ratio numbers of contemporary, still photography.
+ </summary>
+ <remarks>
+ “Common aspect ratios in still photography include:
+  - 1:1
+  - 5:4 (1.25:1)
+  - 4:3 (1.3:1)
+  - 3:2 (1.5:1)
+  - 5:3 (1.6:1)
+  - 16:9 (1.7:1)
+  - 3:1
+ ”
+ — https://en.wikipedia.org/wiki/Aspect_ratio_%28image%29#Still_photography
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.TB">
+<summary>top and bottom margin, padding or border</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.B">
+<summary>bottom margin, padding or border</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.T">
+<summary>top margin, padding or border</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.LR">
+<summary>left and right margin, padding or border</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.R">
+<summary>right margin, padding or border</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.L">
+<summary>left margin, padding or border</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel.All">
+<summary>all margins, paddings or borders</summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssBoxModel.Value">
+<summary>Returns the <see cref="string" /> representation of the Box Model instance.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxModel">
+<summary>
+ Enumerates the CSS Box Model
+ </summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model#parts_of_a_box
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.SelfEnd">
+<summary> alignment name for <c>align-items</c> (Flexbox, Grid Layout) </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.SelfStart">
+<summary> alignment name for <c>align-items</c> (Flexbox, Grid Layout) </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.FlexEnd">
+<summary> alignment name for <c>align-items</c> (Flexbox, Grid Layout) </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.FlexStart">
+<summary> alignment name for <c>align-items</c> (Flexbox, Grid Layout) </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Stretch">
+<summary> alignment name for <c>align-items</c> (Flexbox, Grid Layout) </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Normal">
+<summary> alignment name for <c>align-items</c> (Flexbox, Grid Layout) </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.SpaceEvenly">
+<summary> alignment name for <c>justify-content</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.SpaceAround">
+<summary> alignment name for <c>justify-content</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.SpaceBetween">
+<summary> alignment name for <c>justify-content</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.TextTop">
+<summary> alignment name for <c>vertical-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Sub">
+<summary> alignment name for <c>vertical-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Bottom">
+<summary> alignment name for <c>vertical-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Middle">
+<summary> alignment name for <c>vertical-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Top">
+<summary> alignment name for <c>vertical-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.BaseLine">
+<summary> alignment name for <c>vertical-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.MatchParent">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.JustifyAll">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Justify">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Center">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Right">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Left">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.End">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.Start">
+<summary> alignment name for <c>text-align</c> </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment.InheritBoxAlignment">
+<summary> <see cref="CssInheritance" /> </summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssBoxAlignment.Value">
+<summary>Returns the <see cref="string" /> representation of the alignment name.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssBoxAlignment">
+<summary>
+ Defines CSS Box Alignment module names.
+</summary>
+<remarks>
+ “The CSS Box Alignment module specifies CSS features that relate to the alignment
+ of boxes in the various CSS box layout models:
+ block layout, table layout, flex layout, and grid layout…”
+ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Alignment
+</remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssInheritance.Unset">
+<summary>
+ “The unset CSS keyword resets a property to its inherited value
+ if the property naturally inherits from its parent,
+ and to its initial value if not.”
+</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssInheritance.RevertLayer">
+<summary>
+ “The revert-layer CSS keyword rolls back the value of a property
+ in a cascade layer to the value of the property
+ in a CSS rule matching the element in a previous cascade layer.”
+</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssInheritance.Revert">
+<summary>
+ “The revert CSS keyword reverts the cascaded value of the property from its current value
+ to the value the property would have had if no changes had been made
+ by the current style origin to the current element.
+ Thus, it resets the property to its inherited value if it inherits
+ from its parent or to the default value established
+ by the user agent's stylesheet (or by user styles, if any exist).”
+</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssInheritance.Initial">
+<summary>
+ “The initial CSS keyword applies the initial (or default) value of a property to an element.”
+</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssInheritance.Inherit">
+<summary>
+ “The inherit CSS keyword causes the element to take the computed value
+ of the property from its parent element.”
+</summary>
+</member>
+<member name="P:Songhay.Modules.Models.CssInheritance.Value">
+<summary>Returns the <see cref="string" /> representation of the inheritance name.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssInheritance">
+<summary>
+ Enumerates a subset of the CSS inheritance values.
+</summary>
+<remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/inherit
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/initial
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/revert
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/revert-layer
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/unset
+</remarks>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyColumnRule">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyCaret">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyTextShadow">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyTextEmphasis">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyTextDecoration">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyOutline">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyBorder">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorProperty">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty.ColorPropertyBackground">
+ <summary> a CSS color property name </summary>
+</member>
+<member name="T:Songhay.Modules.Models.CssColorProperty">
+<summary>
+ Summarizes the CSS color property names.
+</summary>
+ <remarks>
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Colors/Applying_color
+ </remarks>
+</member>
 <member name="M:Songhay.Modules.Models.ModificationDate.fromInput(System.Boolean,System.Text.Json.JsonElement)">
  <summary>
  Generates an instance of this type
@@ -1150,6 +1786,65 @@
  <summary>
  Adds temporal properties to an item
  </summary>
+</member>
+<member name="M:Songhay.Modules.CssDeclarationUtility.fontVariant(Microsoft.FSharp.Collections.FSharpList{Songhay.Modules.Models.CssFontVariant})">
+<summary>
+ A function for CSS declaration.
+</summary>
+ <remarks>
+ “The <c>font-variant</c> CSS shorthand property allows you to set all the font variants for a font.”
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.CssDeclarationUtility.fontVariantNumeric(Songhay.Modules.Models.CssFontVariantNumeric)">
+<summary>
+ A function for CSS declaration.
+</summary>
+ <remarks>
+ “The <c>font-variant-numeric</c> CSS property controls the usage of alternate glyphs
+ for numbers, fractions, and ordinal markers.”
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.CssDeclarationUtility.fontVariantLigatures(Songhay.Modules.Models.CssFontVariantLigatures)">
+<summary>
+ A function for CSS declaration.
+</summary>
+ <remarks>
+ “The <c>font-variant-ligatures</c> CSS property controls which ligatures and contextual forms are used
+ in textual content of the elements it applies to.
+ This leads to more harmonized forms in the resulting text.”
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-ligatures
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.CssDeclarationUtility.fontVariantCaps(Songhay.Modules.Models.CssFontVariantCaps)">
+<summary>
+ A function for CSS declaration.
+</summary>
+ <remarks>
+ “The <c>font-variant-caps</c> CSS property controls the use of alternate glyphs for capital letters.”
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-caps
+ </remarks>
+</member>
+<member name="M:Songhay.Modules.CssDeclarationUtility.fontVariantAlternates(Songhay.Modules.Models.CssFontVariantAlternates)">
+<summary>
+ A function for CSS declaration.
+</summary>
+ <remarks>
+ “The <c>font-variant-alternates</c> CSS property controls the usage of alternate glyphs.
+ These alternate glyphs may be referenced by alternative names defined in <c>@font-feature-values</c>.”
+ 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-alternates
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.CssDeclarationUtility">
+<summary>
+ Selected functions for CSS declaration.
+</summary>
+ <remarks>
+ “When a property is paired with a value, this pairing is called a CSS declaration.
+ CSS declarations are found within CSS Declaration Blocks.”
+ 📖 https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured#properties_and_values
+ </remarks>
 </member>
 </members>
 </doc>

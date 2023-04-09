@@ -1,17 +1,17 @@
 namespace Songhay.Modules.Tests.Models
 
+open System
+open System.Text.Json
+
+open Xunit
+open FsToolkit.ErrorHandling
+open FsUnit.Xunit
+open FsUnit.CustomMatchers
+
+open Songhay.Modules.Models
+open Songhay.Modules.JsonDocumentUtility
+
 module PrimitivesTests =
-
-    open System
-    open System.Text.Json
-
-    open Xunit
-    open FsToolkit.ErrorHandling
-    open FsUnit.Xunit
-    open FsUnit.CustomMatchers
-
-    open Songhay.Modules.Models
-    open Songhay.Modules.JsonDocumentUtility
 
     let IdentifierTestData : seq<obj[]> =
         seq {
