@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>6.3.4</AssemblyVersion>
+        <AssemblyVersion>6.3.5</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
@@ -17,7 +17,7 @@
         <PackageIcon>..\songhay_icon.png</PackageIcon>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/BryanWilhite/Songhay.Modules/projects</PackageProjectUrl>
-        <PackageReleaseNotes>see https://github.com/users/BryanWilhite/projects/12/views/1</PackageReleaseNotes>
+        <PackageReleaseNotes>see 🏗 https://github.com/users/BryanWilhite/projects/16/views/1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageTags>FSharp;Core;Songhay;Modules</PackageTags>
         <PackageVersion>$(AssemblyVersion)</PackageVersion>

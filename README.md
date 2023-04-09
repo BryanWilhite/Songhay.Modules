@@ -10,10 +10,11 @@ The _Core_ F# Modules to install as [a NuGet package](https://www.nuget.org/pack
 
 The following highlights core concerns shared among my F# projects:
 
-- expressions with `HttpClient`, `HttpRequestMessage` and `HttpResponseMessage` (see [tests](./Songhay.Modules.Tests/HttpClientUtilityTests.fs) for examples)
-- expressions handling Microsoft’s `JsonDocument` (see [`JsonDocumentUtility`](./Songhay.Modules/JsonDocumentUtility.fs))
 - binding literals to selected MIME types (see [`MimeTypes`](./Songhay.Modules/MimeTypes.fs))
+- functions with `HttpClient`, `HttpRequestMessage` and `HttpResponseMessage` (see [tests](./Songhay.Modules.Tests/HttpClientUtilityTests.fs) for examples)
+- functions handling Microsoft’s `JsonDocument` (see [`JsonDocumentUtility`](./Songhay.Modules/JsonDocumentUtility.fs))
 - centralizing routines around handling files and directories (see [tests](./Songhay.Modules.Tests/ProgramFileUtilityTests.fs))
 - centralizing routines around handling strings (see [tests](./Songhay.Modules.Tests/StringUtilityTests.fs))
+- functions for CSS declarations (see [`CssDeclarationUtility`](./Songhay.Modules/CssDeclarationUtility.fs))
 
 @[BryanWilhite](https://twitter.com/BryanWilhite)
