@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>6.3.5</AssemblyVersion>
+        <AssemblyVersion>6.3.6</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
@@ -17,7 +17,7 @@
         <PackageIcon>..\songhay_icon.png</PackageIcon>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/BryanWilhite/Songhay.Modules/projects</PackageProjectUrl>
-        <PackageReleaseNotes>see 🏗 https://github.com/users/BryanWilhite/projects/16/views/1</PackageReleaseNotes>
+        <PackageReleaseNotes>update of dependencies 📦🔝</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageTags>FSharp;Core;Songhay;Modules</PackageTags>
         <PackageVersion>$(AssemblyVersion)</PackageVersion>
@@ -61,6 +61,10 @@
         <Compile Include="Models/Sortable.fs" />
         <Compile Include="Models/Temporal.fs" />
         <Compile Include="CssDeclarationUtility.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Update="FSharp.Core" Version="7.0.300" />
     </ItemGroup>
 
 </Project>
