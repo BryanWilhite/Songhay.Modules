@@ -40,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Include="Models\AppStateHashSet.fs" />
         <Compile Include="Models\AppStateSet.fs" />
         <Compile Include="Models/Colorable.fs" />
         <Compile Include="Models/Selectable.fs" />

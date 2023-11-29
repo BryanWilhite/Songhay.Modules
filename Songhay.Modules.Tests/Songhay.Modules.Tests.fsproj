@@ -13,6 +13,7 @@
         <Compile Include="ProgramFileUtilityTests.fs" />
         <Compile Include="ProgramTypeUtilityTests.fs" />
         <Compile Include="StringUtilityTests.fs" />
+        <Compile Include="Models\AppStateHashSetTests.fs" />
         <Compile Include="Models\AppStateSetTests.fs" />
         <Compile Include="Models\CssPrimitivesTests.fs" />
         <Compile Include="Models\PrimitivesTests.fs" />

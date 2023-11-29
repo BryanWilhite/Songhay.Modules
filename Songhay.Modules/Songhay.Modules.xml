@@ -726,6 +726,42 @@
  Utility functions for <see cref="System.String" />.
  </summary>
 </member>
+<member name="T:Songhay.Modules.Models.AppStateHashSet`1.AppStates">
+ <summary>the <see cref="'state"/> collection</summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.toggleState(`0)">
+ <summary>toggles the specified <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.removeStates(`0[])">
+ <summary>adds the specified list of <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.removeState(`0)">
+ <summary>removes the specified <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.hasState(`0)">
+ <summary>returns <c>true</c> when the specified <see cref="'state"/> is collected</summary>
+</member>
+<member name="P:Songhay.Modules.Models.AppStateHashSet`1.states">
+ <summary>returns the underlying <see cref="HashSet{T}"/></summary>
+</member>
+<member name="P:Songhay.Modules.Models.AppStateHashSet`1.initialize">
+ <summary>returns an empty collection of <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.addStates(`0[])">
+ <summary>adds the specified list of <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.addState(`0)">
+ <summary>adds the specified <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.GetHashCode">
+ <summary>Serves as the default hash function.</summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.Equals(System.Object)">
+ <summary>Determines whether the specified object is equal to the current object.</summary>
+</member>
+<member name="T:Songhay.Modules.Models.AppStateHashSet`1">
+ <summary>defines the <see cref="'state"/> collection, naming all states off the app</summary>
+</member>
 <member name="T:Songhay.Modules.Models.AppStateSet`1.AppStates">
  <summary>the <see cref="'state"/> collection</summary>
 </member>
