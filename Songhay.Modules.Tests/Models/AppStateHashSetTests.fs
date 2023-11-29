@@ -29,6 +29,29 @@ let ``removeStates test`` () =
     actual.hasState StateThree |> should be False
 
 [<Fact>]
+let ``should be equal``() =
+    let actual1 = AppStateHashSet<MyAppState>
+                     .initialize
+                     .addStates(StateOne, StateTwo, StateThree)
+    let actual2 = AppStateHashSet<MyAppState>
+                     .initialize
+                     .addStates(StateThree, StateTwo, StateOne)
+
+    actual1 |> should equal actual2
+
+[<Fact>]
+let ``should not be equal``() =
+    let actual1 = AppStateHashSet<MyAppState>
+                     .initialize
+                     .addStates(StateOne, StateTwo, StateThree)
+    let actual2 = AppStateHashSet<MyAppState>
+                     .initialize
+                     .addStates(StateThree, StateTwo, StateOne)
+                     .removeState StateTwo
+
+    actual1 |> should not' <| equal actual2
+
+[<Fact>]
 let ``toggleState test`` () =
 
     let actual = AppStateHashSet<MyAppState>
