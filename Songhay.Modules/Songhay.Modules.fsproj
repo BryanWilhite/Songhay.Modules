@@ -40,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Include="Models\AppStateSet.fs" />
         <Compile Include="Models/Colorable.fs" />
         <Compile Include="Models/Selectable.fs" />
         <Compile Include="Models/SyndicationFeed.fs" />
@@ -64,7 +65,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="FSharp.Core" Version="7.0.300" />
+      <PackageReference Update="FSharp.Core" Version="8.0.100" />
     </ItemGroup>
 
 </Project>
