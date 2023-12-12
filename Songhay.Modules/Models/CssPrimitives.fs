@@ -546,7 +546,7 @@ type CssTextTransformation =
         | _ -> this.ToString().ToLowerInvariant()
 
 /// <summary>
-/// Represents the value assigned to <see cref="CssVariable"/>.
+/// Represents the value assigned to <see cref="CssCustomProperty"/>.
 /// </summary>
 type CssValue =
     ///<summary> the CSS value </summary>
@@ -564,17 +564,17 @@ type CssValue =
 /// <remarks>
 /// 📖 https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 /// </remarks>
-type CssVariable =
-    | CssVariable of string
+type CssCustomProperty =
+    | CssCustomProperty of string
 
     /// <summary>
-    /// Returns an instance of <see cref="CssVariable"/>
-    /// based  on the specified input.
+    /// Returns an instance of <see cref="CssCustomProperty"/>
+    /// based on the specified input.
     /// </summary>
     static member fromInput (input: string) =
         match input.TrimStart('-') |> toKabobCase with
-        | Some s -> CssVariable $"--{s}"
-        | None -> CssVariable "--?"
+        | Some s -> CssCustomProperty $"--{s}"
+        | None -> CssCustomProperty "--?"
 
     /// <summary>
     /// Converts this instance to a <c>var()</c> function CSS property.
@@ -594,33 +594,40 @@ type CssVariable =
     member this.toCssPropertyValueWithFallback (fallback: string) = $"var({this.Value}, {fallback})"
 
     ///<summary>Returns the <see cref="string" /> representation of the CSS value.</summary>
-    member this.Value = let (CssVariable v) = this in v
+    member this.Value = let (CssCustomProperty v) = this in v
 
-    ///<summary>Returns <see cref="CssVariable.Value" />.</summary>
+    ///<summary>Returns <see cref="CssCustomProperty.Value" />.</summary>
     override this.ToString() = this.Value
 
 /// <summary>
-/// Represents a collection of <see cref="CssVariable"/>.
+/// Represents a collection of <see cref="CssCustomProperty"/>.
 /// </summary>
-type CssVariables =
-    | CssVariables of CssVariable list
+type CssCustomProperties =
+    | CssCustomProperties of CssCustomProperty list
 
     /// <summary>
-    /// Generates a collection of <see cref="CssVariable"/>
+    /// Generates a collection of <see cref="CssCustomProperty"/>
     /// from the specified collection of <see cref="string"/>.
     /// </summary>
-    static member fromInput (input: string list) = input |> List.map CssVariable.fromInput
+    static member fromInput (input: string list) = input |> List.map CssCustomProperty.fromInput
 
 /// <summary>
-/// Centralizes <see cref="CssVariable"/> and <see cref="CssValue"/> as a tuple.
+/// Centralizes <see cref="CssCustomProperty"/> and <see cref="CssValue"/> as a tuple.
 /// </summary>
-type CssVariableAndValue =
-    | CssVariableAndValue of CssVariable * CssValue
+type CssCustomPropertyAndValue =
+    | CssCustomPropertyAndValue of CssCustomProperty * CssValue
+
+    /// <summary>
+    /// Returns an instance of <see cref="CssCustomPropertyAndValue"/>
+    /// based on the specified input.
+    /// </summary>
+    static member fromInput (name: string, value: string) =
+        (CssCustomProperty.fromInput name, CssValue value) |> CssCustomPropertyAndValue
 
     /// <summary>
     /// Unwraps the underlying tuple of this instance.
     /// </summary>
-    member this.Pair = let (CssVariableAndValue (cssVar, cssVal)) = this in (cssVar, cssVal)
+    member this.Pair = let (CssCustomPropertyAndValue (cssVar, cssVal)) = this in (cssVar, cssVal)
 
     /// <summary>
     /// Returns a CSS declaration for a CSS ruleset.
@@ -628,4 +635,4 @@ type CssVariableAndValue =
     /// <remarks>
     /// 📖 https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics#anatomy_of_a_css_ruleset
     /// </remarks>
-    member this.toCssDeclaration = match this with | CssVariableAndValue (cssVar, cssVal) -> $"{cssVar}: {cssVal};"
+    member this.toCssDeclaration = match this with | CssCustomPropertyAndValue (cssVar, cssVal) -> $"{cssVar}: {cssVal};"

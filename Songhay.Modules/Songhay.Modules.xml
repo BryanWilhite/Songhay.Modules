@@ -921,7 +921,7 @@
  Defines an item of <see cref="SyndicationFeed.feedItems" />.
  </summary>
 </member>
-<member name="P:Songhay.Modules.Models.CssVariableAndValue.toCssDeclaration">
+<member name="P:Songhay.Modules.Models.CssCustomPropertyAndValue.toCssDeclaration">
  <summary>
  Returns a CSS declaration for a CSS ruleset.
  </summary>
@@ -929,28 +929,34 @@
  📖 https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics#anatomy_of_a_css_ruleset
  </remarks>
 </member>
-<member name="P:Songhay.Modules.Models.CssVariableAndValue.Pair">
+<member name="P:Songhay.Modules.Models.CssCustomPropertyAndValue.Pair">
  <summary>
  Unwraps the underlying tuple of this instance.
  </summary>
 </member>
-<member name="T:Songhay.Modules.Models.CssVariableAndValue">
+<member name="M:Songhay.Modules.Models.CssCustomPropertyAndValue.fromInput(System.String,System.String)">
  <summary>
- Centralizes <see cref="CssVariable"/> and <see cref="CssValue"/> as a tuple.
+ Returns an instance of <see cref="CssCustomPropertyAndValue"/>
+ based on the specified input.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.CssVariables.fromInput(Microsoft.FSharp.Collections.FSharpList{System.String})">
+<member name="T:Songhay.Modules.Models.CssCustomPropertyAndValue">
  <summary>
- Generates a collection of <see cref="CssVariable"/>
+ Centralizes <see cref="CssCustomProperty"/> and <see cref="CssValue"/> as a tuple.
+ </summary>
+</member>
+<member name="M:Songhay.Modules.Models.CssCustomProperties.fromInput(Microsoft.FSharp.Collections.FSharpList{System.String})">
+ <summary>
+ Generates a collection of <see cref="CssCustomProperty"/>
  from the specified collection of <see cref="string"/>.
  </summary>
 </member>
-<member name="T:Songhay.Modules.Models.CssVariables">
+<member name="T:Songhay.Modules.Models.CssCustomProperties">
  <summary>
- Represents a collection of <see cref="CssVariable"/>.
+ Represents a collection of <see cref="CssCustomProperty"/>.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.CssVariable.toCssPropertyValueWithFallback(System.String)">
+<member name="M:Songhay.Modules.Models.CssCustomProperty.toCssPropertyValueWithFallback(System.String)">
  <summary>
  Converts this instance to a <c>var()</c> function CSS property
  with a fallback value.
@@ -959,7 +965,7 @@
  📖 https://developer.mozilla.org/en-US/docs/Web/CSS/var#using_a_custom_property_as_a_fallback
  </remarks>
 </member>
-<member name="P:Songhay.Modules.Models.CssVariable.toCssPropertyValue">
+<member name="P:Songhay.Modules.Models.CssCustomProperty.toCssPropertyValue">
  <summary>
  Converts this instance to a <c>var()</c> function CSS property.
  </summary>
@@ -967,19 +973,19 @@
  📖 https://developer.mozilla.org/en-US/docs/Web/CSS/var
  </remarks>
 </member>
-<member name="P:Songhay.Modules.Models.CssVariable.Value">
+<member name="P:Songhay.Modules.Models.CssCustomProperty.Value">
 <summary>Returns the <see cref="string" /> representation of the CSS value.</summary>
 </member>
-<member name="M:Songhay.Modules.Models.CssVariable.fromInput(System.String)">
+<member name="M:Songhay.Modules.Models.CssCustomProperty.fromInput(System.String)">
  <summary>
- Returns an instance of <see cref="CssVariable"/>
- based  on the specified input.
+ Returns an instance of <see cref="CssCustomProperty"/>
+ based on the specified input.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.CssVariable.ToString">
-<summary>Returns <see cref="CssVariable.Value" />.</summary>
+<member name="M:Songhay.Modules.Models.CssCustomProperty.ToString">
+<summary>Returns <see cref="CssCustomProperty.Value" />.</summary>
 </member>
-<member name="T:Songhay.Modules.Models.CssVariable">
+<member name="T:Songhay.Modules.Models.CssCustomProperty">
  <summary>
  Represents a CSS custom property (variable)
  </summary>
@@ -998,7 +1004,7 @@
 </member>
 <member name="T:Songhay.Modules.Models.CssValue">
  <summary>
- Represents the value assigned to <see cref="CssVariable"/>.
+ Represents the value assigned to <see cref="CssCustomProperty"/>.
  </summary>
 </member>
 <member name="T:Songhay.Modules.Models.CssTextTransformation.Italic">
