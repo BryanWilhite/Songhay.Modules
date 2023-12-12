@@ -600,18 +600,6 @@ type CssCustomProperty =
     override this.ToString() = this.Value
 
 /// <summary>
-/// Represents a collection of <see cref="CssCustomProperty"/>.
-/// </summary>
-type CssCustomProperties =
-    | CssCustomProperties of CssCustomProperty list
-
-    /// <summary>
-    /// Generates a collection of <see cref="CssCustomProperty"/>
-    /// from the specified collection of <see cref="string"/>.
-    /// </summary>
-    static member fromInput (input: string list) = input |> List.map CssCustomProperty.fromInput
-
-/// <summary>
 /// Centralizes <see cref="CssCustomProperty"/> and <see cref="CssValue"/> as a tuple.
 /// </summary>
 type CssCustomPropertyAndValue =

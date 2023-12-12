@@ -945,17 +945,6 @@
  Centralizes <see cref="CssCustomProperty"/> and <see cref="CssValue"/> as a tuple.
  </summary>
 </member>
-<member name="M:Songhay.Modules.Models.CssCustomProperties.fromInput(Microsoft.FSharp.Collections.FSharpList{System.String})">
- <summary>
- Generates a collection of <see cref="CssCustomProperty"/>
- from the specified collection of <see cref="string"/>.
- </summary>
-</member>
-<member name="T:Songhay.Modules.Models.CssCustomProperties">
- <summary>
- Represents a collection of <see cref="CssCustomProperty"/>.
- </summary>
-</member>
 <member name="M:Songhay.Modules.Models.CssCustomProperty.toCssPropertyValueWithFallback(System.String)">
  <summary>
  Converts this instance to a <c>var()</c> function CSS property
