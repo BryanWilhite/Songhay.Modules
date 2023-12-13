@@ -31,7 +31,7 @@ module StringUtility =
                 if (i > 0) && Char.IsUpper(c) then $"{demarcation}{Char.ToLower(c)}"
                 else $"{Char.ToLower(c)}"
             let stringArray = input.ToCharArray() |> Array.mapi processChar
-            Some (String.Join(String.Empty, stringArray))
+            Some <| String.Join(String.Empty, stringArray)
 
     /// <summary>
     /// Calls <see cref="String.ToLowerInvariant"/>
