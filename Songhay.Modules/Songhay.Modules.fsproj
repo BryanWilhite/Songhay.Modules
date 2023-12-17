@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>6.4.0</AssemblyVersion>
+        <AssemblyVersion>6.4.1</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
@@ -66,7 +66,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="FSharp.Core" Version="8.0.100" />
+      <PackageReference Update="FSharp.Core" Version="8.0.*" />
     </ItemGroup>
 
 </Project>
