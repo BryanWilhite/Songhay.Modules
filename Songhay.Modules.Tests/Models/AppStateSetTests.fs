@@ -29,7 +29,7 @@ let ``removeStates test`` () =
     actual.hasState StateThree |> should be False
 
 [<Fact>]
-let ``toggleState test`` () =
+let ``toggleState with addStates test`` () =
 
     let actual = AppStateSet<MyAppState>
                      .initialize
@@ -45,3 +45,12 @@ let ``toggleState test`` () =
     actual.hasState StateTwo |> should be True
 
     actual.states.Count |> should equal 3
+
+[<Fact>]
+let ``toggleState with only initialize test`` () =
+
+    let actual = AppStateSet<MyAppState>
+                     .initialize
+                     .toggleState(StateTwo)
+
+    actual.hasState StateTwo |> should be True
