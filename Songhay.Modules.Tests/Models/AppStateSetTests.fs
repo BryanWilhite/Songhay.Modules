@@ -56,6 +56,32 @@ let ``toggleState with only initialize test`` () =
     actual.hasState StateTwo |> should be True
 
 [<Fact>]
+let ``equality test`` () =
+
+    let one = AppStateSet<MyAppState>
+                     .initialize
+                     .addStates(StateOne, StateThree)
+
+    let two = AppStateSet<MyAppState>
+                     .initialize
+                     .addStates(StateOne, StateThree)
+
+    one |> should equal two
+
+[<Fact>]
+let ``inequality test`` () =
+
+    let one = AppStateSet<MyAppState>
+                     .initialize
+                     .addStates(StateOne, StateTwo)
+
+    let two = AppStateSet<MyAppState>
+                     .initialize
+                     .addStates(StateOne, StateThree)
+
+    one |> should not' <| equal two
+
+[<Fact>]
 let ``primitive obsession equality test`` () =
 
     let one = AppStateSet<MyAppState>
