@@ -5,7 +5,7 @@ open FsUnit.Xunit
 
 open Songhay.Modules.Models
 
-type MyAppState = | StateOne | StateTwo | StateThree
+type MyAppState = | StateOne | StateTwo | StateThree | StateFour of int | StateFive of string
 
 [<Fact>]
 let ``hasState test`` () =
@@ -54,3 +54,16 @@ let ``toggleState with only initialize test`` () =
                      .toggleState(StateTwo)
 
     actual.hasState StateTwo |> should be True
+
+[<Fact>]
+let ``primitive obsession equality test`` () =
+
+    let one = AppStateSet<MyAppState>
+                     .initialize
+                     .addStates(StateFour 1, StateFive "one")
+
+    let two = AppStateSet<MyAppState>
+                     .initialize
+                     .addStates(StateFour 1, StateFive "two")
+
+    one.states |> should not' <| equal two.states
