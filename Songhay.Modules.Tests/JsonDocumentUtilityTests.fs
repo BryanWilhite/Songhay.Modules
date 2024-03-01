@@ -140,7 +140,7 @@ module JsonDocumentUtilityTests =
 
     [<Fact>]
     let ``tryGetProperty document array test``() =
-        let jDocArray = JsonDocument.Parse("[{},{}]")
+        use jDocArray = JsonDocument.Parse("[{},{}]")
         let result =
             jDocArray.RootElement
             |> tryGetProperty "foo"
@@ -148,7 +148,7 @@ module JsonDocumentUtilityTests =
 
     [<Fact>]
     let ``tryGetProperty document array item test``() =
-        let jDocArray = JsonDocument.Parse(@"[{""zero"": null},{""zero"": ""naught""}]")
+        use jDocArray = JsonDocument.Parse(@"[{""zero"": null},{""zero"": ""naught""}]")
         let result =
             jDocArray.RootElement.Item(1)
             |> tryGetProperty "zero"
