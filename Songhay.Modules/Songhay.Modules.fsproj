@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>6.4.2</AssemblyVersion>
+        <AssemblyVersion>8.0.0</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
         <Description>core reusable, opinionated concerns for all of my F# projects</Description>
         <Authors>Bryan D. Wilhite</Authors>
-        <Copyright>(c) 2023 Bryan D. Wilhite</Copyright>
+        <Copyright>(c) 2024 Bryan D. Wilhite</Copyright>
         <Company>Songhay System</Company>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/BryanWilhite/Songhay.Modules</RepositoryUrl>
@@ -31,7 +31,7 @@
         <WarnOn>3390;$(WarnOn)</WarnOn>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
         <DocumentationFile>.\Songhay.Modules.xml</DocumentationFile>
     </PropertyGroup>
 
