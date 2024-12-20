@@ -79,7 +79,7 @@ module StringUtility =
                 s
                 |> regexReplace "[^a-z^0-9]" "-" defaultRegexOptions
 
-            let rec removeDoubleHyphens s =
+            let rec removeDoubleHyphens (s:string) =
                 let pattern = "--"
                 if Regex.IsMatch(s, pattern) then
                     s

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <GenerateProgramFile>false</GenerateProgramFile>
     </PropertyGroup>
@@ -14,17 +14,17 @@
         <Compile Include="Models\AppStateSetTests.fs" />
         <Compile Include="Models\CssPrimitivesTests.fs" />
         <Compile Include="Models\PrimitivesTests.fs" />
-        <Compile Include="Models/ProgramAssemblyInfoTests.fs" />
+        <Compile Include="Models\ProgramAssemblyInfoTests.fs" />
         <Compile Include="CssDeclarationUtilityTests.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="FSharp.Data" Version="6.4.0" />
-        <PackageReference Include="FsToolkit.ErrorHandling" Version="4.16.0" />
+        <PackageReference Include="FsToolkit.ErrorHandling" Version="4.18.0" />
         <PackageReference Include="FsUnit.xUnit" Version="6.0.1" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-        <PackageReference Include="xunit" Version="2.9.0" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+        <PackageReference Include="xunit" Version="2.9.2" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
@@ -32,8 +32,8 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Xunit.SkippableFact" Version="1.4.13" />
-        <PackageReference Update="FSharp.Core" Version="8.0.400" />
+        <PackageReference Include="Xunit.SkippableFact" Version="1.5.23" />
+        <PackageReference Update="FSharp.Core" Version="8.0.403" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Songhay.Modules\Songhay.Modules.fsproj" />
