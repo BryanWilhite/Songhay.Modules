@@ -20,6 +20,13 @@ type AppStateSet<'state when 'state : comparison> =
 
         AppStates newSet
 
+    /// <summary>chooses the first <see cref="'state"/> with the specified getter</summary>
+    member this.chooseState (getter: 'state -> 'o option) =
+            this.states
+            |> List.ofSeq
+            |> List.choose getter
+            |> List.head
+
     /// <summary>returns <c>true</c> when the specified <see cref="'state"/> is collected</summary>
     member this.hasState state = this.states.Contains(state)
 

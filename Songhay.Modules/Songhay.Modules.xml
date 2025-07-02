@@ -747,6 +747,9 @@
 <member name="P:Songhay.Modules.Models.AppStateHashSet`1.initialize">
  <summary>returns an empty collection of <see cref="'state"/></summary>
 </member>
+<member name="M:Songhay.Modules.Models.AppStateHashSet`1.chooseState``1(Microsoft.FSharp.Core.FSharpFunc{`0,Microsoft.FSharp.Core.FSharpOption{``0}})">
+ <summary>chooses the first <see cref="'state"/> with the specified getter</summary>
+</member>
 <member name="M:Songhay.Modules.Models.AppStateHashSet`1.addStates(`0[])">
  <summary>adds the specified list of <see cref="'state"/></summary>
 </member>
@@ -782,6 +785,9 @@
 </member>
 <member name="P:Songhay.Modules.Models.AppStateSet`1.initialize">
  <summary>returns an empty collection of <see cref="'state"/></summary>
+</member>
+<member name="M:Songhay.Modules.Models.AppStateSet`1.chooseState``1(Microsoft.FSharp.Core.FSharpFunc{`0,Microsoft.FSharp.Core.FSharpOption{``0}})">
+ <summary>chooses the first <see cref="'state"/> with the specified getter</summary>
 </member>
 <member name="M:Songhay.Modules.Models.AppStateSet`1.addStates(`0[])">
  <summary>adds the specified list of <see cref="'state"/></summary>

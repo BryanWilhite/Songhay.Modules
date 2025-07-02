@@ -8,6 +8,43 @@ open Songhay.Modules.Models
 type MyAppState = | StateOne | StateTwo | StateThree | StateFour of int | StateFive of string
 
 [<Fact>]
+let ``chooseState test`` () =
+
+    let set = AppStateSet<MyAppState>.initialize.addStates(StateOne, StateThree)
+
+    //List.find with auto-generated `.Is*` properties and shorthand
+    let find = set.states
+            |> List.ofSeq
+            |> List.find _.IsStateOne
+
+    find |> should equal StateOne // will throw exception when item not found
+
+    //List.choose with `if` and auto-generated `.Is*` properties
+    let choose = set.states
+                |> List.ofSeq
+                |> List.choose (fun i -> if i.IsStateOne then Some StateOne else None)
+
+    choose |> should equal [StateOne] // returns item(s) in a list
+
+    //List.choose with `match`
+    let choose = set.states
+                |> List.ofSeq
+                |> List.choose (fun i -> match i with | StateOne -> Some StateOne | _ ->  None)
+
+    choose |> should equal [StateOne]
+
+    //List.choose with `function` shorthand
+    let choose = set.states
+                |> List.ofSeq
+                |> List.choose (function | StateOne -> Some StateOne | _ -> None)
+
+    choose |> should equal [StateOne]
+
+    let actual = set.chooseState (function | StateOne -> Some StateOne | _ -> None)
+
+    actual |> should equal StateOne
+
+[<Fact>]
 let ``hasState test`` () =
 
     let actual = AppStateSet<MyAppState>.initialize.addStates(StateOne, StateThree)
