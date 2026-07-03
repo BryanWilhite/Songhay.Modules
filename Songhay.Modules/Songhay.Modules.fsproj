@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>8.0.1</AssemblyVersion>
+        <AssemblyVersion>10.0.0</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
 
         <Title>Songhay Modules</Title>
         <Description>core reusable, opinionated concerns for all of my F# projects</Description>
         <Authors>Bryan D. Wilhite</Authors>
-        <Copyright>(c) 2025 Bryan D. Wilhite</Copyright>
+        <Copyright>(c) 2026 Bryan D. Wilhite</Copyright>
         <Company>Songhay System</Company>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/BryanWilhite/Songhay.Modules</RepositoryUrl>
@@ -26,12 +26,12 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <WarnOn>3390;$(WarnOn)</WarnOn>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0|AnyCPU'">
         <DocumentationFile>.\Songhay.Modules.xml</DocumentationFile>
     </PropertyGroup>
 
@@ -66,7 +66,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="FSharp.Core" Version="8.0.*" />
+      <PackageReference Update="FSharp.Core" Version="10.1.301" />
     </ItemGroup>
 
 </Project>

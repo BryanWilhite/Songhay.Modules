@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Songhay.Modules</id>
-    <version>8.0.1</version>
+    <version>10.0.0</version>
     <description>core reusable, opinionated concerns for all of my F# projects</description>
     <authors>Bryan D. Wilhite</authors>
     <title>Songhay Modules</title>
@@ -13,19 +13,19 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>core reusable, opinionated concerns for all of my F# projects</summary>
     <readme>README.md</readme>
-    <releaseNotes>see https://github.com/BryanWilhite/Songhay.Modules/issues/15</releaseNotes>
-    <copyright>(c) 2025 Bryan D. Wilhite</copyright>
+    <releaseNotes>update of dependencies 📦🔝</releaseNotes>
+    <copyright>(c) 2026 Bryan D. Wilhite</copyright>
     <tags>FSharp;Core;Songhay;Modules</tags>
     <repository type="git" url="https://github.com/BryanWilhite/Songhay.Modules"></repository>
     <dependencies>
-      <group targetFramework=".NET8.0">
-        <dependency id="FSharp.Core" version="8.0.403" />
+      <group targetFramework=".NET10.0">
+        <dependency id="FSharp.Core" version="10.1.301" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Debug\net8.0\Songhay*.dll" target="lib\net8.0" />
-    <file src="bin\Debug\net8.0\Songhay*.json" target="lib\net8.0" />
+    <file src="bin\Debug\net10.0\Songhay*.dll" target="lib\net10.0" />
+    <file src="bin\Debug\net10.0\Songhay*.json" target="lib\net10.0" />
     <file src="**\*.fs" exclude="**\obj\**" target="src" />
     <file src="..\LICENSE.md" target="" />
     <file src="..\README.md" target=""/>

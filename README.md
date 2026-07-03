@@ -21,8 +21,8 @@ The following highlights core concerns shared among my F# projects:
 
 ```mermaid
 graph BT
-    fsharp[FSharp.Core 8.0.*]
-    net8[.NET 8.0]
+    fsharp[FSharp.Core 10.0.*]
+    net[.NET 10.0]
 
     1[Songhay.Modules]
     2[Songhay.Modules.Bolero]
@@ -30,7 +30,7 @@ graph BT
     4[Songhay.Player.ProgressiveAudio]
     5[Songhay.Player.YouTube]
 
-    net8-->fsharp
+    net-->fsharp
     fsharp-->1
 
     1-->2
@@ -39,4 +39,4 @@ graph BT
     2 & 3--> 4 & 5
 ```
 
-@[BryanWilhite](https://twitter.com/BryanWilhite)
+[Bryan Wilhite is on LinkedIn](https://www.linkedin.com/in/wilhite)🇺🇸💼
