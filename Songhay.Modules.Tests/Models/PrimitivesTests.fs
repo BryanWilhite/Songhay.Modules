@@ -1,12 +1,9 @@
 namespace Songhay.Modules.Tests.Models
 
 open System
-open System.Text.Json
 
 open Xunit
 open FsToolkit.ErrorHandling
-open FsUnit.Xunit
-open FsUnit.CustomMatchers
 
 open Songhay.Modules.Models
 open Songhay.Modules.JsonDocumentUtility
@@ -30,11 +27,11 @@ module PrimitivesTests =
             |> Result.valueOr raise
         let result = element |> Identifier.fromInputElementName elementName
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<Identifier, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<Identifier, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
             let actual = result |> Result.valueOr raise
-            actual |> should equal expectedOutput.Value
+            Assert.Equal(expectedOutput.Value, actual)
 
     let ClientIdTestData : seq<obj[]> =
         seq {
@@ -53,11 +50,11 @@ module PrimitivesTests =
             |> Result.valueOr raise
         let result = element |> ClientId.fromInput useCamelCase
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<ClientId, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<ClientId, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
             let actual = result |> Result.valueOr raise
-            actual |> should equal expectedOutput.Value
+            Assert.Equal(expectedOutput.Value, actual)
 
     let EndDateTestData : seq<obj[]> =
         seq {
@@ -77,11 +74,11 @@ module PrimitivesTests =
             |> Result.valueOr raise
         let result = element |> EndDate.fromInput useCamelCase
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<EndDate, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<EndDate, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
             let actual = result |> Result.valueOr raise
-            actual |> should equal (EndDate (DateTime.Parse(expectedOutput.Value)))
+            Assert.Equal((EndDate (DateTime.Parse(expectedOutput.Value))), actual)
 
     let InceptDateTestData : seq<obj[]> =
         seq {
@@ -101,11 +98,11 @@ module PrimitivesTests =
             |> Result.valueOr raise
         let result = element |> InceptDate.fromInput useCamelCase
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<InceptDate, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<InceptDate, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
             let actual = result |> Result.valueOr raise
-            actual |> should equal (InceptDate (DateTime.Parse(expectedOutput.Value)))
+            Assert.Equal((InceptDate (DateTime.Parse(expectedOutput.Value))), actual)
 
     let ModificationDateTestDataForDoc : seq<obj[]> =
         seq {
@@ -125,11 +122,11 @@ module PrimitivesTests =
             |> Result.valueOr raise
         let result = element |> ModificationDate.fromInput useCamelCase
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
             let actual = result |> Result.valueOr raise
-            actual |> should equal (ModificationDate (DateTime.Parse(expectedOutput.Value)))
+            Assert.Equal((ModificationDate (DateTime.Parse(expectedOutput.Value))), actual)
 
     let ModificationDateTestData : seq<obj[]> =
         seq {
@@ -150,8 +147,8 @@ module PrimitivesTests =
             |> Result.valueOr raise
         let result = element |> ModificationDate.fromInput useCamelCase
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<ModificationDate, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
             let actual = result |> Result.valueOr raise
-            actual |> should equal (ModificationDate (DateTime.Parse(expectedOutput.Value)))
+            Assert.Equal((ModificationDate (DateTime.Parse(expectedOutput.Value))), actual)

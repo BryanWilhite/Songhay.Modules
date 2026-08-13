@@ -5,7 +5,6 @@ module ProgramAssemblyInfoTests =
     open System.IO
     open System.Reflection
     open Xunit
-    open FsUnit.Xunit
     open FsToolkit.ErrorHandling
 
     open Songhay.Modules.Models
@@ -21,4 +20,4 @@ module ProgramAssemblyInfoTests =
             |> Result.valueOr raiseProgramFileError
             |> File.Exists
 
-        actual |> should be True
+        actual |> Assert.True

@@ -8,8 +8,6 @@ module JsonDocumentUtilityTests =
     open Xunit
     open FsToolkit.ErrorHandling
     open FsToolkit.ErrorHandling.Operator.Result
-    open FsUnit.CustomMatchers
-    open FsUnit.Xunit
 
     open Songhay.Modules
     open Songhay.Modules.JsonDocumentUtility
@@ -25,9 +23,9 @@ module JsonDocumentUtilityTests =
             |> toResultFromStringElement (fun el -> el.GetDateTime())
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<DateTime, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<DateTime, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{""actual"": true}", true)>]
@@ -41,9 +39,9 @@ module JsonDocumentUtilityTests =
             |> toResultFromStringElement (fun el -> el.GetString())
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<string, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<string, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{""actual"": true}", false)>]
@@ -57,9 +55,9 @@ module JsonDocumentUtilityTests =
             |> toResultFromBooleanElement (fun el -> el.GetBoolean())
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
+            result.IsOk |> Assert.True
         else
-            result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
+            result.IsError |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{""actual"": 1.56}", false)>]
@@ -73,9 +71,9 @@ module JsonDocumentUtilityTests =
             |> toResultFromNumericElement (fun el -> el.GetDouble())
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<float, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<float, JsonException>.Ok @>)
+            result.IsError |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{""actual"": 156}", false)>]
@@ -89,9 +87,9 @@ module JsonDocumentUtilityTests =
             |> toResultFromNumericElement (fun el -> el.GetInt32())
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<int, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     let jDocResult = Result.parseJsonDocument(@"
         {
@@ -120,7 +118,7 @@ module JsonDocumentUtilityTests =
         let expectedResult = "this is first"
         let actual = elementOne.GetString()
 
-        actual |> should equal expectedResult
+        Assert.Equal(expectedResult, actual)
 
     [<Fact>]
     let ``tryGetProperty document traversal test``() =
@@ -136,7 +134,7 @@ module JsonDocumentUtilityTests =
         let elementP1 = result |> Result.valueOr raise
         let expectedResult = "this is three-point-one"
         let actual = elementP1.GetString()
-        actual |> should equal expectedResult
+        Assert.Equal(expectedResult, actual)
 
     [<Fact>]
     let ``tryGetProperty document array test``() =
@@ -144,7 +142,7 @@ module JsonDocumentUtilityTests =
         let result =
             jDocArray.RootElement
             |> tryGetProperty "foo"
-        result |> Result.isError |> should be True
+        result |> Result.isError |> Assert.True
 
     [<Fact>]
     let ``tryGetProperty document array item test``() =
@@ -156,7 +154,7 @@ module JsonDocumentUtilityTests =
 
         let expectedResult = "naught"
         let actual = elementZero.GetString()
-        actual |> should equal expectedResult
+        Assert.Equal(expectedResult, actual)
 
     [<Theory>]
     [<InlineData(@"{ ""v"": ""false"" }", true)>]
@@ -171,9 +169,9 @@ module JsonDocumentUtilityTests =
             |> toJsonBooleanValue
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
+            result.IsOk |> Assert.True
         else
-            result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""v"": ""false"" }", false)>]
@@ -188,9 +186,9 @@ module JsonDocumentUtilityTests =
             |> toJsonBooleanValueFromStringElement
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<bool, JsonException>.Error @>)
+            result.IsOk |> Assert.True
         else
-            result |> should be (ofCase <@ Result<bool, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""v"": ""2005-12-10T22:19:14"" }", false)>]
@@ -204,9 +202,9 @@ module JsonDocumentUtilityTests =
             |> toJsonDateTimeValue
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<DateTime, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<DateTime, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""v"": 12 }", false)>]
@@ -222,9 +220,9 @@ module JsonDocumentUtilityTests =
             |> toJsonIntValue
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<int, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""v"": ""12"" }", false)>]
@@ -239,9 +237,9 @@ module JsonDocumentUtilityTests =
             |> toJsonIntValueFromStringElement
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<int, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<int, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""v"": 1.2 }", false)>]
@@ -256,9 +254,9 @@ module JsonDocumentUtilityTests =
             |> toJsonFloatValue
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<double, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<double, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""v"": ""1.2"" }", false)>]
@@ -272,9 +270,9 @@ module JsonDocumentUtilityTests =
             |> toJsonFloatValueFromStringElement
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<double, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<double, JsonException>.Ok @>)
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{ ""uri"": ""urn:nope"" }", UriKind.RelativeOrAbsolute, false)>]
@@ -288,6 +286,6 @@ module JsonDocumentUtilityTests =
             |> toJsonUriValue uriKind
 
         if isErrorExpected then
-            result |> should be (ofCase <@ Result<Uri, JsonException>.Error @>)
+            result.IsError |> Assert.True
         else
-            result |> should be (ofCase <@ Result<Uri, JsonException>.Ok @>)
+            result.IsOk |> Assert.True

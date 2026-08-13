@@ -1,12 +1,9 @@
 namespace Songhay.Modules.Tests.Models
 
-open System
 open System.Collections.Generic
 open Xunit
 open Xunit.Abstractions
 
-open FsUnit.Xunit
-open FsUnit.CustomMatchers
 open FsToolkit.ErrorHandling
 
 open Songhay.Modules.Models
@@ -87,10 +84,11 @@ type RestApiPrimitivesTests(testOutputHelper: ITestOutputHelper) =
         let actual = input.ToUriResultFromClaim(key, args)
 
         if expectedOriginalString.IsNone then
-            actual |> should be (ofCase <@ Result<Uri,exn>.Error @>)
+            actual.IsError |> Assert.True
             testOutputHelper.WriteLine $"{nameof Error} expected"
         else
-            actual |> should be (ofCase <@ Result<Uri,exn>.Ok @>)
+            actual.IsOk |> Assert.True
             testOutputHelper.WriteLine $"{nameof actual}: {actual |> Result.valueOr raise}"
+            printfn $"{nameof actual}: {actual |> Result.valueOr raise}"
 
             Assert.Equal(expectedOriginalString.Value, (actual |> Result.valueOr raise).OriginalString)

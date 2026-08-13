@@ -5,7 +5,6 @@ module StringUtilityTests =
     open System
 
     open Xunit
-    open FsUnit.Xunit
 
     open Songhay.Modules.StringUtility
 
@@ -23,9 +22,9 @@ module StringUtilityTests =
     let ``toBlogSlug test`` (input: string) (expectedResult: string) =
         match input |> toBlogSlug with
         | Some actual ->
-            actual |> should equal expectedResult
+            Assert.Equal(expectedResult, actual)
         | None ->
-            nameof None |> should equal expectedResult
+            Assert.Equal(expectedResult, nameof None)
 
     [<Theory>]
     [<InlineData("OneTwoThree", "oneTwoThree")>]
@@ -33,9 +32,9 @@ module StringUtilityTests =
     let ``toCamelCase test`` (input: string) (expectedResult: string) =
         match input |> toCamelCase with
         | Some actual ->
-            actual |> should equal expectedResult
+            Assert.Equal(expectedResult, actual)
         | None ->
-            nameof None |> should equal expectedResult
+            Assert.Equal(expectedResult, nameof None)
 
     [<Theory>]
     [<InlineData("OneTwoThree", "one-two-three")>]
@@ -44,16 +43,16 @@ module StringUtilityTests =
     let ``toSnakeCase test`` (input: string) (expectedResult: string) =
         match input |> toKabobCase with
         | Some actual ->
-            actual |> should equal expectedResult
+            Assert.Equal(expectedResult, actual)
         | None ->
-            nameof None |> should equal expectedResult
+            Assert.Equal(expectedResult, nameof None)
 
     [<Fact>]
     let ``tryRegexReplace ArgumentNullException test`` () =
         let test (pattern: string) (replace: string) (input: string) =
             match input |> tryRegexReplace pattern replace defaultRegexOptions with
             | Ok _ -> failwith $"{nameof Result.Ok} is not expected."
-            | Error ex -> ex |> should be ofExactType<ArgumentNullException>
+            | Error ex -> (ex.GetType().Name = nameof ArgumentNullException) |> Assert.True
 
         null |> test null null
         "foo" |> test "foo" null

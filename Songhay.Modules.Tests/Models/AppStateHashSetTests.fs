@@ -1,7 +1,6 @@
 module Songhay.Modules.Models.Tests.AppStateHashSetTests
 
 open Xunit
-open FsUnit.Xunit
 
 open Songhay.Modules.Models
 
@@ -12,9 +11,9 @@ let ``hasState test`` () =
 
     let actual = AppStateHashSet<MyAppState>.initialize.addStates(StateOne, StateThree)
 
-    actual.hasState StateOne |> should be True
-    actual.hasState StateTwo |> should be False
-    actual.hasState StateThree |> should be True
+    actual.hasState StateOne |> Assert.True
+    actual.hasState StateTwo |> Assert.False
+    actual.hasState StateThree |> Assert.True
 
 [<Fact>]
 let ``removeStates test`` () =
@@ -24,9 +23,9 @@ let ``removeStates test`` () =
                      .addStates(StateOne, StateTwo, StateThree)
                      .removeStates(StateTwo, StateThree)
 
-    actual.hasState StateOne |> should be True
-    actual.hasState StateTwo |> should be False
-    actual.hasState StateThree |> should be False
+    actual.hasState StateOne |> Assert.True
+    actual.hasState StateTwo |> Assert.False
+    actual.hasState StateThree |> Assert.False
 
 [<Fact>]
 let ``should be equal``() =
@@ -37,7 +36,7 @@ let ``should be equal``() =
                      .initialize
                      .addStates(StateThree, StateTwo, StateOne)
 
-    actual1 |> should equal actual2
+    (actual1 = actual2) |> Assert.True
 
 [<Fact>]
 let ``should not be equal``() =
@@ -49,7 +48,7 @@ let ``should not be equal``() =
                      .addStates(StateThree, StateTwo, StateOne)
                      .removeState StateTwo
 
-    actual1 |> should not' <| equal actual2
+    Assert.NotEqual(actual1, actual2)
 
 [<Fact>]
 let ``toggleState test`` () =
@@ -59,12 +58,12 @@ let ``toggleState test`` () =
                      .addStates(StateOne, StateTwo, StateThree)
                      .toggleState(StateTwo)
 
-    actual.hasState StateTwo |> should be False
+    actual.hasState StateTwo |> Assert.False
 
-    actual.states.Count |> should equal 2
+    (actual.states.Count = 2) |> Assert.True
 
     let actual = actual.toggleState(StateTwo)
 
-    actual.hasState StateTwo |> should be True
+    actual.hasState StateTwo |> Assert.True
 
-    actual.states.Count |> should equal 3
+    (actual.states.Count = 3) |> Assert.True

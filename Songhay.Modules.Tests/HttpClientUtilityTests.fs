@@ -11,8 +11,6 @@ module HttpClientUtilityTests =
     open FsToolkit.ErrorHandling
 
     open Xunit
-    open FsUnit.Xunit
-    open FsUnit.CustomMatchers
 
     open Songhay.Modules.HttpClientUtility
     open Songhay.Modules.HttpRequestMessageUtility
@@ -38,7 +36,8 @@ module HttpClientUtilityTests =
         match jsonResult with
         |Error _ -> return false
         | Ok json ->
-            String.IsNullOrWhiteSpace(json) |> should be False
+            String.IsNullOrWhiteSpace(json) |> Assert.False
+
             return isExpectedJson json
     }
 
@@ -50,8 +49,8 @@ module HttpClientUtilityTests =
 
         let isExpectedJson json =
             let docs = json |> providerGet.Parse
-            docs.Length |> should be (greaterThan 0)
-            docs |> Array.forall (fun doc -> doc.Id > 0 && doc.UserId > 0) |> should be True
+            docs.Length > 0 |> Assert.True
+            docs |> Array.forall (fun doc -> doc.Id > 0 && doc.UserId > 0) |> Assert.True
             true
 
         async {
@@ -62,17 +61,19 @@ module HttpClientUtilityTests =
                 |> trySendAsync (get uri)
                 |> Async.AwaitTask
 
-            responseResult |> should be (ofCase <@ Result<HttpResponseMessage, exn>.Ok @>)
+            responseResult.IsOk |> Assert.True
 
             let response = responseResult |> Result.valueOr raise
             response.EnsureSuccessStatusCode() |> ignore
 
-            response.RequestMessage.Method.ToString().ToUpperInvariant()
-            |> should equal (HttpMethod.Get.ToUpperInvariant())
+            Assert.Equal(
+                response.RequestMessage.Method.ToString().ToUpperInvariant(),
+                HttpMethod.Get.ToUpperInvariant()
+            )
 
             let! actual = response |> isJsonResult isExpectedJson |> Async.AwaitTask
 
-            actual |> should be True
+            actual |> Assert.True
         }
 
     [<Theory>]
@@ -80,7 +81,7 @@ module HttpClientUtilityTests =
     let ``client should delete`` (location: string) =
 
         let isExpectedJson json =
-            json |> should equal "{}"
+            Assert.Equal("{}", json)
             true
 
         async {
@@ -91,17 +92,19 @@ module HttpClientUtilityTests =
                 |> trySendAsync (delete uri)
                 |> Async.AwaitTask
 
-            responseResult |> should be (ofCase <@ Result<HttpResponseMessage, exn>.Ok @>)
+            responseResult.IsOk |> Assert.True
 
             let response = responseResult |> Result.valueOr raise
             response.EnsureSuccessStatusCode() |> ignore
 
-            response.RequestMessage.Method.ToString().ToUpperInvariant()
-            |> should equal (HttpMethod.Delete.ToUpperInvariant())
+            Assert.Equal(
+                 response.RequestMessage.Method.ToString().ToUpperInvariant(),
+                 HttpMethod.Delete.ToUpperInvariant()
+            )
 
             let! actual = response |> isJsonResult isExpectedJson |> Async.AwaitTask
 
-            actual |> should be True
+            actual |> Assert.True
         }
 
     type providerPost = JsonProvider<"""{ "id": 101, "title": "foo", "body": "bar", "userId": 1 }""">
@@ -111,7 +114,7 @@ module HttpClientUtilityTests =
     let ``client should post`` (location: string, data: string) =
         let isExpectedJson json =
             let doc = json |> providerPost.Parse
-            (doc.Id > 0 && doc.Title = "foo" && doc.Body = "bar" && doc.UserId = 1) |> should be True
+            (doc.Id > 0 && doc.Title = "foo" && doc.Body = "bar" && doc.UserId = 1) |> Assert.True
             true
 
         async {
@@ -122,20 +125,24 @@ module HttpClientUtilityTests =
                 |> trySendAsync (post uri |> withJsonStringContent data)
                 |> Async.AwaitTask
 
-            responseResult |> should be (ofCase <@ Result<HttpResponseMessage, exn>.Ok @>)
+            responseResult.IsOk |> Assert.True
 
             let response = responseResult |> Result.valueOr raise
             response.EnsureSuccessStatusCode() |> ignore
 
-            int response.StatusCode
-            |> should equal HttpStatusCodes.Created
+            Assert.Equal(
+                int response.StatusCode,
+                HttpStatusCodes.Created
+            )
 
-            response.RequestMessage.Method.ToString().ToUpperInvariant()
-            |> should equal (HttpMethod.Post.ToUpperInvariant())
+            Assert.Equal(
+                response.RequestMessage.Method.ToString().ToUpperInvariant(),
+                HttpMethod.Post.ToUpperInvariant()
+            )
 
             let! actual = response |> isJsonResult isExpectedJson |> Async.AwaitTask
 
-            actual |> should be True
+            actual |> Assert.True
         }
 
     type providerPut = JsonProvider<"""{ "id": 1, "title": "foo", "body": "bar", "userId": 1 }""">
@@ -145,7 +152,7 @@ module HttpClientUtilityTests =
     let ``client should put`` (location: string, data: string) =
         let isExpectedJson json =
             let doc = json |> providerPost.Parse
-            (doc.Id = 1 && doc.Title = "foo" && doc.Body = "bar" && doc.UserId = 1) |> should be True
+            (doc.Id = 1 && doc.Title = "foo" && doc.Body = "bar" && doc.UserId = 1) |> Assert.True
             true
 
         async {
@@ -156,17 +163,19 @@ module HttpClientUtilityTests =
                 |> trySendAsync (put uri |> withJsonStringContent data)
                 |> Async.AwaitTask
 
-            responseResult |> should be (ofCase <@ Result<HttpResponseMessage, exn>.Ok @>)
+            responseResult.IsOk |> Assert.True
 
             let response = responseResult |> Result.valueOr raise
             response.EnsureSuccessStatusCode() |> ignore
 
-            response.RequestMessage.Method.ToString().ToUpperInvariant()
-            |> should equal (HttpMethod.Put.ToUpperInvariant())
+            Assert.Equal(
+                response.RequestMessage.Method.ToString().ToUpperInvariant(),
+                HttpMethod.Put.ToUpperInvariant()
+            )
 
             let! actual = response |> isJsonResult isExpectedJson |> Async.AwaitTask
 
-            actual |> should be True
+            actual |> Assert.True
         }
     type providerPatch = JsonProvider<"""{ "body": "bar" }""">
 
@@ -175,7 +184,7 @@ module HttpClientUtilityTests =
     let ``client should patch`` (location: string, data: string) =
         let isExpectedJson json =
             let doc = json |> providerPost.Parse
-            (doc.Id = 1 && doc.Body = "bar") |> should be True
+            (doc.Id = 1 && doc.Body = "bar") |> Assert.True
             true
 
         async {
@@ -186,15 +195,17 @@ module HttpClientUtilityTests =
                 |> trySendAsync (patch uri |> withJsonStringContent data)
                 |> Async.AwaitTask
 
-            responseResult |> should be (ofCase <@ Result<HttpResponseMessage, exn>.Ok @>)
+            responseResult.IsOk |> Assert.True
 
             let response = responseResult |> Result.valueOr raise
             response.EnsureSuccessStatusCode() |> ignore
 
-            response.RequestMessage.Method.ToString().ToUpperInvariant()
-            |> should equal (HttpMethod.Patch.ToUpperInvariant())
+            Assert.Equal(
+                response.RequestMessage.Method.ToString().ToUpperInvariant(),
+                HttpMethod.Patch.ToUpperInvariant()
+            )
 
             let! actual = response |> isJsonResult isExpectedJson |> Async.AwaitTask
 
-            actual |> should be True
+            actual |> Assert.True
         }

@@ -6,7 +6,6 @@ module ProgramFileUtilityTests =
     open System.Linq
     open System.Reflection
     open Xunit
-    open FsUnit.Xunit
     open FsToolkit.ErrorHandling
 
     open Songhay.Modules.Models
@@ -27,7 +26,7 @@ module ProgramFileUtilityTests =
         let expected =
             expectedResult.Replace('|', Path.DirectorySeparatorChar)
 
-        expected |> should equal actual
+        Assert.Equal(expected, actual)
 
     [<Fact>]
     let ``tryGetParentDirectory test`` () =
@@ -43,7 +42,7 @@ module ProgramFileUtilityTests =
             |> tryGetParentDirectory 4
             |> Result.valueOr raiseProgramFileError
 
-        expected |> should equal actual
+        Assert.Equal(expected, actual)
 
     [<Fact>]
     let ``tryGetParentDirectoryInfo test`` () =
@@ -59,7 +58,7 @@ module ProgramFileUtilityTests =
             |> tryGetParentDirectoryInfo 4
             |> Result.valueOr raiseProgramFileError
 
-        expected |> should equal actual.FullName
+        Assert.Equal(expected, actual.FullName)
 
     [<Theory>]
     [<InlineData("./one/", "one|")>]
@@ -75,7 +74,7 @@ module ProgramFileUtilityTests =
         let expected =
             expectedResult.Replace('|', Path.DirectorySeparatorChar)
 
-        expected |> should equal actual
+        Assert.Equal(expected, actual)
 
     [<Fact>]
     let ``raiseExceptionForExpectedDirectory test`` () =
@@ -92,7 +91,7 @@ module ProgramFileUtilityTests =
                 |> ignore
 
         action
-        |> should throw typeof<DirectoryNotFoundException>
+        |> Assert.Throws<DirectoryNotFoundException>
 
     [<Fact>]
     let ``raiseExceptionForExpectedFile test`` () =
@@ -109,7 +108,7 @@ module ProgramFileUtilityTests =
                 |> ignore
 
         action
-        |> should throw typeof<FileNotFoundException>
+        |> Assert.Throws<FileNotFoundException>
 
     [<Theory>]
     [<InlineData(@"/\foo\bar\my-file.json", @"foo\bar\my-file.json")>]
@@ -117,4 +116,4 @@ module ProgramFileUtilityTests =
         let actual =
             path |> trimLeadingDirectorySeparatorChars
 
-        expected |> should equal actual
+        Assert.Equal(expected, actual)

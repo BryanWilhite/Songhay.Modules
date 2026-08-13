@@ -1,11 +1,8 @@
 namespace Songhay.Modules.Tests
 
 module ProgramTypeUtilityTests =
-
     open System
-
     open Xunit
-    open FsUnit.Xunit
 
     open Songhay.Modules.ProgramTypeUtility
 
@@ -15,11 +12,11 @@ module ProgramTypeUtilityTests =
     let ``tryParseIso8601Duration test`` (input: string) (expectedResult: bool) =
         match tryParseIso8601Duration input with
         | Ok timeSpan ->
-            expectedResult |> should be True
-            timeSpan |> should be (greaterThan TimeSpan.MinValue)
+            expectedResult |> Assert.True
+            (timeSpan > TimeSpan.MinValue) |> Assert.True
         | Error ex ->
-            expectedResult |> should be False
-            ex |> should be ofExactType<FormatException>
+            expectedResult |> Assert.False
+            (ex.GetType().Name = nameof FormatException) |> Assert.True
 
     [<Theory>]
     [<InlineData("Fri, 22 Mar 2019 18:56:07 -0700", true)>]
@@ -29,8 +26,8 @@ module ProgramTypeUtilityTests =
     let ``tryParseRfc822DateTime test`` (input: string) (expectedResult: bool) =
         match tryParseRfc822DateTime input with
         | Ok fromRfc822DateTime ->
-            expectedResult |> should be True
-            fromRfc822DateTime |> should be (greaterThan DateTime.MinValue)
+            expectedResult |> Assert.True
+            (fromRfc822DateTime > DateTime.MinValue) |> Assert.True
         | Error ex ->
-            expectedResult |> should be False
-            ex |> should be ofExactType<FormatException>
+            expectedResult |> Assert.False
+            (ex.GetType().Name = nameof FormatException) |> Assert.True
