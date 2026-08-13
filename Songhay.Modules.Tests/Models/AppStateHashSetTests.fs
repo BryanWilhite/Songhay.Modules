@@ -1,4 +1,4 @@
-module Songhay.Modules.Models.Tests.AppStateHashSetTests
+module Songhay.Modules.Tests.Models.AppStateHashSetTests
 
 open Xunit
 

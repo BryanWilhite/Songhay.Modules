@@ -55,9 +55,9 @@ module JsonDocumentUtilityTests =
             |> toResultFromBooleanElement (fun el -> el.GetBoolean())
 
         if isErrorExpected then
-            result.IsOk |> Assert.True
-        else
             result.IsError |> Assert.True
+        else
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{""actual"": 1.56}", false)>]
@@ -73,7 +73,7 @@ module JsonDocumentUtilityTests =
         if isErrorExpected then
             result.IsError |> Assert.True
         else
-            result.IsError |> Assert.True
+            result.IsOk |> Assert.True
 
     [<Theory>]
     [<InlineData(@"{""actual"": 156}", false)>]
@@ -169,7 +169,7 @@ module JsonDocumentUtilityTests =
             |> toJsonBooleanValue
 
         if isErrorExpected then
-            result.IsOk |> Assert.True
+            result.IsError |> Assert.True
         else
             result.IsOk |> Assert.True
 
@@ -186,7 +186,7 @@ module JsonDocumentUtilityTests =
             |> toJsonBooleanValueFromStringElement
 
         if isErrorExpected then
-            result.IsOk |> Assert.True
+            result.IsError |> Assert.True
         else
             result.IsOk |> Assert.True
 
