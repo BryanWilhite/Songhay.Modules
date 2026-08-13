@@ -51,6 +51,7 @@
         <Compile Include="HttpClientUtility.fs" />
         <Compile Include="HttpRequestMessageUtility.fs" />
         <Compile Include="HttpResponseMessageUtility.fs" />
+        <Compile Include="ILoggerExtensions.fs" />
         <Compile Include="JsonDocumentUtility.fs" />
         <Compile Include="ProgramFileUtility.fs" />
         <Compile Include="ProgramTypeUtility.fs" />
@@ -60,6 +61,7 @@
         <Compile Include="Models\DisplayItemModel.fs" />
         <Compile Include="Models\Groupable.fs" />
         <Compile Include="Models\ProgramAssemblyInfo.fs" />
+        <Compile Include="Models\RestApiPrimitives.fs" />
         <Compile Include="Models\Sortable.fs" />
         <Compile Include="Models\Temporal.fs" />
         <Compile Include="CssDeclarationUtility.fs" />
@@ -67,6 +69,10 @@
 
     <ItemGroup>
       <PackageReference Update="FSharp.Core" Version="10.1.301" />
+      <PackageReference Include="FsToolkit.ErrorHandling" Version="5.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.11" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.11" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.11" />
     </ItemGroup>
 
 </Project>

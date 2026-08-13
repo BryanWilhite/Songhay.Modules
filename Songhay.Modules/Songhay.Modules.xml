@@ -31,6 +31,18 @@
  Defines a selectable visual.
  </summary>
 </member>
+<member name="M:Songhay.Modules.ILoggerExtensions.LogException(Microsoft.Extensions.Logging.ILogger,System.Exception)">
+ <summary>
+ Logs the specified <see cref="Exception"/>
+ </summary>
+ <param name="logger">the <see cref="ILogger"/></param>
+ <param name="ex">the <see cref="Exception"/></param>
+</member>
+<member name="T:Songhay.Modules.ILoggerExtensions">
+ <summary>
+ Extensions of <see cref="ILogger"/>
+ </summary>
+</member>
 <member name="P:Songhay.Modules.MimeTypes.TextPlain">
  <summary>
  The text plain
@@ -1823,6 +1835,30 @@
  Defines Assembly information.
  </summary>
 </member>
+<member name="T:Songhay.Modules.Models.RestApiMetadata">
+<summary>
+ Defines all the information needed to access an API.
+</summary>
+</member>
+<member name="T:Songhay.Modules.Models.ClaimsSet">
+<summary>
+ Defines the conventional “claims” of an API.
+</summary>
+ <remarks>
+ The use of the word “claims” in this context goes beyond “claims challenges”
+ for authentication and includes the routes of the API itself.
+ </remarks>
+</member>
+<member name="T:Songhay.Modules.Models.ApiBase">
+<summary>
+ Defines the “base” conventional uniform identifier of an API.
+</summary>
+ <remarks>
+ The name of this type is inspired by the phrase “base URL”
+ used for the description of the `base` HTML element
+ (https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/base).
+ </remarks>
+</member>
 <member name="P:Songhay.Modules.Models.Sortable.sortOrdinal">
  <summary>
  Gets or sets the sort ordinal.
@@ -1853,6 +1889,17 @@
  <summary>
  Adds temporal properties to an item
  </summary>
+</member>
+<member name="P:Songhay.Modules.Models.ApiLiterals.RestApiMetadata">
+ <summary> conventional name of server-side class used in appsetings.json to hydrate <see cref="RestApiMetadata"/></summary>
+</member>
+<member name="P:Songhay.Modules.Models.ApiLiterals.ClaimKeyForEndPointPrefix">
+ <summary>conventional key in the <see cref="RestApiMetadata.ClaimsSet" /> dictionary</summary>
+</member>
+<member name="T:Songhay.Modules.Models.ApiLiterals">
+<summary>
+ Centralizes magic strings for REST API conventions.
+</summary>
 </member>
 <member name="M:Songhay.Modules.CssDeclarationUtility.fontVariant(Microsoft.FSharp.Collections.FSharpList{Songhay.Modules.Models.CssFontVariant})">
 <summary>
