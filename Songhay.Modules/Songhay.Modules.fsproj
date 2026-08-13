@@ -1,28 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>10.0.0</AssemblyVersion>
         <RootNamespace>Songhay.Modules</RootNamespace>
-
-        <Title>Songhay Modules</Title>
-        <Description>core reusable, opinionated concerns for all of my F# projects</Description>
-        <Authors>Bryan D. Wilhite</Authors>
-        <Copyright>(c) 2026 Bryan D. Wilhite</Copyright>
-        <Company>Songhay System</Company>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/BryanWilhite/Songhay.Modules</RepositoryUrl>
-
-        <IncludeSource>false</IncludeSource>
-        <IncludeSymbols>false</IncludeSymbols>
-        <IsPackable>true</IsPackable>
-        <PackageIcon>..\songhay_icon.png</PackageIcon>
-        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-        <PackageProjectUrl>https://github.com/BryanWilhite/Songhay.Modules/projects</PackageProjectUrl>
-        <PackageReleaseNotes>see https://github.com/BryanWilhite/Songhay.Modules/issues/15</PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageTags>FSharp;Core;Songhay;Modules</PackageTags>
-        <PackageVersion>$(AssemblyVersion)</PackageVersion>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <Version>$(AssemblyVersion)</Version>
+        <OutputType>Library</OutputType>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -34,10 +13,6 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0|AnyCPU'">
         <DocumentationFile>.\Songhay.Modules.xml</DocumentationFile>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="..\LICENSE.md" Link="LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
-    </ItemGroup>
 
     <ItemGroup>
         <Compile Include="Models\AppStateHashSet.fs" />

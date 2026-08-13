@@ -3,6 +3,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <GenerateProgramFile>false</GenerateProgramFile>
+        <OutputType>Library</OutputType>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="HttpClientUtilityTests.fs" />

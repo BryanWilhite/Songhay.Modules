@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Songhay.Modules</id>
-    <version>10.0.0</version>
+    <version>10.1.0</version>
     <description>core reusable, opinionated concerns for all of my F# projects</description>
     <authors>Bryan D. Wilhite</authors>
     <title>Songhay Modules</title>
@@ -13,13 +13,17 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>core reusable, opinionated concerns for all of my F# projects</summary>
     <readme>README.md</readme>
-    <releaseNotes>update of dependencies 📦🔝</releaseNotes>
+    <releaseNotes>see https://github.com/BryanWilhite/Songhay.Modules/issues/18 📦🔥 🔨🚜</releaseNotes>
     <copyright>(c) 2026 Bryan D. Wilhite</copyright>
     <tags>FSharp;Core;Songhay;Modules</tags>
     <repository type="git" url="https://github.com/BryanWilhite/Songhay.Modules"></repository>
     <dependencies>
       <group targetFramework=".NET10.0">
-        <dependency id="FSharp.Core" version="10.1.301" />
+        <dependency id="FsToolkit.ErrorHandling" version="5.2.0" />
+        <dependency id="Microsoft.Extensions.Configuration" version="10.0.11" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="10.0.11" />
+        <dependency id="Microsoft.Extensions.Logging" version="10.0.11" />
+        <dependency id="FSharp.Core" version="10.1.400" />
       </group>
     </dependencies>
   </metadata>
