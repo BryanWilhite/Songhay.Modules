@@ -118,23 +118,24 @@ type RestApiMetadata =
         let builder = UriBuilder(this.GetApiBase())
         let prefix = this.GetClaim ApiLiterals.ClaimKeyForEndPointPrefix
                         |> Option.defaultValue String.Empty
-                        |> fun p -> p.Trim '/'
+                        |> fun p -> String.Concat(p.Trim '/', '/')
         let routeTemplate = this.GetClaim key
 
         if routeTemplate.IsNone then Error <| exn $"The expected {nameof routeTemplate} from key `{key}` is not here."
         else
             let routeData = routeTemplate.Value.Split '|'
             let mutable route = routeData |> Array.head
-            let matches = regex.Matches route
+            let matches = (regex.Matches route).DistinctBy(_.Value) |> Array.ofSeq
 
-            if matches.Count <> args.Length then Error <| exn $"The expected number of route {nameof matches} from key `{key}` is not here."
+            if matches.Length <> args.Length then Error <| exn $"The expected number of route {nameof matches} from key `{key}` is not here."
             else
                 ( matches |> Array.ofSeq, args ) ||> Array.iter2(fun m arg -> route <- route.Replace(m.Value, arg))
 
-                builder.Path <- $"{prefix}/{route.Trim '/'}"
+                builder.Path <- $"{prefix}{route.Trim '/'}"
 
-                let code = routeData |> Array.tryLast
-                if code.IsSome then builder.Query <- $"code={code.Value}"
+                if routeData.Length > 1 then
+                    let code = routeData |> Array.tryLast
+                    if code.IsSome then builder.Query <- $"code={code.Value}"
 
                 Ok builder.Uri
 

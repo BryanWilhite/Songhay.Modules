@@ -15,6 +15,7 @@
         <Compile Include="Models\CssPrimitivesTests.fs" />
         <Compile Include="Models\PrimitivesTests.fs" />
         <Compile Include="Models\ProgramAssemblyInfoTests.fs" />
+        <Compile Include="Models\RestApiPrimitivesTests.fs" />
         <Compile Include="CssDeclarationUtilityTests.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
